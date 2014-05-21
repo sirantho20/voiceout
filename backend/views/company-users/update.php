@@ -4,15 +4,15 @@ use yii\helpers\Html;
 
 /**
  * @var yii\web\View $this
- * @var app\models\Company $model
+ * @var common\models\CompanyUsers $model
  */
 
-$this->title = 'Update Company: ' . ' ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Companies', 'url' => ['index']];
+$this->title = 'Update Company Users: ' . ' ' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Company Users', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="company-update">
+<div class="company-users-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

@@ -6,19 +6,19 @@ use yii\grid\GridView;
 /**
  * @var yii\web\View $this
  * @var yii\data\ActiveDataProvider $dataProvider
- * @var app\models\CompanySearch $searchModel
+ * @var app\models\CompanyUsersSearch $searchModel
  */
 
-$this->title = 'Companies';
+$this->title = 'Company Users';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="company-index">
+<div class="company-users-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Company', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Company Users', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -28,15 +28,19 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'company_id',
-            'company_name',
-            'date_added',
-            'date_updated',
-            // 'confirmed',
-            // 'industry_id',
-            // 'category_id',
-            // 'slug',
-            // 'is_registered',
+            'user_id',
+            'username',
+            'first_name',
+            'last_name',
+            // 'email_address:email',
+            // 'role',
+            // 'date_added',
+            // 'date_updated',
+            // 'password',
+            // 'company_id',
+            // 'last_login',
+            // 'password_reset_token',
+            // 'status',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

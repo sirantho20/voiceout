@@ -5,14 +5,14 @@ use yii\widgets\DetailView;
 
 /**
  * @var yii\web\View $this
- * @var app\models\Company $model
+ * @var common\models\CompanyUsers $model
  */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Companies', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Company Users', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="company-view">
+<div class="company-users-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -31,15 +31,19 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'company_id',
-            'company_name',
+            'user_id',
+            'username',
+            'first_name',
+            'last_name',
+            'email_address:email',
+            'role',
             'date_added',
             'date_updated',
-            'confirmed',
-            'industry_id',
-            'category_id',
-            'slug',
-            'is_registered',
+            'password',
+            'company_id',
+            'last_login',
+            'password_reset_token',
+            'status',
         ],
     ]) ?>
 

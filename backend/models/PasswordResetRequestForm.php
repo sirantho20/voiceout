@@ -1,7 +1,7 @@
 <?php
 namespace frontend\models;
 
-use common\models\User;
+use common\models\CompanyUsers;
 use yii\base\Model;
 
 /**
@@ -9,7 +9,7 @@ use yii\base\Model;
  */
 class PasswordResetRequestForm extends Model
 {
-    public $email;
+    public $email_address;
 
     /**
      * @inheritdoc
@@ -17,12 +17,12 @@ class PasswordResetRequestForm extends Model
     public function rules()
     {
         return [
-            ['email', 'filter', 'filter' => 'trim'],
-            ['email', 'required'],
-            ['email', 'email'],
-            ['email', 'exist',
-                'targetClass' => '\common\models\User',
-                'filter' => ['status' => User::STATUS_ACTIVE],
+            ['email_address', 'filter', 'filter' => 'trim'],
+            ['email_address', 'required'],
+            ['email_address', 'email'],
+            ['email_address', 'exist',
+                'targetClass' => '\common\models\CompanyUsers',
+                'filter' => ['status' => CompanyUsers::STATUS_ACTIVE],
                 'message' => 'There is no user with such email.'
             ],
         ];
@@ -36,7 +36,7 @@ class PasswordResetRequestForm extends Model
     public function sendEmail()
     {
         /** @var User $user */
-        $user = User::findOne([
+        $user = CompanyUsers::findOne([
             'status' => User::STATUS_ACTIVE,
             'email' => $this->email,
         ]);
