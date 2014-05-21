@@ -192,6 +192,8 @@ CREATE TABLE `mup_company_users` (
   `password` varchar(255) DEFAULT NULL,
   `company_id` int(11) DEFAULT NULL,
   `last_login` datetime DEFAULT NULL,
+  `password_reset_token` varchar(255) DEFAULT NULL,
+  `status` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_mup_company_users_company_idx` (`company_id`),
   CONSTRAINT `fk_mup_company_users_company` FOREIGN KEY (`company_id`) REFERENCES `mup_company` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -450,4 +452,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-05-20 16:58:04
+-- Dump completed on 2014-05-21 18:04:24
