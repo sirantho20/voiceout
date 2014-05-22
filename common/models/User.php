@@ -29,22 +29,6 @@ class User extends ActiveRecord implements IdentityInterface
     const ROLE_USER = 10;
 
     /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'timestamp' => [
-                'class' => 'yii\behaviors\TimestampBehavior',
-                'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
-                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
-                ],
-            ],
-        ];
-    }
-
-    /**
       * @inheritdoc
       */
      public function rules()

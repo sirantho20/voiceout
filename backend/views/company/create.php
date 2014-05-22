@@ -4,14 +4,14 @@ use yii\helpers\Html;
 
 /**
  * @var yii\web\View $this
- * @var common\models\CompanyUsers $model
+ * @var backend\models\Company $model
  */
 
-$this->title = 'Create Company Users';
-$this->params['breadcrumbs'][] = ['label' => 'Company Users', 'url' => ['index']];
+$this->title = 'Create Company';
+$this->params['breadcrumbs'][] = ['label' => 'Companies', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="company-users-create">
+<div class="company-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

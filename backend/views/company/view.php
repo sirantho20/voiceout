@@ -2,17 +2,18 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\bootstrap\Modal;
 
 /**
  * @var yii\web\View $this
- * @var common\models\CompanyUsers $model
+ * @var backend\models\Company $model
  */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Company Users', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Companies', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="company-users-view">
+<div class="company-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -25,25 +26,23 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
+        
     </p>
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'id',
-            'user_id',
-            'username',
-            'first_name',
-            'last_name',
-            'email_address:email',
-            'role',
+            'company_id',
+            'company_name',
             'date_added',
             'date_updated',
-            'password',
-            'company_id',
-            'last_login',
-            'password_reset_token',
-            'status',
+            'confirmed',
+            'industry_id',
+            'category_id',
+            'slug',
+            'is_registered',
+            'license_package',
         ],
     ]) ?>
 

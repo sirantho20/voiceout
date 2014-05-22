@@ -60,7 +60,7 @@ class CompanyUsersController extends Controller
      */
     public function actionCreate()
     {
-        $model = new CompanyUsers;
+        $model = new CompanyUsers(['scenario'=>'update']);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -80,6 +80,7 @@ class CompanyUsersController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $model->setScenario('update');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -117,5 +118,23 @@ class CompanyUsersController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+    
+    public function actionChange($id)
+    {
+        $model = new \backend\models\passwordChangeForm($id);
+        
+        if($model->load(Yii::$app->request->post()) && $model->changePassword())
+        {
+           echo 'valid';
+        }
+        else 
+        {
+            echo 'invalid';
+            $this->render('change', [
+                'model' => $model,
+            ]);
+        }
+        
     }
 }

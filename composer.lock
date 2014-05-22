@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "b694ba81de08d8438ec75d1e60537055",
+    "hash": "a87660d1c569a3777d25b2cf2d841ab8",
     "packages": [
         {
             "name": "cebe/markdown",
@@ -110,37 +110,178 @@
             "time": "2013-11-30 08:25:19"
         },
         {
-            "name": "phpspec/php-diff",
+            "name": "kartik-v/bootstrap-fileinput",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/phpspec/php-diff.git",
-                "reference": "30e103d19519fe678ae64a60d77884ef3d71b28a"
+                "url": "https://github.com/kartik-v/bootstrap-fileinput.git",
+                "reference": "63c88cd06d358b31b09716d68f79730c1cd1d022"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/php-diff/zipball/30e103d19519fe678ae64a60d77884ef3d71b28a",
-                "reference": "30e103d19519fe678ae64a60d77884ef3d71b28a",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/63c88cd06d358b31b09716d68f79730c1cd1d022",
+                "reference": "63c88cd06d358b31b09716d68f79730c1cd1d022",
                 "shasum": ""
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "Diff": "lib/"
+                "psr-4": {
+                    "kartik\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD-3-Clause"
+                "BSD 3-Clause"
             ],
             "authors": [
                 {
-                    "name": "Chris Boulton",
-                    "homepage": "http://github.com/chrisboulton"
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
                 }
             ],
-            "description": "A comprehensive library for generating differences between two hashable objects (strings or arrays).",
-            "time": "2013-11-01 13:02:21"
+            "description": "An enhanced HTML 5 file input for Bootstrap 3.x with file preview, multiple selection, and more features.",
+            "homepage": "https://github.com/kartik-v/bootstrap-fileinput",
+            "keywords": [
+                "bootstrap",
+                "file",
+                "image",
+                "input",
+                "jquery",
+                "preview",
+                "upload"
+            ],
+            "time": "2014-05-07 07:34:53"
+        },
+        {
+            "name": "kartik-v/bootstrap-star-rating",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/bootstrap-star-rating.git",
+                "reference": "6eaec3e79b3a809e2b7f147bf3ed26b8131847b2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-star-rating/zipball/6eaec3e79b3a809e2b7f147bf3ed26b8131847b2",
+                "reference": "6eaec3e79b3a809e2b7f147bf3ed26b8131847b2",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD 3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "A simple yet powerful JQuery star rating plugin for Bootstrap.",
+            "homepage": "https://github.com/kartik-v/bootstrap-star-rating",
+            "keywords": [
+                "Rating",
+                "bootstrap",
+                "jquery",
+                "star"
+            ],
+            "time": "2014-05-16 19:08:03"
+        },
+        {
+            "name": "kartik-v/dependent-dropdown",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/dependent-dropdown.git",
+                "reference": "80cf23ba6a4b9a08d829f6d4abd359c06ef17f95"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/dependent-dropdown/zipball/80cf23ba6a4b9a08d829f6d4abd359c06ef17f95",
+                "reference": "80cf23ba6a4b9a08d829f6d4abd359c06ef17f95",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD 3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "A multi level dependent dropdown JQuery plugin that allows nested dependencies.",
+            "homepage": "https://github.com/kartik-v/dependent-dropdown",
+            "keywords": [
+                "dependent",
+                "dropdown",
+                "jquery",
+                "option",
+                "select"
+            ],
+            "time": "2014-05-12 11:40:04"
+        },
+        {
+            "name": "kartik-v/yii2-widgets",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-widgets.git",
+                "reference": "1b43478186a550ac8f06739ce2cab7e78512b197"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widgets/zipball/1b43478186a550ac8f06739ce2cab7e78512b197",
+                "reference": "1b43478186a550ac8f06739ce2cab7e78512b197",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/bootstrap-fileinput": "*",
+                "kartik-v/bootstrap-star-rating": "*",
+                "kartik-v/dependent-dropdown": "*",
+                "yiisoft/yii2-bootstrap": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD 3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "Collection of useful widgets for Yii Framework 2.0 extending functionalities for Bootstrap",
+            "homepage": "https://github.com/kartik-v/yii2-widgets",
+            "keywords": [
+                "extension",
+                "form",
+                "widget",
+                "yii2"
+            ],
+            "time": "2014-05-21 12:40:10"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -202,12 +343,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "e9b99d475cdc635d6e1435b5101500b84e0ef615"
+                "reference": "cae7dee2361c7023bd147570509a0c40ade3c4e9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/e9b99d475cdc635d6e1435b5101500b84e0ef615",
-                "reference": "e9b99d475cdc635d6e1435b5101500b84e0ef615",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/cae7dee2361c7023bd147570509a0c40ade3c4e9",
+                "reference": "cae7dee2361c7023bd147570509a0c40ade3c4e9",
                 "shasum": ""
             },
             "type": "library",
@@ -242,7 +383,7 @@
                 "responsive",
                 "web"
             ],
-            "time": "2014-05-19 07:47:06"
+            "time": "2014-05-22 07:55:28"
         },
         {
             "name": "yiisoft/jquery",
@@ -299,12 +440,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "8df4be26774d24b045e762e1a21aa6b0541b5da2"
+                "reference": "c5104fed4aa13544e69ecc3dd883c5eba6e1c181"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/8df4be26774d24b045e762e1a21aa6b0541b5da2",
-                "reference": "8df4be26774d24b045e762e1a21aa6b0541b5da2",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/c5104fed4aa13544e69ecc3dd883c5eba6e1c181",
+                "reference": "c5104fed4aa13544e69ecc3dd883c5eba6e1c181",
                 "shasum": ""
             },
             "require": {
@@ -369,7 +510,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2014-05-19 15:29:34"
+            "time": "2014-05-21 23:43:41"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -461,51 +602,6 @@
             "time": "2014-05-14 22:27:39"
         },
         {
-            "name": "yiisoft/yii2-gii",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/yiisoft/yii2-gii.git",
-                "reference": "3bdd568316589ed6065711c98580a4844ec6d55a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/3bdd568316589ed6065711c98580a4844ec6d55a",
-                "reference": "3bdd568316589ed6065711c98580a4844ec6d55a",
-                "shasum": ""
-            },
-            "require": {
-                "phpspec/php-diff": ">=1.0.2",
-                "yiisoft/yii2": "*",
-                "yiisoft/yii2-bootstrap": "*"
-            },
-            "type": "yii2-extension",
-            "autoload": {
-                "psr-4": {
-                    "yii\\gii\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Qiang Xue",
-                    "email": "qiang.xue@gmail.com",
-                    "homepage": "http://www.yiiframework.com/",
-                    "role": "Founder and project lead"
-                }
-            ],
-            "description": "The Gii extension for the Yii framework",
-            "keywords": [
-                "code generator",
-                "gii",
-                "yii2"
-            ],
-            "time": "2014-05-14 23:44:20"
-        },
-        {
             "name": "yiisoft/yii2-swiftmailer",
             "version": "dev-master",
             "source": {
@@ -553,6 +649,39 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "phpspec/php-diff",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpspec/php-diff.git",
+                "reference": "30e103d19519fe678ae64a60d77884ef3d71b28a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpspec/php-diff/zipball/30e103d19519fe678ae64a60d77884ef3d71b28a",
+                "reference": "30e103d19519fe678ae64a60d77884ef3d71b28a",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Diff": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Boulton",
+                    "homepage": "http://github.com/chrisboulton"
+                }
+            ],
+            "description": "A comprehensive library for generating differences between two hashable objects (strings or arrays).",
+            "time": "2013-11-01 13:02:21"
+        },
         {
             "name": "yiisoft/yii2-codeception",
             "version": "dev-master",
@@ -636,15 +765,60 @@
                 "yii2"
             ],
             "time": "2014-05-17 12:43:47"
+        },
+        {
+            "name": "yiisoft/yii2-gii",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/yii2-gii.git",
+                "reference": "fd6425e688620b4896f0beb330700220c890fc99"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/fd6425e688620b4896f0beb330700220c890fc99",
+                "reference": "fd6425e688620b4896f0beb330700220c890fc99",
+                "shasum": ""
+            },
+            "require": {
+                "phpspec/php-diff": ">=1.0.2",
+                "yiisoft/yii2": "*",
+                "yiisoft/yii2-bootstrap": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "yii\\gii\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Qiang Xue",
+                    "email": "qiang.xue@gmail.com",
+                    "homepage": "http://www.yiiframework.com/",
+                    "role": "Founder and project lead"
+                }
+            ],
+            "description": "The Gii extension for the Yii framework",
+            "keywords": [
+                "code generator",
+                "gii",
+                "yii2"
+            ],
+            "time": "2014-05-20 13:35:12"
         }
     ],
     "aliases": [
 
     ],
     "minimum-stability": "dev",
-    "stability-flags": [
-
-    ],
+    "stability-flags": {
+        "kartik-v/yii2-widgets": 20
+    },
     "platform": {
         "php": ">=5.4.0"
     },

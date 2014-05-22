@@ -2,11 +2,12 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\web\IdentityInterface;
 
 /**
  * @var yii\web\View $this
  * @var yii\data\ActiveDataProvider $dataProvider
- * @var app\models\CompanyUsersSearch $searchModel
+ * @var app\models\UsersSearch $searchModel
  */
 
 $this->title = 'Company Users';

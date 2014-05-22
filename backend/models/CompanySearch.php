@@ -5,17 +5,17 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Company;
+use backend\models\Company;
 
 /**
- * CompanySearch represents the model behind the search form about `app\models\Company`.
+ * CompanySearch represents the model behind the search form about `backend\models\Company`.
  */
 class CompanySearch extends Company
 {
     public function rules()
     {
         return [
-            [['id', 'industry_id', 'category_id'], 'integer'],
+            [['id', 'industry_id', 'category_id', 'license_package'], 'integer'],
             [['company_id', 'company_name', 'date_added', 'date_updated', 'confirmed', 'slug', 'is_registered'], 'safe'],
         ];
     }
@@ -44,6 +44,7 @@ class CompanySearch extends Company
             'date_updated' => $this->date_updated,
             'industry_id' => $this->industry_id,
             'category_id' => $this->category_id,
+            'license_package' => $this->license_package,
         ]);
 
         $query->andFilterWhere(['like', 'company_id', $this->company_id])
