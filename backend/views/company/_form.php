@@ -20,11 +20,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'slug')->textInput(['maxlength' => 255]) ?>
 
-    <?= $form->field($model, 'industry_id')->textInput() ?>
+    <?= $form->field($model, 'industry_id')->dropDownList(\yii\helpers\ArrayHelper::map(\backend\models\Industry::find()->all(), 'id', 'industry_name')) ?>
 
-    <?= $form->field($model, 'category_id')->textInput() ?>
+    <?= $form->field($model, 'category_id')->dropDownList(\yii\helpers\ArrayHelper::map(backend\models\Category::find()->all(), 'id', 'category_name')) ?>
 
-    <?= $form->field($model, 'license_package')->textInput() ?>
+    <?= $form->field($model, 'license_package')->dropDownList(\yii\helpers\ArrayHelper::map(backend\models\Packages::find()->all(), 'id', 'package_name')) ?>
 
     <?= $form->field($model, 'confirmed')->dropDownList(['y'=>'Yes','n'=>'No']) ?>
 

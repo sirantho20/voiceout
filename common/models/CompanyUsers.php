@@ -192,18 +192,13 @@ class CompanyUsers extends User
         return Security::validatePassword($password, $this->password);
     }
     
-    public function getUserCompany()
+    public static function getUserCompany()
     {
         if(!Yii::$app->user->isGuest && Yii::$app->user->identity->company_id != NULL)
         {
-            if(Yii::$app->user->identity->role =='superadmin')
-            {
-                $model = \backend\models\Company::find()->all();
-            }
-            else 
-            {
-                $model = \backend\models\Company::findOne(Yii::$app->user->identity->company_id);
-            }
+            
+            $model = \backend\models\Company::findOne(Yii::$app->user->identity->company_id);
+            
             return $model->id;
             
         }

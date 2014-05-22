@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "a87660d1c569a3777d25b2cf2d841ab8",
+    "hash": "6556e2de9ec4c350bf666b0c7a9304ce",
     "packages": [
         {
             "name": "cebe/markdown",
@@ -440,12 +440,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "c5104fed4aa13544e69ecc3dd883c5eba6e1c181"
+                "reference": "e460816767defa69078ee7a167aaf2c58dd4f735"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/c5104fed4aa13544e69ecc3dd883c5eba6e1c181",
-                "reference": "c5104fed4aa13544e69ecc3dd883c5eba6e1c181",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/e460816767defa69078ee7a167aaf2c58dd4f735",
+                "reference": "e460816767defa69078ee7a167aaf2c58dd4f735",
                 "shasum": ""
             },
             "require": {
@@ -510,7 +510,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2014-05-21 23:43:41"
+            "time": "2014-05-22 20:32:00"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
