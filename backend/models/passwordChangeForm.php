@@ -6,11 +6,7 @@ use yii\base\Model;
 class passwordChangeForm extends Model {
     
     public $password;
-    public $_model;
-    public function __construct($id, $config = array()) {
-        $this->_model = \common\models\CompanyUsers::findOne($id);
-        parent::__construct($config);
-    }
+    private $_model;
 
     public function rules()
     {
@@ -20,10 +16,17 @@ class passwordChangeForm extends Model {
         ];
     }
     
-    public function changePassword()
+    public function changePassword($id)
     {
-        $user = $this->_model;
+        $user = \common\models\CompanyUsers::find($id);
         $user->password = \yii\helpers\Security::generatePasswordHash($this->password);
-        return $user->save(false);
+        if($user->save())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

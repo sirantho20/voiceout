@@ -137,4 +137,8 @@ class CompanyUsersController extends Controller
         }
         
     }
+    public function actionCpasswrod()
+    {
+        echo 'hi here';
+    }
 }

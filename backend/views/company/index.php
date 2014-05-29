@@ -1,17 +1,20 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\BaseHtml;
 use yii\grid\GridView;
+use backend\assets\smartIndexBundle;
 
 /**
  * @var yii\web\View $this
  * @var yii\data\ActiveDataProvider $dataProvider
  * @var app\models\CompanySearch $searchModel
  */
-
+smartIndexBundle::register($this);
 $this->title = 'Companies';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="company-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -44,3 +47,4 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
 
 </div>
+

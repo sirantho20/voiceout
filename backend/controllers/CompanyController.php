@@ -14,6 +14,7 @@ use yii\filters\VerbFilter;
  */
 class CompanyController extends Controller
 {
+    public $layout = '/tony';
     public function behaviors()
     {
         return [
@@ -117,5 +118,19 @@ class CompanyController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+    
+    public function actionCpassword($id)
+    {
+        $model = new \backend\models\passwordChangeForm();
+        
+        if($model->load(\Yii::$app->request->post()) && $model->changePassword($id))
+        {
+            \Yii::$app->request->isAjax();
+        }
+           return $this->render('change', [
+                'model' => $model,
+            ]);
+        
     }
 }

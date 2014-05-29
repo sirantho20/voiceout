@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.6.16, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.5.37, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: voiceout
 -- ------------------------------------------------------
--- Server version	5.6.16
+-- Server version	5.5.37-0ubuntu0.13.10.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -108,8 +108,8 @@ CREATE TABLE `mup_company` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `company_id` varchar(12) NOT NULL,
   `company_name` varchar(100) NOT NULL,
-  `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `date_updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_added` datetime NOT NULL,
+  `date_updated` datetime NOT NULL,
   `confirmed` char(1) NOT NULL DEFAULT 'N' COMMENT 'Status of the company. User added companies must be confirmed before they are made public.',
   `industry_id` int(11) DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL,
@@ -122,10 +122,10 @@ CREATE TABLE `mup_company` (
   KEY `fk_company_industry_idx` (`industry_id`),
   KEY `fk_company_category_idx` (`category_id`),
   KEY `fk_mup_company_1_idx` (`license_package`),
-  CONSTRAINT `fk_mup_company_1` FOREIGN KEY (`license_package`) REFERENCES `mup_license_pacakges` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_company_category` FOREIGN KEY (`category_id`) REFERENCES `mup_category` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
-  CONSTRAINT `fk_company_industry` FOREIGN KEY (`industry_id`) REFERENCES `mup_industry` (`id`) ON DELETE SET NULL ON UPDATE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  CONSTRAINT `fk_company_industry` FOREIGN KEY (`industry_id`) REFERENCES `mup_industry` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
+  CONSTRAINT `fk_mup_company_1` FOREIGN KEY (`license_package`) REFERENCES `mup_license_pacakges` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -134,7 +134,7 @@ CREATE TABLE `mup_company` (
 
 LOCK TABLES `mup_company` WRITE;
 /*!40000 ALTER TABLE `mup_company` DISABLE KEYS */;
-INSERT INTO `mup_company` VALUES (1,'1','Softcube Limited',now(),now(),'y',NULL,NULL,'softcube','y',NULL);
+INSERT INTO `mup_company` VALUES (1,'1','Softcube Limited','2014-05-27 19:52:44','2014-05-27 19:52:44','y',NULL,NULL,'softcube','y',NULL);
 /*!40000 ALTER TABLE `mup_company` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -198,7 +198,7 @@ CREATE TABLE `mup_company_users` (
   PRIMARY KEY (`id`),
   KEY `fk_mup_company_users_company_idx` (`company_id`),
   CONSTRAINT `fk_mup_company_users_company` FOREIGN KEY (`company_id`) REFERENCES `mup_company` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -207,7 +207,7 @@ CREATE TABLE `mup_company_users` (
 
 LOCK TABLES `mup_company_users` WRITE;
 /*!40000 ALTER TABLE `mup_company_users` DISABLE KEYS */;
-INSERT INTO `mup_company_users` VALUES (1,'1','softcube','softcube','limited','aafetsrom@softcube.co','superadmin',NULL,now(),NULL,1,NULL,NULL,'active');
+INSERT INTO `mup_company_users` VALUES (1,'1','softcube','softcube','limited','aafetsrom@softcube.co','superadmin',NULL,'2014-05-27 19:52:44',NULL,1,NULL,NULL,'active');
 /*!40000 ALTER TABLE `mup_company_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -291,7 +291,7 @@ CREATE TABLE `mup_country` (
   `country_name` varchar(100) NOT NULL,
   `country_code2` varchar(5) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=250 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -453,4 +453,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-05-22 10:06:31
+-- Dump completed on 2014-05-29 17:07:31
