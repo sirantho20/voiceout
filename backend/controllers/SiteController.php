@@ -18,7 +18,7 @@ class SiteController extends Controller
     /**
      * @inheritdoc
      */
-    public $layout = 'tony';
+    //public $layout = 'tony';
     public function behaviors()
     {
         return [

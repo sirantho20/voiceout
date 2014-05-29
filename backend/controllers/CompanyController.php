@@ -14,7 +14,7 @@ use yii\filters\VerbFilter;
  */
 class CompanyController extends Controller
 {
-    public $layout = '/tony';
+    public $layout = '/adminMain';
     public function behaviors()
     {
         return [

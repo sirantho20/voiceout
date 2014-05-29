@@ -190,7 +190,7 @@ class CompanyUsers extends User
      */
     public function validatePassword($password)
     {
-        return true;//Security::validatePassword($password, $this->password);
+        return Security::validatePassword($password, $this->password);
     }
     
     public static function getUserCompany()
