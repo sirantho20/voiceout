@@ -19,7 +19,13 @@ use yii\helpers\Html;
         <header id="header">
                 <!--<span id="logo"></span>-->
 
+            <div id="logo-group">
+                <img src="/images/logo.png" alt="Voice Out" style="margin-top: 10px;">
 
+                <!-- END AJAX-DROPDOWN -->
+            </div>
+
+            <span id="login-header-space"><a href="#" class="btn btn-danger">Visit Main Site</a> </span>
 
         </header>
 

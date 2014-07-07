@@ -23,7 +23,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Create Company', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
+<div class="jarviswidget jarviswidget-color-darken" id="wid-id-1" data-widget-editbutton="false">
+    <header>
+            <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+            <h2>No Padding</h2>
+    </header>
+    <div>
+    <div class="widget-body no-padding">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -45,6 +51,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+            
+    </div>
 
+</div>
+</div>
+    
 </div>
 

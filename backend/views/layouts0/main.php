@@ -1,5 +1,5 @@
 <?php
-use backend\assets\AppAsset;
+use backend\assets\smartadminBundle;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -9,7 +9,7 @@ use yii\widgets\Breadcrumbs;
  * @var \yii\web\View $this
  * @var string $content
  */
-AppAsset::register($this);
+smartadminBundle::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
