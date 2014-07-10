@@ -1,6 +1,6 @@
 /*!
  * @copyright &copy; Kartik Visweswaran, Krajee.com, 2014
- * @version 2.0.0
+ * @version 2.5.0
  *
  * A simple yet powerful JQuery star rating plugin that allows rendering
  * fractional star ratings and supports Right to Left (RTL) input.
@@ -12,14 +12,6 @@
     var DEFAULT_MIN = 0;
     var DEFAULT_MAX = 5;
     var DEFAULT_STEP = 0.5;
-
-    var checkSliderSupport = function () {
-        var i = document.createElement("input");
-        i.setAttribute("type", "range");
-        return i.type !== "text";
-    }
-
-    var isSliderSupported = checkSliderSupport();
 
     var isEmpty = function (value, trim) {
         return typeof value === 'undefined' || value === null || value === undefined || value == []
@@ -34,28 +26,28 @@
         return options[vattr];
     };
 
-    var uniqId = function () {
-        return 'kvstar-' + Math.round(new Date().getTime() + (Math.random() * 100));
+    var getDecimalPlaces = function (num) {
+        var match = ('' + num).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/);
+        if (!match) {
+            return 0;
+        }
+        return Math.max(0, (match[1] ? match[1].length : 0) - (match[2] ? +match[2] : 0));
+    };
+
+    var applyPrecision = function (val, precision) {
+        return parseFloat(val.toFixed(precision));
     };
 
     // Rating public class definition
     var Rating = function (element, options) {
-        this.$elementOrig = $(element);
-        this.refreshRating = false;
-        if (isSliderSupported) {
-            this.init(options);
-        }
-        else {
-            var items = options.starCaptions;
-            this.polyfill(items);
-        }
-
+        this.$element = $(element);
+        this.init(options);
     };
 
     Rating.prototype = {
         constructor: Rating,
         _parseAttr: function (vattr, options) {
-            var self = this, $input = self.$elementOrig;
+            var self = this, $input = self.$element;
             if ($input.attr('type') === 'range' || $input.attr('type') === 'number') {
                 var val = validateAttr($input, vattr, options);
                 var chk = DEFAULT_STEP;
@@ -78,12 +70,12 @@
          */
         listen: function () {
             var self = this;
-            self.$element.on("change", function (e) {
+            self.$rating.on("click", function (e) {
                 if (!self.inactive) {
-                    self.setStars();
-                    self.$elementOrig.val(self.$element.val());
-                    self.$elementOrig.trigger('change');
-                    self.$elementOrig.trigger('rating.change', [self.$element.val(), self.$caption.html()]);
+                    w = e.pageX - self.$rating.offset().left;
+                    self.setStars(w);
+                    self.$element.trigger('change');
+                    self.$element.trigger('rating.change', [self.$element.val(), self.$caption.html()]);
                 }
             });
             self.$clear.on("click", function (e) {
@@ -91,22 +83,18 @@
                     self.clear();
                 }
             });
-            $(self.$elementOrig[0].form).on("reset", function (e) {
+            $(self.$element[0].form).on("reset", function (e) {
                 if (!self.inactive) {
                     self.reset();
                 }
             });
         },
-        /**
-         * Initializes and generates a slider if the input type is not a range
-         */
         initSlider: function (options) {
-            var self = this,
-                id = isEmpty(self.$elementOrig.attr('id')) ? uniqId() : 'kvstar-' + self.$elementOrig.attr('id');
-            if (isEmpty(self.$elementOrig.val())) {
-                self.$elementOrig.val(0);
+            var self = this;
+            if (isEmpty(self.$element.val())) {
+                self.$element.val(0);
             }
-            self.initialValue = self.$elementOrig.val();
+            self.initialValue = self.$element.val();
             self.min = (typeof options.min !== 'undefined') ? options.min : self._parseAttr('min', options);
             self.max = (typeof options.max !== 'undefined') ? options.max : self._parseAttr('max', options);
             self.step = (typeof options.step !== 'undefined') ? options.step : self._parseAttr('step', options);
@@ -119,86 +107,60 @@
             if (isNaN(self.step) || isEmpty(self.step) || self.step == 0) {
                 self.step = DEFAULT_STEP;
             }
-            self.$elementOrig.clone(true).attr({'id': id, 'name': id, 'type': 'range'}).insertBefore(self.$elementOrig);
-            self.$elementOrig.removeAttr('class');
-            self.$element = $('#' + id);
-            self.$element.attr({min: self.min, max: self.max, step: self.step, disabled: self.disabled, readonly: self.readonly});
-            self.$element.val(self.$elementOrig.val());
-            self.$elementOrig.hide();
-        },
-        /**
-         * Polyfills and generates a simple select input for browsers not
-         * supporting the HTML 5 range input
-         */
-        polyfill: function (items) {
-            var self = this, $sel = $('<select>'), $element = self.$element;
-            $element.before($sel);
-            for (var val in items) {
-                $sel.append($('<option>').attr('value', val).text(items[val]));
-            }
-            $sel.attr({'class': $element.attr('class'), 'style': $element.attr('style')});
-            $element.hide();
-            $sel.on("change", function (e) {
-                self.$element.val($sel.val());
-                self.$element.trigger("change");
-                self.$element.trigger('rating.change', [$sel.val(), items[$sel.val()]]);
-            });
+            self.diff = self.max - self.min;
         },
         /**
          * Initializes the plugin
          */
         init: function (options) {
-            this.options = options;
-            if (!this.$elementOrig.is(":visible") && !this.refreshRating) {
-                return;
+            var self = this;
+            self.options = options;
+            self.initSlider(options);
+            self.checkDisabled();
+            $element = self.$element;
+            self.containerClass = options.containerClass;
+            self.glyphicon = options.glyphicon;
+            var defaultStar = (self.glyphicon) ? '\ue006' : '\u2605';
+            self.symbol = isEmpty(options.symbol) ? defaultStar : options.symbol;
+            self.rtl = options.rtl || self.$element.attr('dir');
+            if (self.rtl) {
+                self.$element.attr('dir', 'rtl');
             }
-            this.refreshRating = false;
-            if (typeof this.$element == 'undefined') {
-                this.initSlider(options);
+            self.showClear = options.showClear;
+            self.showCaption = options.showCaption;
+            self.size = options.size;
+            self.stars = options.stars;
+            self.defaultCaption = options.defaultCaption;
+            self.starCaptions = options.starCaptions;
+            self.starCaptionClasses = options.starCaptionClasses;
+            self.clearButton = options.clearButton;
+            self.clearButtonTitle = options.clearButtonTitle;
+            self.clearButtonBaseClass = !isEmpty(options.clearButtonBaseClass) ? options.clearButtonBaseClass : 'clear-rating';
+            self.clearButtonActiveClass = !isEmpty(options.clearButtonActiveClass) ? options.clearButtonActiveClass : 'clear-rating-active';
+            self.clearCaption = options.clearCaption;
+            self.clearCaptionClass = options.clearCaptionClass;
+            self.clearValue = options.clearValue;
+            self.$element.removeClass('form-control').addClass('form-control');
+            self.$clearElement = isEmpty(options.clearElement) ? null : $(options.clearElement);
+            self.$captionElement = isEmpty(options.captionElement) ? null : $(options.captionElement);
+            if (typeof self.$rating == 'undefined' && typeof self.$container == 'undefined') {
+                self.$rating = $(document.createElement("div")).html('<div class="rating-stars"></div>');
+                self.$container = $(document.createElement("div"));
+                self.$container.before(self.$rating);
+                self.$container.append(self.$rating);
+                self.$element.before(self.$container).appendTo(self.$rating);
             }
-            this.checkDisabled();
-            $element = this.$element;
-            this.containerClass = options.containerClass;
-            this.glyphicon = options.glyphicon;
-            var defaultStar = (this.glyphicon) ? '\ue006' : '\u2605';
-            this.symbol = isEmpty(options.symbol) ? defaultStar : options.symbol;
-            this.rtl = options.rtl || this.$element.attr('dir');
-            if (this.rtl) {
-                this.$element.attr('dir', 'rtl');
+            self.$stars = self.$rating.find('.rating-stars');
+            self.generateRating();
+            self.$clear = !isEmpty(self.$clearElement) ? self.$clearElement : self.$container.find('.' + self.clearButtonBaseClass);
+            self.$caption = !isEmpty(self.$captionElement) ? self.$captionElement : self.$container.find(".caption");
+            self.setStars();
+            self.$element.hide();
+            self.listen();
+            if (self.showClear) {
+                self.$clear.attr({"class": self.getClearClass()});
             }
-            this.showClear = options.showClear;
-            this.showCaption = options.showCaption;
-            this.size = options.size;
-            this.stars = options.stars;
-            this.defaultCaption = options.defaultCaption;
-            this.starCaptions = options.starCaptions;
-            this.starCaptionClasses = options.starCaptionClasses;
-            this.clearButton = options.clearButton;
-            this.clearButtonTitle = options.clearButtonTitle;
-            this.clearButtonBaseClass = !isEmpty(options.clearButtonBaseClass) ? options.clearButtonBaseClass : 'clear-rating';
-            this.clearButtonActiveClass = !isEmpty(options.clearButtonActiveClass) ? options.clearButtonActiveClass : 'clear-rating-active';
-            this.clearCaption = options.clearCaption;
-            this.clearCaptionClass = options.clearCaptionClass;
-            this.clearValue = options.clearValue;
-            this.$clearElement = options.clearElement;
-            this.$captionElement = options.captionElement;
-            this.$element.removeClass('rating-slider').addClass('rating-slider');
-            if (typeof this.$rating == 'undefined' && typeof this.$container == 'undefined') {
-                this.$rating = $(document.createElement("div")).html('<div class="rating-stars"></div>');
-                this.$container = $(document.createElement("div"));
-                this.$container.before(this.$rating);
-                this.$container.append(this.$rating);
-                this.$element.before(this.$container).appendTo(this.$rating);
-            }
-            this.$stars = this.$rating.find('.rating-stars');
-            this.generateRating();
-            this.$clear = !isEmpty(this.$clearElement) ? this.$clearElement : this.$container.find('.' + this.clearButtonBaseClass);
-            this.$caption = !isEmpty(this.$captionElement) ? this.$captionElement : this.$container.find(".caption");
-            this.setStars();
-            this.listen();
-            if (this.showClear) {
-                this.$clear.attr({"class": this.getClearClass()});
-            }
+            self.$element.removeClass('rating-loading');
         },
         checkDisabled: function () {
             var self = this;
@@ -219,12 +181,14 @@
             self.$stars.attr('data-content', stars);
             var css = self.rtl ? 'star-rating-rtl' : 'star-rating';
             self.$container.attr('class', css + ' rating-' + self.size);
+
             if (self.inactive) {
-                self.$container.addClass('rating-disabled');
+                self.$container.removeClass('rating-active').addClass('rating-disabled');
             }
             else {
-                self.$container.removeClass('rating-disabled');
+                self.$container.removeClass('rating-disabled').addClass('rating-active');
             }
+
             if (typeof self.$caption == 'undefined' && typeof self.$clear == 'undefined') {
                 if (self.rtl) {
                     self.$container.prepend(caption).append(clear);
@@ -278,18 +242,37 @@
             var caption = (val == self.clearValue) ? self.clearCaption : cap;
             return '<span class="' + css + '">' + caption + '</span>';
         },
-        setStars: function () {
+        getValueFromPosition: function (pos) {
+            var self = this, precision = getDecimalPlaces(self.step),
+                percentage, val, maxWidth = self.$rating.width();
+            percentage = (pos / maxWidth);
+            if (self.rtl) {
+                val = (self.min + Math.floor(self.diff * percentage / self.step) * self.step);
+            }
+            else {
+                val = (self.min + Math.ceil(self.diff * percentage / self.step) * self.step);
+            }
+            if (val < self.min) {
+                val = self.min;
+            }
+            else if (val > self.max) {
+                val = self.max;
+            }
+            val = applyPrecision(parseFloat(val), precision);
+            if (self.rtl) {
+                val = self.max - val;
+            }
+            return val;
+        },
+        setStars: function (pos) {
             var self = this, min = self.min, max = self.max, step = self.step,
-                val = self.$element.val(), width = 0, caption = self.fetchCaption(val);
-            if (val == max) {
-                width = 100;
-            }
-            else if (!isEmpty(val) && val >= min) {
-                width = Math.floor((val - min) / max * 1000) / 10;
-            }
+                val = arguments.length ? self.getValueFromPosition(pos) : (isEmpty(self.$element.val()) ? 0 : self.$element.val()),
+                width = 0, maxWidth = self.$rating.width(), caption = self.fetchCaption(val);
+            width = (val - min) / max * 100;
             if (self.rtl) {
                 width = 100 - width;
             }
+            self.$element.val(val);
             width += '%';
             self.$stars.css('width', width);
             self.$caption.html(caption);
@@ -302,28 +285,25 @@
                 self.$caption.html(title);
             }
             self.$element.val(self.clearValue);
-            self.$elementOrig.val(self.clearValue);
-            self.$elementOrig.trigger('change');
             self.setStars();
-            self.$elementOrig.trigger('rating.clear');
+            self.$element.trigger('rating.clear');
         },
         reset: function () {
             var self = this;
             self.$element.val(self.initialValue);
-            self.$elementOrig.val(self.initialValue);
             self.setStars();
-            self.$elementOrig.trigger('rating.reset');
+            self.$element.trigger('rating.reset');
         },
         update: function (val) {
             if (arguments.length > 0) {
                 var self = this;
-                self.$element.val(val).change();
+                self.$element.val(val);
+                self.setStars();
             }
         },
         refresh: function (options) {
             var self = this;
             if (arguments.length) {
-                this.refreshRating = true;
                 var cap = '';
                 self.init($.extend(self.options, options));
                 if (self.showClear) {
@@ -408,13 +388,16 @@
         containerClass: null
     };
 
+
     /**
      * Convert automatically number inputs with class 'rating'
      * into the star rating control.
      */
-    $(function () {
-        var $input = isSliderSupported ? $('input.rating[type=number]') : $('input.rating[type=text]');
-        if ($input.length > 0) {
+    $('input.rating').addClass('rating-loading');
+
+    $(document).ready(function () {
+        var $input = $('input.rating'), count = Object.keys($input).length;
+        if (count > 0) {
             $input.rating();
         }
     });

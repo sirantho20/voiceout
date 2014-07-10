@@ -8,11 +8,10 @@
 			<!-- User info -->
 			<div class="login-info">
 				<span> <!-- User image size is adjusted inside CSS, it should stay as it --> 
-					<a href="javascript:void(0);" id="show-shortcut">
+					<a href="#" id="show-shortcut">
 						<span>
 							<?= Yii::$app->user->identity->username ?>
-						</span>
-						<i class="fa fa-angle-down"></i>
+						</span></i>
 					</a> 
 					
 				</span>
@@ -50,10 +49,7 @@
                                             <a href="#" title="Manage Gensets"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Users</span></a>
                                             <ul>
                                                 <li>
-                                                    <a href="<?= Url::to(['genset/index']) ?>">Create User</a>
-                                                </li>
-                                                                                <li>
-                                                    <a href="<?= Url::to(['genset/index']) ?>">Manage Users</a>
+                                                    <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['user/admin']) ?>">Manage Users</a>
                                                 </li>
                                             </ul>
 					</li>

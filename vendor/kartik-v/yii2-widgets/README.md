@@ -33,10 +33,13 @@ This extension has now matured to contain the most needed basic widgets for Yii 
  additional input and navigation widgets will be created separately. Listed below are the additional widgets that are related to similar functionality like the 
  `yii2-widgets`, but have been created as separate extensions (these widgets depend on `kartik-v/yii2-widgets`).
 
-- [yii2-dropdown-x](http://demos.krajee.com/dropdown-x): Extended Bootstrap 3 dropdown menu for Yii Framework 2.0
-- [yii2-nav-x](http://demos.krajee.com/nav-x): Extended Bootstrap 3 navigation menu for Yii Framework 2.0
-- [yii2-context-menu](http://demos.krajee.com/context-menu): Bootstrap 3 context menu for Yii Framework 2.0
-- [yii2-slider](http://demos.krajee.com/slider): Bootstrap 3 Slider control for Yii Framework 2.0
+- [yii2-dropdown-x](http://demos.krajee.com/dropdown-x): Extended Bootstrap 3 dropdown menu for Yii 2.0
+- [yii2-nav-x](http://demos.krajee.com/nav-x): Extended Bootstrap 3 navigation menu for Yii 2.0
+- [yii2-context-menu](http://demos.krajee.com/context-menu): Bootstrap 3 context menu for Yii 2.0
+- [yii2-slider](http://demos.krajee.com/slider): Bootstrap 3 Slider control for Yii 2.0
+- [yii2-sortable](http://demos.krajee.com/sortable): Create sortable lists and grids using simple drag and drop.
+- [yii2-money](http://demos.krajee.com/money): Masked money input widget for Yii 2.0.
+- [yii2-checkbox-x](http://demos.krajee.com/checkbox-x): Bootstrap 3 extended checkbox widget with 3 states and more styles for Yii 2.0.
 
 ### Forms/Inputs
 
@@ -259,24 +262,6 @@ messages (which is the default setting). Alternatively, you can setup and config
  
 ### Demo
 You can see a [demonstration here](http://demos.krajee.com/widgets) on usage of these widgets with documentation and examples.
-
-## Installation
-
-The preferred way to install this extension is through [composer](http://getcomposer.org/download).
-
-Either run
-
-```
-$ php composer.phar require kartik-v/yii2-widgets "dev-master"
-```
-
-or add
-
-```
-"kartik-v/yii2-widgets": "dev-master"
-```
-
-to the ```require``` section of your `composer.json` file.
 
 ## Usage
 

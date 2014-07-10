@@ -34,7 +34,7 @@ use yii\helpers\Html;
         <!-- pulled right: nav area -->
         <div class="pull-right">
             <div style="float: left; margin-top: 15px; margin-right: 10px;" class="btn-header">
-                <?= Html::a(' <i class="fa fa-power-off"> logout </i>', yii\helpers\Url::to(['site/logout']),['title'=>'Log Out']) ?>
+                <?= Html::a(' <i class="fa fa-power-off"> logout </i>', ['//security/logout'],['title'=>'Log Out','data-method'=>'post']) ?>
             </div>    
                 <!-- collapse menu button -->
                 <div id="hide-menu" class="btn-header pull-right">

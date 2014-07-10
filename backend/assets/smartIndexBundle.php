@@ -26,7 +26,8 @@ class smartIndexBundle extends smartadminBundle {
                   'js/plugin/vectormap/jquery-jvectormap-world-mill-en.js',
                   'js/plugin/fullcalendar/jquery.fullcalendar.min.js',
                   'js/plugin/jquery-validate/jquery.validate.min.js',
-                  'js/login.js',
+                  'js/app.js',
+                  'js/libs/jquery-ui-1.10.3.min.js',
         ];
      public $depends = [ 'backend\assets\smartadminBundle'];
 }

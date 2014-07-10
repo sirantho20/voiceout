@@ -24,6 +24,19 @@ use yii\web\View;
 class InputWidget extends \yii\widgets\InputWidget
 {
 
+    const LOAD_PROGRESS = '<div class="kv-plugin-loading">&nbsp;</div>';
+
+    /**
+     * @var string the locale ID (e.g. 'fr', 'de') for the language to be used by the Select2 Widget.
+     * If this property not set, then the current application language will be used.
+     */
+    public $language;
+
+    /**
+     * @var mixed show loading indicator while plugin loads
+     */
+    public $pluginLoading = true;
+    
     /**
      * @var array the data (for list inputs)
      */
@@ -48,6 +61,13 @@ class InputWidget extends \yii\widgets\InputWidget
     public $pluginEvents = [];
 
     /**
+     * @var boolean whether the widget should automatically format the date from
+     * the PHP DateTime format to the javascript/jquery plugin format
+     * @see http://php.net/manual/en/function.date.php
+     */
+    public $convertFormat = false;
+
+    /**
      * @var string the hashed variable to store the pluginOptions
      */
     protected $_hashVar;
@@ -58,17 +78,44 @@ class InputWidget extends \yii\widgets\InputWidget
     protected $_encOptions = '';
 
     /**
+     * @var string the indicator for loading
+     */
+    protected $_loadIndicator = '';
+    
+    
+    /**
      * @inheritdoc
      */
     public function init()
     {
         parent::init();
+        if ($this->pluginLoading) {
+            $this->_loadIndicator =  self::LOAD_PROGRESS;
+        }
         if ($this->hasModel()) {
             $this->name = ArrayHelper::remove($this->options, 'name', Html::getInputName($this->model, $this->attribute));
             $this->value = $this->model[Html::getAttributeName($this->attribute)];
         }
+        $view = $this->getView();
+        if (!isset($this->language)) {
+            $this->language = Yii::$app->language;
+        }
+        WidgetAsset::register($view);
     }
 
+    /**
+     * Initialize the plugin language
+     *
+     * @param string $property the name of language property in [[pluginOptions]].
+     * Defaults to 'language'.
+     */
+    protected function initLanguage($property = 'language') {
+        $lang = substr($this->language, 0, 2);
+        if (empty($this->pluginOptions[$property]) && $lang != 'en') {
+            $this->pluginOptions[$property] = $lang;
+        }
+    }
+    
     /**
      * Adds an asset to the view
      *
@@ -123,6 +170,7 @@ class InputWidget extends \yii\widgets\InputWidget
      * - 'data-plugin-name' the name of the plugin
      *
      * @param string $name the name of the plugin
+     * @author [Thiago Talma](https://github.com/thiagotalma)
      */
     protected function hashPluginOptions($name)
     {
@@ -148,14 +196,23 @@ class InputWidget extends \yii\widgets\InputWidget
      *
      * @param string $name the name of the plugin
      * @param string $element the plugin target element
+     * @param string $callback the javascript callback function to be called after plugin loads
+     * @param string $callbackCon the javascript callback function to be passed to the plugin constructor
      */
-    protected function registerPlugin($name, $element = null)
+    protected function registerPlugin($name, $element = null, $callback = null, $callbackCon = null)
     {
         $id = ($element == null) ? "jQuery('#" . $this->options['id'] . "')" : $element;
         $view = $this->getView();
         if ($this->pluginOptions !== false) {
-            $this->registerPluginOptions($name);
-            $view->registerJs("{$id}.{$name}({$this->_hashVar});");
+            $this->registerPluginOptions($name, View::POS_HEAD);
+            $script = "{$id}.{$name}({$this->_hashVar})";
+            if ($callbackCon != null) {
+                $script = "{$id}.{$name}({$this->_hashVar}, {$callbackCon})";
+            }
+            if ($callback != null) {
+                $script = "\$.when({$script}).done({$callback})";
+            }
+            $view->registerJs($script);
         }
 
         if (!empty($this->pluginEvents)) {
@@ -169,4 +226,51 @@ class InputWidget extends \yii\widgets\InputWidget
         }
     }
 
+    /**
+     * Automatically convert the date format from PHP DateTime to Javascript DateTime format
+     *
+     * @see http://php.net/manual/en/function.date.php
+     * @see http://bootstrap-datetimepicker.readthedocs.org/en/release/options.html#format
+     * @param string $format the PHP date format string
+     * @return string
+     */
+    protected static function convertDateFormat($format)
+    {
+        return strtr($format, [
+            // meridian lowercase
+            'a' => 'p',
+            // meridian uppercase
+            'A' => 'P',
+            // second (with leading zeros)
+            's' => 'ss',
+            // minute (with leading zeros)
+            'i' => 'ii',
+            // hour in 12-hour format (no leading zeros)
+            'g' => 'H',
+            // hour in 24-hour format (no leading zeros)
+            'G' => 'h',
+            // hour in 12-hour format (with leading zeros)
+            'h' => 'HH',
+            // hour in 24-hour format (with leading zeros)
+            'H' => 'hh',
+            // day of month (no leading zero)
+            'j' => 'd',
+            // day of month (two digit)
+            'd' => 'dd',
+            // day name short is always 'D'
+            // day name long
+            'l' => 'DD',
+            // month of year (no leading zero)
+            'n' => 'm',
+            // month of year (two digit)
+            'm' => 'mm',
+            // month name short is always 'M'
+            // month name long
+            'F' => 'MM',
+            // year (two digit)
+            'y' => 'yy',
+            // year (four digit)
+            'Y' => 'yyyy',
+        ]);
+    }
 }

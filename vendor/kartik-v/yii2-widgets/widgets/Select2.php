@@ -31,10 +31,10 @@ class Select2 extends InputWidget
     const SMALL = 'sm';
 
     /**
-     * @var mixed the locale ID (e.g. 'fr', 'de') for the language to be used by the Select2 Widget.
-     * If this property set to false, the widget will use English (en).
+     * @var string the locale ID (e.g. 'fr', 'de') for the language to be used by the Select2 Widget.
+     * If this property not set, then the current application language will be used.
      */
-    public $language = false;
+    public $language;
 
     /**
      * @var array addon to prepend or append to the Select2 widget
@@ -90,7 +90,7 @@ class Select2 extends InputWidget
             !empty($this->pluginOptions['query']) ||
             !empty($this->pluginOptions['ajax']) ||
             !empty($this->pluginOptions['tags']);
-        if (empty($this->data) && !$this->_hidden) {
+        if (!isset($this->data) && !$this->_hidden) {
             throw new InvalidConfigException("No 'data' source found for Select2. Either the 'data' property must be set OR one of 'data', 'query', 'ajax', or 'tags' must be set within 'pluginOptions'.");
         }
         if (!empty($this->options['placeholder']) && !$this->_hidden &&
@@ -117,6 +117,9 @@ class Select2 extends InputWidget
             $append = ArrayHelper::getValue($addon, 'append', '');
             $group = ArrayHelper::getValue($addon, 'groupOptions', []);
             $size = isset($this->size) ? ' input-group-' . $this->size : '';
+            if ($this->pluginLoading) {
+                Html::addCssClass($group, 'kv-hide group-' . $this->options['id']);
+            }
             if (is_array($prepend)) {
                 $content = ArrayHelper::getValue($prepend, 'content', '');
                 if (isset($prepend['asButton']) && $prepend['asButton'] == true) {
@@ -151,15 +154,20 @@ class Select2 extends InputWidget
      */
     protected function renderInput()
     {
+        $class = $this->pluginLoading ? 'kv-hide ' : '';
         if (!isset($this->addon) && isset($this->size)) {
-            Html::addCssClass($this->options, 'input-' . $this->size);
+            $class .= 'input-' . $this->size;
         }
+        if ($this->pluginLoading) {
+            $this->_loadIndicator = '<div class="kv-plugin-loading loading-' . $this->options['id'] . '">&nbsp;</div>';
+        }
+        Html::addCssClass($this->options, $class);
         if ($this->_hidden) {
             $input = $this->getInput('textInput');
         } else {
             $input = $this->getInput('dropDownList', true);
         }
-        echo $this->embedAddon($input);
+        echo $this->_loadIndicator . $this->embedAddon($input);
     }
 
     /**
@@ -168,12 +176,32 @@ class Select2 extends InputWidget
     public function registerAssets()
     {
         $view = $this->getView();
-        if (!empty($this->language) && $this->language != 'en' && $this->language != 'en_US') {
+        if (!empty($this->language) && substr($this->language, 0, 2) != 'en') {
             Select2Asset::register($view)->js[] = 'select2_locale_' . $this->language . '.js';
         } else {
             Select2Asset::register($view);
         }
         $this->pluginOptions['width'] = 'resolve';
-        $this->registerPlugin('select2');
+        if ($this->pluginLoading) {
+            $id = $this->options['id'];
+            $loading = "\$('.kv-plugin-loading.loading-{$id}')";
+            $groupCss = "group-{$id}";
+            $group = "\$('.kv-hide.{$groupCss}')";
+            $el = "\$('#{$id}')";
+            $callback = <<< JS
+function(){
+    var \$container = {$el}.select2('container');
+    {$el}.removeClass('kv-hide');
+    \$container.removeClass('kv-hide');
+    {$loading}.remove();
+    if (Object.keys({$group}).length > 0) {
+        {$group}.removeClass('kv-hide').removeClass('{$groupCss}');
+    }
+}
+JS;
+            $this->registerPlugin('select2', $el, $callback);
+        } else {
+            $this->registerPlugin('select2');
+        }
     }
 }

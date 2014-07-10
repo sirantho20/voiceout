@@ -9,7 +9,6 @@ namespace yii\rest;
 
 use Yii;
 use yii\base\Model;
-use yii\db\ActiveRecord;
 use yii\helpers\Url;
 
 /**
@@ -40,9 +39,7 @@ class CreateAction extends Action
             call_user_func($this->checkAccess, $this->id);
         }
 
-        /**
-         * @var \yii\db\ActiveRecord $model
-         */
+        /* @var $model \yii\db\ActiveRecord */
         $model = new $this->modelClass([
             'scenario' => $this->scenario,
         ]);

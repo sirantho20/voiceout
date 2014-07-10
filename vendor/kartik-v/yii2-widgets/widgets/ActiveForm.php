@@ -10,6 +10,7 @@ namespace kartik\widgets;
 
 use yii\base\InvalidConfigException;
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 
 /**
  * Extends the ActiveForm widget to handle various
@@ -129,7 +130,7 @@ class ActiveForm extends \yii\widgets\ActiveForm
         if (!isset($this->type) || strlen($this->type) == 0) {
             $this->type = self::TYPE_VERTICAL;
         }
-        $this->formConfig = $this->formConfig + $this->_config[$this->type];
+        $this->formConfig = ArrayHelper::merge($this->_config[$this->type], $this->formConfig);
         if (!isset($this->fieldConfig['class'])) {
             $this->fieldConfig['class'] = ActiveField::className();
         }
@@ -158,7 +159,10 @@ class ActiveForm extends \yii\widgets\ActiveForm
         $config = $this->formConfig;
         $span = $config['labelSpan'];
         $size = $config['deviceSize'];
-        $labelCss = self::NOT_SET;
+        $formStyle = $this->getFormLayoutStyle();
+        $labelCss = $formStyle['labelCss'];
+        $this->_inputCss = $formStyle['inputCss'];
+        $this->_offsetCss = $formStyle['offsetCss'];
 
         if ($span != self::NOT_SET && intval($span) > 0) {
             $span = intval($span);
@@ -192,6 +196,33 @@ class ActiveForm extends \yii\widgets\ActiveForm
         parent::init();
     }
 
+    public function getFormLayoutStyle() {
+        $config = $this->formConfig;
+        $span = $config['labelSpan'];
+        $size = $config['deviceSize'];
+        $labelCss = $inputCss = $offsetCss = self::NOT_SET;
+
+        if ($span != self::NOT_SET && intval($span) > 0) {
+            $span = intval($span);
+
+            /* Validate if invalid labelSpan is passed - else set to DEFAULT_LABEL_SPAN */
+            if ($span <= 0 && $span >= $this->fullSpan) {
+                $span = self::DEFAULT_LABEL_SPAN;
+            }
+
+            /* Validate if invalid deviceSize is passed - else default to medium */
+            if ($size == self::NOT_SET) {
+                $size = self::SIZE_MEDIUM;
+            }
+
+            $prefix = "col-{$size}-";
+            $labelCss = $prefix . $span;
+            $inputCss = $prefix . ($this->fullSpan - $span);
+            $offsetCss =  "col-" . $size . "-offset-" . $span . " " . $inputCss;
+        }
+        return ['labelCss'=> $labelCss, 'inputCss'=>$inputCss, 'offsetCss'=>$offsetCss];
+    }
+    
     /**
      * Gets input css property
      *

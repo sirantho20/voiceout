@@ -2,7 +2,14 @@
 return [
     'bootstrap' => ['gii'],
     'modules' => [
-    'gii' => 'yii\gii\Module',
+        'gii' => 'yii\gii\Module',
+        'user' => [
+           'class' => 'dektrium\user\Module',
+           'allowUnconfirmedLogin' => true,
+           'confirmWithin' => 21600,
+           'cost' => 12,
+           'admins' => ['admin']
+       ],
     ],
     
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
@@ -16,6 +23,13 @@ return [
         'class' => 'yii\web\UrlManager',
         'enablePrettyUrl' => true,
         'showScriptName' => true
+        ],
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@dektrium/user/views' => '@app/views/user'
+                ],
+            ],
         ],
     ],
 ];
