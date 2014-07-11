@@ -17,18 +17,36 @@ use yii\grid\GridView;
  * @var yii\data\ActiveDataProvider $dataProvider
  * @var dektrium\user\models\UserSearch $searchModel
  */
-
+Yii::$app->controller->layout = '@app/views/layouts/adminMain';
 $this->title = Yii::t('user', 'Manage users');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<h1><?= Html::encode($this->title) ?> <?= Html::a(Yii::t('user', 'Create a user account'), ['create'], ['class' => 'btn btn-success']) ?></h1>
-
+<p>
+<?= Html::a(Yii::t('user', ' Create User'), ['create'], ['class' => 'btn btn-success fa fa-user']) ?>
+</p>
 <?php if (Yii::$app->getSession()->hasFlash('admin_user')): ?>
     <div class="alert alert-success">
         <p><?= Yii::$app->getSession()->getFlash('admin_user') ?></p>
     </div>
 <?php endif; ?>
 
+<div class="row">
+
+<!-- NEW COL START -->
+<article class="col-sm-12 col-md-12 col-lg-12" style="margin-bottom: 15px;">
+
+<!-- Widget ID (each widget will need unique ID)-->
+<div class="jarviswidget" id="wid-id-0" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false">
+
+       <header><span class="widget-icon"> <i class="fa fa-user"></i> </span><h2>Users</h2></header>
+     
+        <div>
+                <div class="jarviswidget-editbox">
+
+                </div>
+
+                <div class="widget-body no-padding">
+<div class="sitedetails-form">
 <?php echo GridView::widget([
     'dataProvider' => $dataProvider,
     'filterModel'  => $searchModel,
@@ -106,3 +124,10 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ],
 ]); ?>
+
+</div>
+                </div>
+        </div>
+</div>
+</article>
+</div>

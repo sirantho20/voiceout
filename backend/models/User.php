@@ -20,6 +20,7 @@ use yii\helpers\Url;
 use yii\web\IdentityInterface;
 use Yii;
 use backend\models\Mailer;
+use dektrium\user\models\UserQuery;
 
 /**
  * User ActiveRecord model.
@@ -246,6 +247,10 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function create()
     {
+        if(!\Yii::$app->user->isGuest)
+        {
+            $this->company_id = \Yii::$app->user->identity->company_id;
+        }
         if ($this->password == null) {
             $this->password = Password::generate(8);
         }
@@ -273,10 +278,7 @@ class User extends ActiveRecord implements IdentityInterface
         $this->trigger(self::EVENT_BEFORE_REGISTER);
 
         $this->setAttribute('registered_from', ip2long(\Yii::$app->request->userIP));
-        if(!\Yii::$app->user->isGuest)
-        {
-            $this->setAttribute('company_id', \Yii::$app->user->identity->company_id);
-        }
+            
         if ($this->module->confirmable) {
             $this->generateConfirmationData();
         }

@@ -9,7 +9,7 @@ use yii\widgets\Breadcrumbs;
  * @var \yii\web\View $this
  * @var string $content
  */
-Html::csrfMetaTags();
+echo Html::csrfMetaTags();
 AppAsset::register($this);
 
 ?>

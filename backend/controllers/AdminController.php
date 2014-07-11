@@ -14,6 +14,8 @@
 namespace backend\controllers;
 
 use dektrium\user\controllers\AdminController as BaseAdminController;
+use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 class AdminController extends BaseAdminController {
     //put your code here
@@ -45,4 +47,5 @@ class AdminController extends BaseAdminController {
             ]
         ];
     }
+    
 }

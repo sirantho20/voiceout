@@ -17,7 +17,7 @@ use yii\widgets\ActiveForm;
  * @var yii\web\View $this
  * @var dektrium\user\models\User $model
  */
-
+Yii::$app->controller->layout = '@app/views/layouts/adminMain';
 $this->title = Yii::t('user', 'Update user account');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('user', 'Users'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -42,9 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 <?php endif; ?>
 
-<div class="panel panel-info">
-    <div class="panel-heading"><?= Yii::t('user', 'Information') ?></div>
-    <div class="panel-body">
+<!--<p class="bg-info">
         <?= Yii::t('user', 'Registered at {0, date, MMMM dd, YYYY HH:mm} from {1}', [$model->created_at, is_null($model->registered_from) ? 'N/D' : long2ip($model->registered_from)]) ?>
         <br/>
         <?php if (Yii::$app->getModule('user')->confirmable && $model->getIsConfirmed()): ?>
@@ -57,16 +55,30 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php if ($model->getIsBlocked()): ?>
             <?= Yii::t('user', 'Blocked at {0, date, MMMM dd, YYYY HH:mm}', [$model->blocked_at]) ?>
         <?php endif;?>
-    </div>
-</div>
+    </p> -->
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <?= Html::encode($this->title) ?>
-    </div>
-    <div class="panel-body">
-        <?php $form = ActiveForm::begin(); ?>
+<div class="row">
 
+<!-- NEW COL START -->
+<article class="col-sm-12 col-md-8 col-lg-8" style="margin-bottom: 15px;">
+
+<!-- Widget ID (each widget will need unique ID)-->
+<div class="jarviswidget" id="wid-id-0" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false">
+
+       <header><span class="widget-icon"> <i class="fa fa-user"></i> </span><h2>User</h2></header>
+     
+        <div>
+                <div class="jarviswidget-editbox">
+
+                </div>
+
+                <div class="widget-body no-padding">
+<div class="sitedetails-form">
+        <?php $form = ActiveForm::begin([
+                     'options'=>['class'=>'smart-form'],
+                     'fieldConfig'=>['labelOptions'=>['class'=>'label', 'style'=>'font-weight:bold;'],'options'=>['tag'=>'section']]
+                    ]); ?>
+    <fieldset>
         <?= $form->field($model, 'username')->textInput(['maxlength' => 25]) ?>
 
         <?= $form->field($model, 'email')->textInput(['maxlength' => 255]) ?>
@@ -74,11 +86,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $form->field($model, 'password')->passwordInput() ?>
 
         <?= $form->field($model, 'role')->textInput(['maxlength' => 255]) ?>
-
-        <div class="form-group">
+    </fieldset>
+    <footer>
             <?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-primary']) ?>
-        </div>
+    </footer>
 
         <?php ActiveForm::end(); ?>
     </div>
-</div>
+                </div></div></div></article></div>

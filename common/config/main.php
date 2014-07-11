@@ -10,10 +10,14 @@ return [
            'cost' => 12,
            'admins' => ['admin'],
            'controllerMap' => [
-                'admin' => 'backend\controllers\AdminController'
+                'admin' => 'backend\controllers\AdminController',
+               'security' => 'backend\controllers\SecurityController'
             ],
            'components' => [
-               'userClass'    => 'backend\models\User'
+               'manager' => [
+                   'userClass'    => 'backend\models\User'
+               ]
+               
            ]
        ],
     ],
@@ -33,9 +37,14 @@ return [
         'view' => [
             'theme' => [
                 'pathMap' => [
-                    '@dektrium/user/views' => '@app/views/user'
+                    '@dektrium/user/views' => '@app/views/user',
                 ],
             ],
+        ],
+        
+        'user' => [
+        'enableAutoLogin' => false,
+            
         ],
     ],
 ];
