@@ -11,40 +11,47 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\BaseHtml;
 
 /**
  * @var yii\web\View $this
  * @var yii\widgets\ActiveForm $form
  * @var dektrium\user\models\User $user
  */
-
+\backend\assets\smartIndexBundle::register($this);
+Yii::$app->controller->layout = '@app/views/layouts/signup';
 $this->title = Yii::t('user', 'Sign up');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="row">
-    <div class="col-md-4 col-md-offset-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?= Html::encode($this->title) ?></h3>
-            </div>
-            <div class="panel-body">
+
                 <?php $form = ActiveForm::begin([
-                    'id' => 'registration-form',
+                    'id' => 'smart-form-register',
+                    'options' => ['class' => 'smart-form client-form']
                 ]); ?>
-
-                <?= $form->field($model, 'username') ?>
-
-                <?= $form->field($model, 'email') ?>
-
-                <?= $form->field($model, 'password')->passwordInput() ?>
-
-                <?= Html::submitButton(Yii::t('user', 'Sign up'), ['class' => 'btn btn-success btn-block']) ?>
-
+    		<header>
+                         FREE Registration
+                </header>
+    <fieldset>
+        <section>
+                <label class="input"> <i class="icon-append fa fa-user"></i>
+                <?= BaseHtml::activeTextInput($model, 'username',['placeholder'=>'Username']); ?>
+                <b class="tooltip tooltip-bottom-right">Needed to enter the website</b> </label>
+        </section>
+        <section>
+            <label class="input"> <i class="icon-append fa fa-envelope"></i>
+            <?= BaseHtml::activeTextInput($model, 'email',['placeholder'=>'Email']); ?>
+            <b class="tooltip tooltip-bottom-right">Needed to verify your account</b> </label>
+        </section>
+        <section>
+            <label class="input"> <i class="icon-append fa fa-lock"></i>
+            <?= BaseHtml::activeTextInput($model, 'password',['placeholder'=>'Password']); ?>
+            <b class="tooltip tooltip-bottom-right">Don't forget your password</b> </label>
+        </section>
+                
+    </fieldset>
+    <footer>
+        <?= 'Already have account? '.Html::a(Yii::t('user', 'Login'),['/user/login']) ?>
+        <?= Html::submitButton('Signup', ['class' => 'btn btn-success', 'name' => 'login-button']) ?>
+    </footer>
                 <?php ActiveForm::end(); ?>
-            </div>
-        </div>
-        <p class="text-center">
-            <?= Html::a(Yii::t('user', 'Already registered? Sign in!'), ['/user/security/login']) ?>
-        </p>
-    </div>
-</div>
+

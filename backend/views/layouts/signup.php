@@ -25,7 +25,7 @@ use yii\helpers\Html;
 				<!-- END AJAX-DROPDOWN -->
 			</div>
 
-                    <span id="login-header-space"> <span class="hidden-mobile">Not Registered?</span> <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['user/register']) ?>" class="btn btn-danger">Signup Free</a> </span>
+                    <span id="login-header-space"> <span class="hidden-mobile"></span> <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['user/register']) ?>" class="btn btn-danger">Go to Main Website</a> </span>
 
 		</header>
 
@@ -35,27 +35,18 @@ use yii\helpers\Html;
             <div id="content" class="container">
 
                 <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4 col-lg-offset-4">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
                         <div class="well no-padding">
                             
                             <?= $content ?>
 
                         </div>
 
-<h5 class="text-center">Or log in using</h5>
-    <ul class="list-inline text-center">
-            <li>
-                    <a href="javascript:void(0);" class="btn btn-primary btn-circle"><i class="fa fa-facebook"></i></a>
-            </li>
-            <li>
-                    <a href="javascript:void(0);" class="btn btn-info btn-circle"><i class="fa fa-twitter"></i></a>
-            </li>
-            <li>
-                    <a href="javascript:void(0);" class="btn btn-warning btn-circle"><i class="fa fa-linkedin"></i></a>
-            </li>
-    </ul>
+
                     </div>
+                    
                 </div>
+                
             </div>
 
         </div>

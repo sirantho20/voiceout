@@ -10,7 +10,7 @@
 				<span> <!-- User image size is adjusted inside CSS, it should stay as it --> 
 					<a href="#" id="show-shortcut">
 						<span>
-							<?= Yii::$app->user->identity->username ?>
+							<?= Yii::$app->user->identity->company_id ?>
 						</span></i>
 					</a> 
 					
@@ -63,6 +63,12 @@
                                                 <li><a href="#">Subscription Plan</a></li>
                                             </ul>
 					</li>
+                                        <li>
+                                            <a href="#"><i class="fa fa-lg fa-fw fa-suitcase"></i><span class="menu-item-parent">Super</span></a>
+                                            <ul>
+                                                <li><a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['company/index']) ?>">Manage Companies</a></li>
+                                            </ul>
+                                        </li>
 			
 				</ul>
 			</nav>

@@ -8,7 +8,13 @@ return [
            'allowUnconfirmedLogin' => true,
            'confirmWithin' => 21600,
            'cost' => 12,
-           'admins' => ['admin']
+           'admins' => ['admin'],
+           'controllerMap' => [
+                'admin' => 'backend\controllers\AdminController'
+            ],
+           'components' => [
+               'userClass'    => 'backend\models\User'
+           ]
        ],
     ],
     
