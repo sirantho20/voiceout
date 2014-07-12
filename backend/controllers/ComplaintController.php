@@ -3,17 +3,18 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\CompanyUsers;
-use app\models\CompanyUsersSearch;
+use backend\models\Complaint;
+use backend\models\ComplaintSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * CompanyUsersController implements the CRUD actions for CompanyUsers model.
+ * ComplaintController implements the CRUD actions for Complaint model.
  */
-class CompanyUsersController extends Controller
+class ComplaintController extends Controller
 {
+    public $layout = '/adminMain';
     public function behaviors()
     {
         return [
@@ -27,22 +28,22 @@ class CompanyUsersController extends Controller
     }
 
     /**
-     * Lists all CompanyUsers models.
+     * Lists all Complaint models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new CompanyUsersSearch;
-        $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
+        $searchModel = new ComplaintSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'dataProvider' => $dataProvider,
             'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Displays a single CompanyUsers model.
+     * Displays a single Complaint model.
      * @param integer $id
      * @return mixed
      */
@@ -54,13 +55,13 @@ class CompanyUsersController extends Controller
     }
 
     /**
-     * Creates a new CompanyUsers model.
+     * Creates a new Complaint model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new CompanyUsers(['scenario'=>'update']);
+        $model = new Complaint();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -72,7 +73,7 @@ class CompanyUsersController extends Controller
     }
 
     /**
-     * Updates an existing CompanyUsers model.
+     * Updates an existing Complaint model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -80,7 +81,6 @@ class CompanyUsersController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $model->setScenario('update');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -92,7 +92,7 @@ class CompanyUsersController extends Controller
     }
 
     /**
-     * Deletes an existing CompanyUsers model.
+     * Deletes an existing Complaint model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -105,40 +105,18 @@ class CompanyUsersController extends Controller
     }
 
     /**
-     * Finds the CompanyUsers model based on its primary key value.
+     * Finds the Complaint model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return CompanyUsers the loaded model
+     * @return Complaint the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = CompanyUsers::findOne($id)) !== null) {
+        if (($model = Complaint::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
-    }
-    
-    public function actionChange($id)
-    {
-        $model = new \backend\models\passwordChangeForm($id);
-        
-        if($model->load(Yii::$app->request->post()) && $model->changePassword())
-        {
-           echo 'valid';
-        }
-        else 
-        {
-            echo 'invalid';
-            $this->render('change', [
-                'model' => $model,
-            ]);
-        }
-        
-    }
-    public function actionCpasswrod()
-    {
-        echo 'hi here';
     }
 }

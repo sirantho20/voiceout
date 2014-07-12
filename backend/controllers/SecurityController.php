@@ -13,10 +13,40 @@
  */
 namespace backend\controllers;
 use dektrium\user\controllers\SecurityController as SC;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 
 class SecurityController extends SC {
     //put your code here
     public $enableCsrfValidation = false;
+    
+    
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['login', 'auth'],
+                        'roles' => ['?']
+                    ],
+                    ],
+//                    [
+//                        'allow' => true,
+//                        'actions' => ['logout'],
+//                        'roles' => ['@']
+//                ]
+            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'logout' => ['post']
+                ]
+            ]
+        ];
+    }
     
     public function actionLogin()
     {

@@ -11,11 +11,14 @@ return [
            'admins' => ['admin'],
            'controllerMap' => [
                 'admin' => 'backend\controllers\AdminController',
-               'security' => 'backend\controllers\SecurityController'
+                'security' => 'backend\controllers\SecurityController'
             ],
            'components' => [
                'manager' => [
-                   'userClass'    => 'backend\models\User'
+                   'userClass'    => 'backend\models\User',
+                   'accountClass' => 'backend\models\Account',
+                   'profileClass' => 'backend\models\Profile',
+                   
                ]
                
            ]
@@ -32,7 +35,7 @@ return [
         'urlManager' => [
         'class' => 'yii\web\UrlManager',
         'enablePrettyUrl' => true,
-        'showScriptName' => true
+        'showScriptName' => true,
         ],
         'view' => [
             'theme' => [
@@ -40,11 +43,6 @@ return [
                     '@dektrium/user/views' => '@app/views/user',
                 ],
             ],
-        ],
-        
-        'user' => [
-        'enableAutoLogin' => false,
-            
         ],
     ],
 ];

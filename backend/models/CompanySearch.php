@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace backend\models;
 
 use Yii;
 use yii\base\Model;
@@ -12,6 +12,9 @@ use backend\models\Company;
  */
 class CompanySearch extends Company
 {
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [
@@ -20,12 +23,22 @@ class CompanySearch extends Company
         ];
     }
 
+    /**
+     * @inheritdoc
+     */
     public function scenarios()
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
 
+    /**
+     * Creates data provider instance with search query applied
+     *
+     * @param array $params
+     *
+     * @return ActiveDataProvider
+     */
     public function search($params)
     {
         $query = Company::find();
