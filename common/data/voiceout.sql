@@ -218,29 +218,28 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `mup_complaint`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `mup_complaint` (
+CREATE TABLE IF NOT EXISTS `mup_complaint` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `complaint_id` varchar(12) NOT NULL,
   `company_id` varchar(12) NOT NULL,
-  `user_id` varchar(12) NOT NULL COMMENT 'cookie id for guest users',
+  `user_id` varchar(12) NOT NULL COMMENT 'cookie id for guest users\n',
   `cookie_id` varchar(45) DEFAULT NULL COMMENT 'For anonymous users. Cookie id used to track recurring visitors',
   `complaint` varchar(255) NOT NULL,
   `hashtag` varchar(255) DEFAULT NULL,
   `is_private` char(1) NOT NULL DEFAULT 'N',
-  `rating` int(1) NOT NULL DEFAULT '1' COMMENT 'Ratings are ranked as follows\n1 - bad',
+  `rating` int(1) NOT NULL DEFAULT '1' COMMENT 'Ratings are ranked as follows\n1 - bad\n2 - terrible\n3 - unacceptable',
   `date_added` datetime NOT NULL,
   `date_updated` datetime NOT NULL,
   `published` char(1) NOT NULL DEFAULT 'Y',
   `has_picture` char(1) NOT NULL DEFAULT 'N',
   `has_audio` char(1) NOT NULL DEFAULT 'N',
-  `read_date` datetime DEFAULT NULL,
+  `location` varchar(100) DEFAULT NULL,
+  `slug` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `comp_id_UNIQUE` (`complaint_id`),
   KEY `fk_complaints_user_idx` (`user_id`),
-  KEY `fk_complaints_company_idx` (`company_id`),
-  CONSTRAINT `fk_complaints_company` FOREIGN KEY (`company_id`) REFERENCES `mup_company` (`company_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_complaints_user` FOREIGN KEY (`user_id`) REFERENCES `mup_user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `fk_complaints_company_idx` (`company_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
