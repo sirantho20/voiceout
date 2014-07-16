@@ -17,3 +17,7 @@
     overflow: auto;
     min-height: 145px !important;
 }
+
+.kv-fieldset-inline .form-group {
+    margin: 0;
+}

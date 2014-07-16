@@ -129,7 +129,6 @@ class BaseHtml
     public static function tag($name, $content = '', $options = [])
     {
         $html = "<$name" . static::renderTagAttributes($options) . '>';
-
         return isset(static::$voidElements[strtolower($name)]) ? $html : "$html$content</$name>";
     }
 
@@ -250,6 +249,22 @@ class BaseHtml
     }
 
     /**
+     * Generates the meta tags containing CSRF token information.
+     * @return string the generated meta tags
+     * @see Request::enableCsrfValidation
+     */
+    public static function csrfMetaTags()
+    {
+        $request = Yii::$app->getRequest();
+        if ($request instanceof Request && $request->enableCsrfValidation) {
+            return static::tag('meta', '', ['name' => 'csrf-param', 'content' => $request->csrfParam]) . "\n    "
+                . static::tag('meta', '', ['name' => 'csrf-token', 'content' => $request->getCsrfToken()]) . "\n";
+        } else {
+            return '';
+        }
+    }
+
+    /**
      * Generates a form start tag.
      * @param array|string $action the form action URL. This parameter will be processed by [[Url::to()]].
      * @param string $method the form submission method, such as "post", "get", "put", "delete" (case-insensitive).
@@ -337,7 +352,6 @@ class BaseHtml
         if ($url !== null) {
             $options['href'] = Url::to($url);
         }
-
         return static::tag('a', $text, $options);
     }
 
@@ -357,7 +371,6 @@ class BaseHtml
     public static function mailto($text, $email = null, $options = [])
     {
         $options['href'] = 'mailto:' . ($email === null ? $text : $email);
-
         return static::tag('a', $text, $options);
     }
 
@@ -376,7 +389,6 @@ class BaseHtml
         if (!isset($options['alt'])) {
             $options['alt'] = '';
         }
-
         return static::tag('img', '', $options);
     }
 
@@ -396,7 +408,6 @@ class BaseHtml
     public static function label($content, $for = null, $options = [])
     {
         $options['for'] = $for;
-
         return static::tag('label', $content, $options);
     }
 
@@ -430,7 +441,6 @@ class BaseHtml
     public static function submitButton($content = 'Submit', $options = [])
     {
         $options['type'] = 'submit';
-
         return static::button($content, $options);
     }
 
@@ -448,7 +458,6 @@ class BaseHtml
     public static function resetButton($content = 'Reset', $options = [])
     {
         $options['type'] = 'reset';
-
         return static::button($content, $options);
     }
 
@@ -468,7 +477,6 @@ class BaseHtml
         $options['type'] = $type;
         $options['name'] = $name;
         $options['value'] = $value === null ? null : (string) $value;
-
         return static::tag('input', '', $options);
     }
 
@@ -485,7 +493,6 @@ class BaseHtml
     {
         $options['type'] = 'button';
         $options['value'] = $label;
-
         return static::tag('input', '', $options);
     }
 
@@ -502,7 +509,6 @@ class BaseHtml
     {
         $options['type'] = 'submit';
         $options['value'] = $label;
-
         return static::tag('input', '', $options);
     }
 
@@ -518,7 +524,6 @@ class BaseHtml
     {
         $options['type'] = 'reset';
         $options['value'] = $label;
-
         return static::tag('input', '', $options);
     }
 
@@ -598,7 +603,6 @@ class BaseHtml
     public static function textarea($name, $value = '', $options = [])
     {
         $options['name'] = $name;
-
         return static::tag('textarea', static::encode($value), $options);
     }
 
@@ -818,7 +822,7 @@ class BaseHtml
      * @param string $name the name attribute of each checkbox.
      * @param string|array $selection the selected value(s).
      * @param array $items the data item used to generate the checkboxes.
-     * The array values are the labels, while the array keys are the corresponding checkbox values.
+     * The array keys are the checkbox values, while the array values are the corresponding labels.
      * @param array $options options (name => config) for the checkbox list container tag.
      * The following options are specially handled:
      *
@@ -891,7 +895,7 @@ class BaseHtml
      * @param string $name the name attribute of each radio button.
      * @param string|array $selection the selected value(s).
      * @param array $items the data item used to generate the radio buttons.
-     * The array values are the labels, while the array keys are the corresponding radio button values.
+     * The array keys are the radio button values, while the array values are the corresponding labels.
      * @param array $options options (name => config) for the radio button list. The following options are supported:
      *
      * - unselect: string, the value that should be submitted when none of the radio buttons is selected.
@@ -992,7 +996,6 @@ class BaseHtml
                 $results[] = static::tag('li', $encode ? static::encode($item) : $item, $itemOptions);
             }
         }
-
         return static::tag($tag, "\n" . implode("\n", $results) . "\n", $options);
     }
 
@@ -1022,7 +1025,6 @@ class BaseHtml
     public static function ol($items, $options = [])
     {
         $options['tag'] = 'ol';
-
         return static::ul($items, $options);
     }
 
@@ -1051,7 +1053,6 @@ class BaseHtml
         $attribute = static::getAttributeName($attribute);
         $label = isset($options['label']) ? $options['label'] : static::encode($model->getAttributeLabel($attribute));
         unset($options['label'], $options['for']);
-
         return static::label($label, $for, $options);
     }
 
@@ -1075,7 +1076,7 @@ class BaseHtml
             $models = [$models];
         }
         foreach ($models as $model) {
-            /** @var Model $model */
+            /* @var $model Model */
             foreach ($model->getFirstErrors() as $error) {
                 $lines[] = Html::encode($error);
             }
@@ -1118,7 +1119,6 @@ class BaseHtml
         $error = $model->getFirstError($attribute);
         $tag = isset($options['tag']) ? $options['tag'] : 'div';
         unset($options['tag']);
-
         return Html::tag($tag, Html::encode($error), $options);
     }
 
@@ -1142,7 +1142,6 @@ class BaseHtml
         if (!array_key_exists('id', $options)) {
             $options['id'] = static::getInputId($model, $attribute);
         }
-
         return static::input($type, $name, $value, $options);
     }
 
@@ -1235,7 +1234,6 @@ class BaseHtml
         if (!array_key_exists('id', $options)) {
             $options['id'] = static::getInputId($model, $attribute);
         }
-
         return static::textarea($name, $value, $options);
     }
 
@@ -1430,7 +1428,7 @@ class BaseHtml
      * @param string $attribute the attribute name or expression. See [[getAttributeName()]] for the format
      * about attribute expression.
      * @param array $items the data item used to generate the checkboxes.
-     * The array values are the labels, while the array keys are the corresponding checkbox values.
+     * The array keys are the checkbox values, and the array values are the corresponding labels.
      * Note that the labels will NOT be HTML-encoded, while the values will.
      * @param array $options options (name => config) for the checkbox list. The following options are specially handled:
      *
@@ -1466,7 +1464,7 @@ class BaseHtml
      * @param string $attribute the attribute name or expression. See [[getAttributeName()]] for the format
      * about attribute expression.
      * @param array $items the data item used to generate the radio buttons.
-     * The array keys are the labels, while the array values are the corresponding radio button values.
+     * The array keys are the radio values, and the array values are the corresponding labels.
      * Note that the labels will NOT be HTML-encoded, while the values will.
      * @param array $options options (name => config) for the radio button list. The following options are specially handled:
      *
@@ -1502,7 +1500,7 @@ class BaseHtml
      * @param string $attribute the attribute name or expression. See [[getAttributeName()]] for the format
      * about attribute expression.
      * @param array $items the data item used to generate the input fields.
-     * The array keys are the labels, while the array values are the corresponding input values.
+     * The array keys are the input values, and the array values are the corresponding labels.
      * Note that the labels will NOT be HTML-encoded, while the values will.
      * @param array $options options (name => config) for the input list. The supported special options
      * depend on the input type specified by `$type`.
@@ -1518,7 +1516,6 @@ class BaseHtml
         if (!array_key_exists('id', $options)) {
             $options['id'] = static::getInputId($model, $attribute);
         }
-
         return static::$type($name, $selection, $items, $options);
     }
 
@@ -1588,6 +1585,8 @@ class BaseHtml
      * the array will be "expanded" and a list data attributes will be rendered. For example,
      * if `'data' => ['id' => 1, 'name' => 'yii']`, then this will be rendered:
      * `data-id="1" data-name="yii"`.
+     * Additionally `'data' => ['params' => ['id' => 1, 'name' => 'yii'], 'status' => 'ok']` will be rendered as:
+     * `data-params='{"id":1,"name":"yii"}' data-status="ok"`.
      *
      * @param array $attributes attributes to be rendered. The attribute values will be HTML-encoded using [[encode()]].
      * @return string the rendering result. If the attributes are not empty, they will be rendered
@@ -1614,7 +1613,11 @@ class BaseHtml
                 }
             } elseif (is_array($value) && $name === 'data') {
                 foreach ($value as $n => $v) {
-                    $html .= " $name-$n=\"" . static::encode($v) . '"';
+                    if (is_array($v)) {
+                        $html .= " $name-$n='" . Json::encode($v, JSON_HEX_APOS) . "'";
+                    } else {
+                        $html .= " $name-$n=\"" . static::encode($v) . '"';
+                    }
                 }
             } elseif ($value !== null) {
                 $html .= " $name=\"" . static::encode($value) . '"';
@@ -1775,7 +1778,6 @@ class BaseHtml
                 $result[trim($property[0])] = trim($property[1]);
             }
         }
-
         return $result;
     }
 
@@ -1899,7 +1901,6 @@ class BaseHtml
     public static function getInputId($model, $attribute)
     {
         $name = strtolower(static::getInputName($model, $attribute));
-
-        return str_replace(['[]', '][', '[', ']', ' '], ['', '-', '-', '', '-'], $name);
+        return str_replace(['[]', '][', '[', ']', ' ', '.'], ['', '-', '-', '', '-', '-'], $name);
     }
 }

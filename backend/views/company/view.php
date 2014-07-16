@@ -31,29 +31,6 @@ echo BaseHtml::script('alert("tony");');
                 
             ],
         ]);
-
-        Modal::begin([
-            'header' => '',
-            'toggleButton' => ['label' => 'Reset Password'],
-        ]);
-        ?>
-        
-        <div class="company-form">
-
-        <?php
-        $form = ActiveForm::begin([
-            'id' => 'password-reset-form',
-            'method' => 'POST',
-            'action' => (new UrlManager())->createUrl(['company/cpassword','id'=>$model->id])
-        ]); ?>
-
-        <?= $form->field(new backend\models\passwordChangeForm(), 'password')->textInput(['maxlength' => 12]) ?>
-
-    <?php ActiveForm::end(); ?>
-
-</div>
-        
-        <?php Modal::end();
         ?>
         
     </p>

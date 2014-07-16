@@ -1,5 +1,42 @@
+version 1.7.0
+=============
+Date: 02-Jul-2014
+
+### Additions
+1. The plugin now offers an additional `overwriteInitial` option. This is by default set to `true`, whereby, any `initialPreview`
+   content set will be overwritten, when new file is uploaded or when files are cleared. Setting it to `false` will help displaying 
+   a saved image or file from database always - useful especially when using the `multiple` file upload feature.
+
+version 1.6.0
+=============
+Date: 03-Jun-2014
+
+### Additions
+1. The plugin now offers an additional `refresh` method. This enables you to dynamically change element attributes or plugin options
+   at runtime and refresh the widget.
+
+version 1.5.0
+=============
+Date: 23-May-2014
+
+### Additions
+1. The plugin now offers an option to display initial preview of images/text/other files. This is useful
+   for record update scenarios. This can be a single image/file or an array of images/files.
+2. Extending to the above feature, the plugin also allows you to set a preview caption for the initial preview field.
+
+### Changes
+3. The following element identifiers need to be passed as a string like '#id' instead of a JQuery object:
+    
+- elCaptionContainer
+- elCaptionText
+- elPreviewContainer
+- elPreviewImage
+- elPreviewStatus
+
+
 version 1.0.0
 =============
+Date: 01-Jan-2014 
 
 Initial release. The following features are included in this release:
 
