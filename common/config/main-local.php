@@ -3,7 +3,7 @@ return [
     'components' => [
         'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=voiceout',
+            'dsn' => 'mysql:host=127.0.0.1;dbname=voiceout',
             'username' => 'voiceout',
             'password' => 'voiceout',
             'charset' => 'utf8',
