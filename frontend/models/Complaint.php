@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use frontend\components\Voh;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "mup_complaint".
@@ -140,4 +142,35 @@ class Complaint extends \yii\db\ActiveRecord
     {
         return $this->hasMany(MupReply::className(), ['complaint_id' => 'complaint_id']);
     }
-}
+    
+    /*
+     * @ prevalidation assignments
+     */
+    public function beforeValidate()
+    {
+        $voh = new Voh;
+        if ($this->isNewRecord)
+        {
+            $this->complaint_id = $voh->newComplaintId();
+            $this->date_added = new Expression('Now()');
+            $this->user_id = (Yii::$app->user->isGuest)?Voh::guest_id:Yii::$app->user->id;
+        }
+        $this->date_updated = new Expression('Now()');
+        return parent::beforeValidate();
+    }
+    
+    /*
+    * Behaviors for this model
+    */
+    public function behaviors(){
+      return array(
+        'sluggable' => array(
+          'class'=>'frontend\extensions\SluggableBehavior',
+          'columns' => array('company_id', 'complaint'),
+          'unique' => true,
+          'update' => true,
+        ),
+      );
+    }
+    
+}   
