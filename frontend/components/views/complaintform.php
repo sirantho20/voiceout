@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\Url;
 
 /**
  * @var yii\web\View $this
@@ -10,8 +11,6 @@ use yii\widgets\ActiveForm;
  */
 ?>
 
-  
-
 <div class="panel panel-default">
 <?php if (isset($title) && !empty($title)): ?>
 <div class="panel-heading"><?=$title; ?></div>
@@ -19,7 +18,7 @@ use yii\widgets\ActiveForm;
 <div class="panel-body">
 <div class="complaint-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['id'=>'complaint-form','action'=>  Url::toRoute('/complaint/new'),'enableAjaxValidation'=>true,'enableClientValidation'=>false]); ?>
 
     <?= $form->field($model, 'complaint_id')->textInput(['maxlength' => 12]) ?>
 
