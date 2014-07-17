@@ -8,6 +8,7 @@
 namespace yii\db\oci;
 
 use yii\base\InvalidParamException;
+use yii\db\Connection;
 
 /**
  * QueryBuilder is the query builder for Oracle databases.
@@ -92,7 +93,7 @@ EOD;
      *
      * @param string $table the table whose column is to be changed. The table name will be properly quoted by the method.
      * @param string $column the name of the column to be changed. The name will be properly quoted by the method.
-     * @param string $type the new column type. The {@link getColumnType} method will be invoked to convert abstract column type (if any)
+     * @param string $type the new column type. The [[getColumnType]] method will be invoked to convert abstract column type (if any)
      * into the physical one. Anything that is not recognized as abstract type will be kept in the generated SQL.
      * For example, 'string' will be turned into 'varchar(255)', while 'string not null' will become 'varchar(255) not null'.
      * @return string the SQL statement for changing the definition of a column.
@@ -132,8 +133,10 @@ EOD;
         if ($value !== null) {
             $value = (int) $value;
         } else {
-            $value = (int) $this->db->createCommand("SELECT MAX(\"{$tableSchema->primaryKey}\") FROM \"{$tableSchema->name}\"")->queryScalar();
-            $value++;
+            // use master connection to get the biggest PK value
+            $value = $this->db->useMaster(function (Connection $db) use ($tableSchema) {
+                return $db->createCommand("SELECT MAX(\"{$tableSchema->primaryKey}\") FROM \"{$tableSchema->name}\"")->queryScalar();
+            }) + 1;
         }
 
         return "DROP SEQUENCE \"{$tableSchema->name}_SEQ\";"

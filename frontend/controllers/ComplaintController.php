@@ -6,6 +6,7 @@ use Yii;
 use app\models\Complaint;
 use yii\web\UploadedFile;
 use yii\widgets\ActiveForm;
+use yii\helpers\Url;
 
 class ComplaintController extends \yii\web\Controller
 {
@@ -64,7 +65,7 @@ class ComplaintController extends \yii\web\Controller
                      */
                     $uploadedFile->saveAs(Yii::$app->basePath.'/../images/complaint_images/'.$fileName);
                 }
-                $this->redirect(Yii::$app->controller->createUrl('complaint/view'));
+                $this->redirect(Url::toRoute('/complaint/view'));
                 Yii::$app->end();
            }
            else

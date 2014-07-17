@@ -39,6 +39,8 @@ class Complaint extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public $photo;
+    
     public static function tableName()
     {
         return 'mup_complaint';
@@ -50,7 +52,7 @@ class Complaint extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['complaint_id', 'company_id', 'user_id', 'complaint', 'date_added', 'date_updated', 'slug'], 'required'],
+            [['complaint_id', 'company_id', 'user_id', 'complaint', 'date_added', 'date_updated'], 'required'],
             [['rating'], 'integer'],
             [['date_added', 'date_updated'], 'safe'],
             [['complaint_id', 'company_id', 'user_id'], 'string', 'max' => 12],
@@ -58,7 +60,8 @@ class Complaint extends \yii\db\ActiveRecord
             [['complaint', 'hashtag', 'slug'], 'string', 'max' => 255],
             [['is_private', 'published', 'has_picture', 'has_audio'], 'string', 'max' => 1],
             [['location'], 'string', 'max' => 100],
-            [['complaint_id'], 'unique']
+            [['complaint_id'], 'unique'],
+            [['photo'],'safe']
         ];
     }
 
@@ -154,6 +157,7 @@ class Complaint extends \yii\db\ActiveRecord
             $this->complaint_id = $voh->newComplaintId();
             $this->date_added = new Expression('Now()');
             $this->user_id = (Yii::$app->user->isGuest)?Voh::guest_id:Yii::$app->user->id;
+            $this->rating = 0;
         }
         $this->date_updated = new Expression('Now()');
         return parent::beforeValidate();
@@ -162,15 +166,21 @@ class Complaint extends \yii\db\ActiveRecord
     /*
     * Behaviors for this model
     */
-    public function behaviors(){
-      return array(
-        'sluggable' => array(
-          'class'=>'frontend\extensions\SluggableBehavior',
-          'columns' => array('company_id', 'complaint'),
-          'unique' => true,
-          'update' => true,
-        ),
-      );
+    public function behaviors()
+    {
+    return [
+        'slug' => [
+            'class' => 'Zelenin\yii\behaviors\Slug',
+            'source_attribute' => ['company_id','complaint'],
+            'slug_attribute' => 'slug',
+
+            // optional params
+            'translit' => true,
+            'replacement' => '-',
+            'lowercase' => true,
+            'unique' => true
+        ]
+    ];
     }
     
 }   

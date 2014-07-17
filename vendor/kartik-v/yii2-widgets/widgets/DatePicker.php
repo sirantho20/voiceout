@@ -12,6 +12,8 @@ use Yii;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\base\InvalidConfigException;
+use kartik\field\FieldRangeAsset;
+use kartik\datecontrol\DateControl;
 
 /**
  * DatePicker widget is a Yii2 wrapper for the Bootstrap DatePicker plugin. The
@@ -72,7 +74,7 @@ class DatePicker extends InputWidget
      * for markup
      */
     public $name2;
-
+    
     /**
      * @var string the name of value for input number 2 if you are using [[TYPE_RANGE]]
      * for markup
@@ -91,14 +93,6 @@ class DatePicker extends InputWidget
      * Defaults to 'to'
      */
     public $separator = 'to';
-
-    /**
-     * @var boolean whether the widget should automatically format the date from
-     * the PHP DateTime format to the Bootstrap DatePicker plugin format
-     * @see http://php.net/manual/en/function.date.php
-     * @see http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
-     */
-    public $convertFormat = false;
 
     /**
      * @var string identifier for the target DatePicker element
@@ -133,44 +127,13 @@ class DatePicker extends InputWidget
         if (isset($this->form) && ($this->type === self::TYPE_RANGE) && (!isset($this->attribute2))) {
             throw new InvalidConfigException("The 'attribute2' property must be set for a 'range' type markup and a defined 'form' property.");
         }
+        $this->initLanguage();
         if ($this->convertFormat && isset($this->pluginOptions['format'])) {
             $this->pluginOptions['format'] = static::convertDateFormat($this->pluginOptions['format']);
         }
         $this->_id = ($this->type == self::TYPE_INPUT) ? '$("#' . $this->options['id'] . '")' : '$("#' . $this->options['id'] . '").parent()';
         $this->registerAssets();
         echo $this->renderInput();
-    }
-
-    /**
-     * Automatically convert the date format from PHP DateTime to DatePicker plugin format
-     *
-     * @see http://php.net/manual/en/function.date.php
-     * @see http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
-     * @param string $format the PHP date format string
-     * @return string
-     */
-    protected static function convertDateFormat($format)
-    {
-        return strtr($format, [
-            // day of month (no leading zero)
-            'j' => 'd',
-            // day of month (two digit)
-            'd' => 'dd',
-            // day name short is always 'D'
-            // day name long
-            'l' => 'DD',
-            // month of year (no leading zero)
-            'n' => 'm',
-            // month of year (two digit)
-            'm' => 'mm',
-            // month name short is always 'M'
-            // month name long
-            'F' => 'MM',
-            // year (two digit)
-            'y' => 'yy',
-            // year (four digit)
-            'Y' => 'yyyy',
-        ]);
     }
 
     /**
@@ -231,16 +194,15 @@ class DatePicker extends InputWidget
         if ($this->type == self::TYPE_RANGE) {
             Html::addCssClass($this->_container, 'input-daterange');
             if (isset($this->form)) {
-                Html::addCssClass($this->options, 'form-control datepicker-from');
-                Html::addCssClass($this->options2, 'form-control datepicker-to');
+                Html::addCssClass($this->options, 'form-control kv-field-from');
+                Html::addCssClass($this->options2, 'form-control kv-field-to');
                 $input = $this->form->field($this->model, $this->attribute, [
                     'template' => '{input}{error}',
-                    'options' => ['class' => 'datepicker-range form-control'],
+                    'options' => ['class' => 'kv-container-from form-control'],
                 ])->textInput($this->options);
-
                 $input2 = $this->form->field($this->model, $this->attribute2, [
                     'template' => '{input}{error}',
-                    'options' => ['class' => 'datepicker-range form-control'],
+                    'options' => ['class' => 'kv-container-to form-control'],
                 ])->textInput($this->options2);
             } else {
                 if (empty($this->options2['id'])) {
@@ -251,7 +213,7 @@ class DatePicker extends InputWidget
                     Html::activeTextInput($this->model, $this->attribute2, $this->options2) :
                     Html::textInput($this->name2, $this->value2, $this->options2);
             }
-            return Html::tag('div', "{$input}<span class='input-group-addon'>{$this->separator}</span>{$input2}", $this->_container);
+            return Html::tag('div', "{$input}<span class='input-group-addon kv-field-separator'>{$this->separator}</span>{$input2}", $this->_container);
         }
         if ($this->type == self::TYPE_INLINE) {
             $this->_id = $this->options['id'] . '-inline';
@@ -261,7 +223,7 @@ class DatePicker extends InputWidget
     }
 
     /**
-     * Registers the needed assets
+     * Registers the needed client assets
      */
     public function registerAssets()
     {
@@ -281,6 +243,9 @@ class DatePicker extends InputWidget
             $this->registerPlugin('datepicker', "{$id}.parent().parent()");
         } else {
             $this->registerPlugin('datepicker', "{$id}.parent()");
+        }
+        if ($this->type === self::TYPE_RANGE) {
+            FieldRangeAsset::register($view);
         }
     }
 }

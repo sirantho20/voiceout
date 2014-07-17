@@ -30,9 +30,9 @@ class QueryBuilder extends \yii\db\QueryBuilder
         Schema::TYPE_BIGINT => 'bigint',
         Schema::TYPE_FLOAT => 'double precision',
         Schema::TYPE_DECIMAL => 'numeric(10,0)',
-        Schema::TYPE_DATETIME => 'timestamp',
-        Schema::TYPE_TIMESTAMP => 'timestamp',
-        Schema::TYPE_TIME => 'time',
+        Schema::TYPE_DATETIME => 'timestamp(0)',
+        Schema::TYPE_TIMESTAMP => 'timestamp(0)',
+        Schema::TYPE_TIME => 'time(0)',
         Schema::TYPE_DATE => 'date',
         Schema::TYPE_BINARY => 'bytea',
         Schema::TYPE_BOOLEAN => 'boolean',
@@ -99,12 +99,8 @@ class QueryBuilder extends \yii\db\QueryBuilder
     {
         $table = $this->db->getTableSchema($tableName);
         if ($table !== null && $table->sequenceName !== null) {
-            $sequence = '"' . $table->sequenceName . '"';
-
-            if (strpos($sequence, '.') !== false) {
-                $sequence = str_replace('.', '"."', $sequence);
-            }
-
+            // c.f. http://www.postgresql.org/docs/8.1/static/functions-sequence.html
+            $sequence = $this->db->quoteTableName($table->sequenceName);
             $tableName = $this->db->quoteTableName($tableName);
             if ($value === null) {
                 $key = reset($table->primaryKey);
@@ -140,8 +136,8 @@ class QueryBuilder extends \yii\db\QueryBuilder
             $command .= "ALTER TABLE $tableName $enable TRIGGER ALL; ";
         }
 
-        #enable to have ability to alter several tables
-        $this->db->pdo->setAttribute(\PDO::ATTR_EMULATE_PREPARES, true);
+        // enable to have ability to alter several tables
+        $this->db->getMasterPdo()->setAttribute(\PDO::ATTR_EMULATE_PREPARES, true);
 
         return $command;
     }

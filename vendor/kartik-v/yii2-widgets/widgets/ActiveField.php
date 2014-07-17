@@ -61,6 +61,16 @@ class ActiveField extends \yii\widgets\ActiveField
     public $addClass;
 
     /**
+     * @var boolean whether to show labels for the field
+     */
+    public $showLabels;
+
+    /**
+     * @var boolean whether to show errors for the field
+     */
+    public $showErrors;
+
+    /**
      * @var boolean whether the label is to be hidden and auto-displayed as a placeholder
      */
     public $autoPlaceholder;
@@ -184,14 +194,14 @@ class ActiveField extends \yii\widgets\ActiveField
         $form = $this->form;
         $inputDivClass = $form->getInputCss();
         $offsetDivClass = $form->getOffsetCss();
-        $showLabels = ArrayHelper::getValue($form->formConfig, 'showLabels', true);
-        $showErrors = ArrayHelper::getValue($form->formConfig, 'showErrors', true);
+        $showLabels = isset($this->showLabels) ? $this->showLabels : ArrayHelper::getValue($form->formConfig, 'showLabels', true);
+        $showErrors = isset($this->showErrors) ? $this->showErrors : ArrayHelper::getValue($form->formConfig, 'showErrors', true);
         if ($form->hasInputCss()) {
             $class = ($this->_offset) ? $offsetDivClass : $inputDivClass;
-            $input = "<div class='{$class}'>{input}</div>";
-            $error = ($showErrors) ? "{error}\n" : "";
+            $input = $showLabels ? "<div class='{$class}'>{input}</div>" : "{input}";
+            $error = $showErrors ? "{error}\n" : "";
             $hint = "{hint}";
-            if ($form->hasOffsetCss()) {
+            if ($form->hasOffsetCss() && $showLabels) {
                 $error = $showErrors ? "<div class='{$offsetDivClass}'>{error}</div>\n" : "";
                 $hint = "<div class='{$offsetDivClass}'>{hint}</div>";
             }
@@ -356,9 +366,9 @@ class ActiveField extends \yii\widgets\ActiveField
      * - unselect: string, the value that should be submitted when none of the checkboxes is selected.
      *   By setting this option, a hidden input will be generated.
      * - separator: string, the HTML code that separates items.
+     * - inline: boolean, whether the list should be displayed as a series on the same line, default is false
      * - item: callable, a callback that can be used to customize the generation of the HTML code
      *   corresponding to a single item in $items. The signature of this callback must be:
-     * - inline: boolean, whether the list should be displayed as a series on the same line, default is false
      *
      * ~~~
      * function ($index, $label, $name, $checked, $value)
@@ -392,9 +402,9 @@ class ActiveField extends \yii\widgets\ActiveField
      * - unselect: string, the value that should be submitted when none of the radio buttons is selected.
      *   By setting this option, a hidden input will be generated.
      * - separator: string, the HTML code that separates items.
+     * - inline: boolean, whether the list should be displayed as a series on the same line, default is false
      * - item: callable, a callback that can be used to customize the generation of the HTML code
      *   corresponding to a single item in $items. The signature of this callback must be:
-     * - inline: boolean, whether the list should be displayed as a series on the same line, default is false
      *
      * ~~~
      * function ($index, $label, $name, $checked, $value)

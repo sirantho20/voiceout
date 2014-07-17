@@ -8,6 +8,8 @@ use app\models\CompanySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\db\Query;
+use yii\helpers\Json;
 
 /**
  * CompanyController implements the CRUD actions for Company model.
@@ -101,6 +103,31 @@ class CompanyController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+    
+    /**
+     * Finds the company to use in the complaint widget. Passed via ajax request
+     */
+    public function actionGetcompany($search = null, $id = null) 
+    {
+        $out = ['more' => false];
+        if (!is_null($search)) {
+            $query = new Query;
+            $query->select('company_id As id, company_name AS text')
+            ->from('mup_company')
+            ->where('company_name LIKE "%' . $search .'%"')
+            ->limit(50);
+            $command = $query->createCommand();
+            $data = $command->queryAll();
+            $out['results'] = array_values($data);
+        }
+        elseif ($id > 0) {
+        $out['results'] = ['id' => $id, 'text' => Company::find($id)->company_name];
+        }
+        else {
+        $out['results'] = ['id' => 0, 'text' => 'No matching records found'];
+        }
+        echo Json::encode($out);
     }
 
     /**

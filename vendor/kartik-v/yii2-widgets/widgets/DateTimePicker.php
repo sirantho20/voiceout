@@ -68,14 +68,6 @@ class DateTimePicker extends InputWidget
     public $removeButton = [];
 
     /**
-     * @var boolean whether the widget should automatically format the date from
-     * the PHP DateTime format to the Bootstrap DateTimePicker plugin format
-     * @see http://php.net/manual/en/function.date.php
-     * @see http://www.malot.fr/bootstrap-datetimepicker/#options
-     */
-    public $convertFormat = false;
-
-    /**
      * @var string identifier for the target DateTimePicker element
      */
     private $_id;
@@ -96,60 +88,13 @@ class DateTimePicker extends InputWidget
         if ($this->type < 1 || $this->type > 4 || !is_int($this->type)) {
             throw new InvalidConfigException("Invalid value for the property 'type'. Must be an integer between 1 and 4.");
         }
+        $this->initLanguage();
         if ($this->convertFormat && isset($this->pluginOptions['format'])) {
             $this->pluginOptions['format'] = static::convertDateFormat($this->pluginOptions['format']);
         }
         $this->_id = ($this->type == self::TYPE_INPUT) ? '$("#' . $this->options['id'] . '")' : '$("#' . $this->options['id'] . '").parent()';
         $this->registerAssets();
         echo $this->renderInput();
-    }
-
-    /**
-     * Automatically convert the date format from PHP DateTime to DateTimePicker plugin format
-     *
-     * @see http://php.net/manual/en/function.date.php
-     * @see http://bootstrap-datetimepicker.readthedocs.org/en/release/options.html#format
-     * @param string $format the PHP date format string
-     * @return string
-     */
-    protected static function convertDateFormat($format)
-    {
-        return strtr($format, [
-            // meridian lowercase
-            'a' => 'p',
-            // meridian uppercase
-            'A' => 'P',
-            // second (with leading zeros)
-            's' => 'ss',
-            // minute (with leading zeros)
-            'i' => 'ii',
-            // hour in 12-hour format (no leading zeros)
-            'g' => 'H',
-            // hour in 24-hour format (no leading zeros)
-            'G' => 'h',
-            // hour in 12-hour format (with leading zeros)
-            'h' => 'HH',
-            // hour in 24-hour format (with leading zeros)
-            'H' => 'hh',
-            // day of month (no leading zero)
-            'j' => 'd',
-            // day of month (two digit)
-            'd' => 'dd',
-            // day name short is always 'D'
-            // day name long
-            'l' => 'DD',
-            // month of year (no leading zero)
-            'n' => 'm',
-            // month of year (two digit)
-            'm' => 'mm',
-            // month name short is always 'M'
-            // month name long
-            'F' => 'MM',
-            // year (two digit)
-            'y' => 'yy',
-            // year (four digit)
-            'Y' => 'yyyy',
-        ]);
     }
 
     /**

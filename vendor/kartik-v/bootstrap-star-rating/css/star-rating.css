@@ -1,6 +1,6 @@
 /*!
  * @copyright &copy; Kartik Visweswaran, Krajee.com, 2014
- * @version 2.0.0
+ * @version 2.5.0
  *
  * A simple yet powerful JQuery star rating plugin that allows rendering
  * fractional star ratings and supports Right to Left (RTL) input.
@@ -8,21 +8,25 @@
  * For more JQuery/Bootstrap plugins and demos visit http://plugins.krajee.com
  * For more Yii related demos visit http://demos.krajee.com
  */
-
+.rating-loading {
+    width: 25px;
+    height: 25px;
+    font-size: 0px;
+    color: #fff;
+    background: transparent url('../img/loading.gif') top left no-repeat;
+    border: none;
+}
 /*
  * Stars
  */
-
 .rating-gly {
     font-family: 'Glyphicons Halflings';
 }
-/*
- * Fix for glyphicon stars
- */
 .rating-gly-star {
     font-family: 'Glyphicons Halflings';
     padding-left: 2px;
 }
+
 .rating-gly-star .rating-stars:before {
     padding-left: 2px;
 }
@@ -35,13 +39,17 @@
     padding-left: 2px;
 }
 
+.rating-active {
+    cursor: default;
+}
+
+.rating-disabled {
+    cursor: not-allowed;
+}
+
 .rating-uni {
     font-size: 1.2em;
     margin-top: -5px;
-}
-
-.rating-disabled .rating-slider:hover {
-    cursor: not-allowed;
 }
 
 .rating-container {
@@ -67,19 +75,6 @@
     -o-transition: all 0.25s ease-out;
     -moz-transition: all 0.25s ease-out;
     -webkit-transition: all 0.25s ease-out;
-}
-
-.rating-slider {
-    position: absolute;
-    top: 0;
-    right: 0;
-    min-width: 100%;
-    min-height: 100%;
-    z-index: 5000;
-    text-align: right;
-    filter: alpha(opacity=0);
-    opacity: 0;
-    display: block;
 }
 
 .rating-container .rating-stars:before {
@@ -172,9 +167,11 @@
     vertical-align: middle;
     font-size: 55%;
 }
+
 .star-rating .caption {
     padding-left: 5px;
 }
+
 .star-rating-rtl .caption {
     padding-right: 5px;
 }

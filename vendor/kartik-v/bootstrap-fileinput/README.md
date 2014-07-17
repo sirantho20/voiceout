@@ -5,6 +5,8 @@ An enhanced HTML 5 file input for Bootstrap 3.x with file preview for images and
 
 ![File Input Screenshot](https://lh6.googleusercontent.com/-2niyujIaat0/UyqzA_78OQI/AAAAAAAAADE/f6IJkr11uA8/w666-h418-no/fileinput-screenshot.jpg)
 
+> NOTE: The latest version of the plugin v1.8.0 has been released. Refer the [CHANGE LOG](https://github.com/kartik-v/bootstrap-fileinput/blob/master/CHANGE.md) for details.
+
 ## Features  
 
 1. The plugin will convert a simple HTML file input to an advanced file picker control. Will help fallback to a normal HTML file input for browsers not supporting JQuery or Javascript.
@@ -15,18 +17,22 @@ An enhanced HTML 5 file input for Bootstrap 3.x with file preview for images and
 3. The plugin automatically converts an input with `type = file` to an advanced file picker input if you set its `class = file`. All options to the input can be passed as HTML5 `data` attributes.
 4. Ability to select and preview multiple files. Uses HTML 5 File reader API to read and preview files. Displays the progress of files being being loaded onto the preview zone, in case many files are chosen.
 5. Offers predefined templates and CSS classes which can be changed to style your file-input display as per your needs.
-6. Option to show/hide any or all of the following:
+6. With **v1.5.0**, you can now configure the plugin to show an **initial preview of images/files** with **initial caption** 
+   (more useful for record update scenarios). Refer the [`initialPreview`](https://github.com/kartik-v/bootstrap-fileinput/blob/master/README.md#initialpreview) 
+   and [`initialCaption`](https://github.com/kartik-v/bootstrap-fileinput/blob/master/README.md#initialcaption) properties in the plugin options
+   section for configuring this.
+7. Option to show/hide any or all of the following:
    - caption section
    - preview section
    - upload button
    - remove button
-7. Customise the location of the target container elements to display the entire plugin, the caption container, the caption text, the preview container, preview image, and preview status.
-8. For text file previews, autowrap the text to the thumbnail width, and show a wrap indicator link to display complete text on hover. You can customize the wrap indicator (which defaults to &hellip;).
-9. Customise the messages for preview, progress, and files selected.
-10. Upload action defaults to form submit. Supports an upload route/server action parameter for custom ajax based upload.
-11. Triggers JQuery events for advanced development. Events currently available are `filereset` and `fileclear`.
-12. Disabled and readonly file input support.
-13. Size of the entire plugin is less than 11KB (about 9KB for the minified JS and 2KB for the minified CSS).
+8. Customise the location of the target container elements to display the entire plugin, the caption container, the caption text, the preview container, preview image, and preview status.
+9. For text file previews, autowrap the text to the thumbnail width, and show a wrap indicator link to display complete text on hover. You can customize the wrap indicator (which defaults to &hellip;).
+10. Customise the messages for preview, progress, and files selected.
+11. Upload action defaults to form submit. Supports an upload route/server action parameter for custom ajax based upload.
+12. Triggers JQuery events for advanced development. Events currently available are `filereset` and `fileclear`.
+13. Disabled and readonly file input support.
+14. Size of the entire plugin is about 5KB if gzipped. The minified assets are less than 12KB (about 10KB for the minified JS and 2KB for the minified CSS). 
 
 ## Demo
 
@@ -123,7 +129,7 @@ _string_ any additional CSS class to append to the main plugin container.
 #### mainTemplate
 _string_ the template used to render the widget. The following template variables will be parsed:
 
-- `{class}`: any additional CSS class to append to the main widget container.
+- `{class}`: the CSS class as set in the `mainClass` property.
 - `{preview}`: the content parsed by the `previewTemplate` and will be displayed only if `showPreview` is `true`.
 - `{caption}`: the content parsed by the `captionTemplate` and will be displayed only if `showCaption` is `true`.
 - `{remove}`: the file remove/clear button and will be displayed only if `showRemove` is `true`.
@@ -150,10 +156,52 @@ The `mainTemplate` if not passed, will be automatically set based on `showCaptio
 {preview}\n{remove}\n{upload}\n{browse}\n
 ```
 
+#### initialPreview
+_string | array_ the initial preview content to be displayed. You can pass the minimal HTML markup for displaying your image, text, or file. 
+If set as a string, this will display a single file in the initial preview. If set as an array, it will display all files in the array as an 
+initial preview (useful for multiple file upload scenarios).
+
+The following CSS classes will need to be added for displaying each file type as per the plugin style theme:
+
+- **image files:** Include CSS class `file-preview-image`
+- **text files:** Include CSS class `file-preview-text`
+- **other files:** Include CSS class `file-preview-other`
+
+Examples of how you can setup various files for initial preview:
+
+```js
+// for image files
+initialPreview: [
+    "<img src='/images/desert.jpg' class='file-preview-image' alt='Desert' title='Desert'>",
+    "<img src='/images/jellyfish.jpg' class='file-preview-image' alt='Jelly Fish' title='Jelly Fish'>",
+],
+
+// for text files
+initialPreview: "<div class='file-preview-text' title='NOTES.txt'>" +
+    "This is the sample text file content upto wrapTextLength of 250 characters" +
+    "<span class='wrap-indicator' onclick='$(\"#show-detailed-text\").modal(\"show\")' title='NOTES.txt'>[…]</span>" +
+    "</div>"
+
+// for other files    
+initialPreview: "<div class='file-preview-text'>" + 
+    "<h2><i class='glyphicon glyphicon-file'></i></h2>" +
+    "Filename.xlsx" + "</div>"
+```
+
+#### initialCaption
+_string_ the initial preview caption text to be displayed. If you do not set a value here and `initialPreview` is set to 
+`true` this will default to `"{preview-file-count} files selected"`, where `{preview-file-count}` is the count of the 
+files passed in `initialPreview`.
+
+#### overwriteInitial
+_boolean_ whether you wish to overwrite the initial preview content and caption setup. This defaults to `true`, whereby, any `initialPreview` content set 
+will be overwritten, when new file is uploaded or when files are cleared. Setting it to `false` will help displaying a saved image or file from database always - 
+useful especially when using the `multiple` file upload feature.
+ 
 #### captionTemplate
 _string_ the template used to render the caption. The following template variables will be parsed:
 
-- `{class}`: any additional CSS class to append to the caption container.
+- `{class}`: the CSS class as set in the `captionClass` property.
 
 The `captionTemplate` if not set will default to:
 ```html
@@ -165,7 +213,7 @@ The `captionTemplate` if not set will default to:
 #### previewTemplate
 _string_ the template used to render the preview. The following template variables will be parsed:
 
-- `{class}`: any additional CSS class to append to the preview container.
+- `{class}`: the CSS class as set in the `previewClass` property.
 
 The `previewTemplate` if not set will default to:
 ```html
@@ -239,19 +287,19 @@ _string_ the type of files that are to be displayed in the preview window. Defau
 - `{title}`: the content of the entire text file that will be displayed as a span title element.
 
 #### elCaptionContainer
-_DOM Element_ the container element containing the caption. If not set, will default to the container with CSS class `file-caption` inside the main plugin container.
+_string_ the identifier for the container element containing the caption (e.g. `'#id'`). If not set, will default to the container with CSS class `file-caption` inside the main plugin container.
 
 #### elCaptionText
-_DOM Element_ the container element containing the caption text. If not set, will default to the container with CSS class `file-caption-name` inside the main plugin container.
+_string_ the identifier for the container element containing the caption text (e.g. `'#id'`). If not set, will default to the container with CSS class `file-caption-name` inside the main plugin container.
 
 #### elPreviewContainer
-_DOM Element_ the container element containing the preview. If not set, will default to the container with CSS class `file-preview` inside the main plugin container.
+_string_ the identifier for the container element containing the preview (e.g. `'#id'`). If not set, will default to the container with CSS class `file-preview` inside the main plugin container.
 
 #### elPreviewImage
-_DOM Element_ the container element containing the preview image thumbnails. If not set, will default to the container with CSS class `file-preview-thumbnails` inside the main plugin container.
+_string_ the identifier for the element containing the preview image thumbnails (e.g. `'#id'`). If not set, will default to the container with CSS class `file-preview-thumbnails` inside the main plugin container.
 
 #### elPreviewStatus
-_DOM Element_ the container element containing the preview progress status. If not set, will default to the container with CSS class `file-preview-status` inside the main plugin container.
+_string_ the identifier for the element containing the preview progress status (e.g. `'#id'`). If not set, will default to the container with CSS class `file-preview-status` inside the main plugin container.
 
 ### Plugin Events
 The plugin supports these events:
@@ -291,6 +339,16 @@ Clear the file input.
 $('#input-id').fileinput('clear');
 ```
 
+#### refresh
+Refreshes the file input plugin based on options provided. You can supply an array of plugin options as a parameter.
+```js
+// example 1 (disable at runtime)
+$('#input-id').attr('disabled', 'disabled');
+$('#input-id').fileinput('refresh');
+
+// example 2 (modify plugin options at runtime)
+$('#input-id').fileinput('refresh', {browseLabel: 'Select...', removeLabel: 'Delete'});
+```
 ## License
 
 **bootstrap-fileinput** is released under the BSD 3-Clause License. See the bundled `LICENSE.md` for details.

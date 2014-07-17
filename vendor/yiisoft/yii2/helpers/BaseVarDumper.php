@@ -7,8 +7,6 @@
 
 namespace yii\helpers;
 
-use yii\base\Arrayable;
-
 /**
  * BaseVarDumper provides concrete implementation for [[VarDumper]].
  *
@@ -134,6 +132,8 @@ class BaseVarDumper
      *
      * This method is similar to `var_export()`. The main difference is that
      * it generates more compact string representation using short array syntax.
+     *
+     * It also handles objects by using the PHP functions serialize() and unserialize().
      *
      * PHP 5.4 or above is required to parse the exported value.
      *

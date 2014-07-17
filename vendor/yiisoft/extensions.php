@@ -3,6 +3,33 @@
 $vendorDir = dirname(__DIR__);
 
 return array (
+  '2amigos/yii2-transliterator-helper' => 
+  array (
+    'name' => '2amigos/yii2-transliterator-helper',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@dosamigos/transliterator' => $vendorDir . '/2amigos/yii2-transliterator-helper',
+    ),
+  ),
+  'zelenin/yii2-slug-behavior' => 
+  array (
+    'name' => 'zelenin/yii2-slug-behavior',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@Zelenin/yii/behaviors' => $vendorDir . '/zelenin/yii2-slug-behavior',
+    ),
+  ),
+  'kartik-v/yii2-field-range' => 
+  array (
+    'name' => 'kartik-v/yii2-field-range',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@kartik' => $vendorDir . '/kartik-v/yii2-field-range',
+    ),
+  ),
   'yiisoft/yii2-bootstrap' => 
   array (
     'name' => 'yiisoft/yii2-bootstrap',

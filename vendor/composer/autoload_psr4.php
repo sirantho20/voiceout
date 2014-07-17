@@ -13,6 +13,8 @@ return array(
     'yii\\codeception\\' => array($vendorDir . '/yiisoft/yii2-codeception'),
     'yii\\bootstrap\\' => array($vendorDir . '/yiisoft/yii2-bootstrap'),
     'yii\\' => array($vendorDir . '/yiisoft/yii2'),
-    'kartik\\' => array($vendorDir . '/kartik-v/dependent-dropdown', $vendorDir . '/kartik-v/bootstrap-fileinput', $vendorDir . '/kartik-v/bootstrap-star-rating', $vendorDir . '/kartik-v/yii2-widgets'),
+    'kartik\\' => array($vendorDir . '/kartik-v/yii2-field-range', $vendorDir . '/kartik-v/dependent-dropdown', $vendorDir . '/kartik-v/bootstrap-fileinput', $vendorDir . '/kartik-v/bootstrap-star-rating', $vendorDir . '/kartik-v/yii2-widgets'),
+    'dosamigos\\transliterator\\' => array($vendorDir . '/2amigos/yii2-transliterator-helper'),
     'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),
+    'Zelenin\\yii\\behaviors\\' => array($vendorDir . '/zelenin/yii2-slug-behavior'),
 );
