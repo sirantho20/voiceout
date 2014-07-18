@@ -25,6 +25,7 @@ use yii\db\Expression;
  * @property string $has_audio
  * @property string $location
  * @property string $slug
+ * @property string $photo
  *
  * @property MupAudio[] $mupAudios
  * @property MupComment[] $mupComments

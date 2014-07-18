@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "mup_company".
@@ -129,5 +130,22 @@ class Company extends \yii\db\ActiveRecord
     public function getMupReplies()
     {
         return $this->hasMany(MupReply::className(), ['company_id' => 'company_id']);
+    }
+    
+    /*
+     *  @return company name give id. if no id, return an array of all
+     */
+    public static function getCompanyName($id=null)
+    {
+        if (is_null($id))
+        {
+            $model = self::find()->asArray()->all();
+            return ArrayHelper::map($model,'company_id','company_name');
+        }
+        else 
+        {
+            $model = self::find()->where(['company_id'=>$id])->one();
+            return $model->company_name;
+        } 
     }
 }

@@ -54,4 +54,16 @@ class Pictures extends \yii\db\ActiveRecord
     {
         return $this->hasOne(MupComplaint::className(), ['complaint_id' => 'complaint_id']);
     }
+    
+    /*
+     *  @return piture link given id.
+     */
+    public static function getPictureLink($id=null)
+    {
+        if (!is_null($id))
+        {
+             $model = self::find()->where(['complaint_id'=>$id])->one();
+             return $model->link;
+        }
+    }
 }

@@ -49,7 +49,7 @@ class ComplaintController extends \yii\web\Controller
                $ext = $extension[count($extension)-1];
                $fileName = $model->complaint_id."_".$model->company_id."{$rnd}".time().".".$ext;  // company id+random number+timestamp+extension
                $model->photo = $fileName;
-               $model->has_image = 'Y';
+               $model->has_picture = 'Y';
            }
            
            if ($model->save(false))
@@ -60,13 +60,13 @@ class ComplaintController extends \yii\web\Controller
                      * Create a record in picture table
                      */
                     $photoModel = new Pictures();
-                    $photoModel->complaint_id = $model->company_id;
+                    $photoModel->complaint_id = $model->complaint_id;
                     $photoModel->link = $model->photo;
-
+                    $photoModel->save(false);
                     /*
                      * Upload picture file to server
                      */
-                    $uploadedFile->saveAs(Yii::$app->basePath.'/../images/complaint_images/'.$fileName);
+                    $uploadedFile->saveAs(Yii::$app->basePath.'/assets/images/complaints/'.$fileName);
                 }
                 $this->redirect(Url::toRoute('/complaint/'.$model->slug));
                 Yii::$app->end();
@@ -112,20 +112,7 @@ class ComplaintController extends \yii\web\Controller
 
     public function actionView($id)
     {
-        print_r($id);
-        Yii::$app->end();
-        $complaint_id = trim(Yii::$app->request->get());
-        if (!empty($complaint_id) && strlen($complaint_id)>8)
-        {
-            $id = explode('-', $complaint_id);
-            $complaint = Complaint::findOne('complaint_id=:id',[':id'=>$id]);
-            return $this->render('view',['model'=>$complaint]);
-        }
-        else 
-        {
-            
-        }
-        
+       return $this->render('view',['model'=>$complaint]);
     }
 
 }
