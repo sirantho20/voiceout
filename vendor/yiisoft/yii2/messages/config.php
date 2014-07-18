@@ -9,6 +9,7 @@ return [
     // should be translated to. For example, ['zh-CN', 'de'].
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     'languages' => ['ar', 'bg', 'ca', 'da', 'de', 'el', 'es', 'et', 'fa-IR', 'fi', 'fr', 'hu', 'id', 'it', 'ja', 'kk', 'ko', 'lt', 'lv', 'nl', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sr', 'sr-Latn', 'th', 'uk', 'vi', 'zh-CN'],
 =======
     'languages' => ['ar', 'bg', 'ca', 'da', 'de', 'el', 'es', 'et', 'fa-IR', 'fi', 'fr', 'hu', 'it', 'ja', 'kk', 'ko', 'lt', 'lv', 'nl', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sr', 'sr-Latn', 'th', 'uk', 'vi', 'zh-CN'],
@@ -19,6 +20,9 @@ return [
     'languages' => ['ar', 'bg', 'ca', 'da', 'de', 'el', 'es', 'et', 'fa-IR', 'fi', 'fr', 'hu', 'id', 'it', 'ja', 'kk', 'ko', 'lt', 'lv', 'nl', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sr', 'sr-Latn', 'th', 'uk', 'vi', 'zh-CN'],
 >>>>>>> bencopy
 >>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
+=======
+    'languages' => ['ar', 'bg', 'ca', 'da', 'de', 'el', 'es', 'et', 'fa-IR', 'fi', 'fr', 'hu', 'id', 'it', 'ja', 'kk', 'ko', 'lt', 'lv', 'nl', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sr', 'sr-Latn', 'th', 'uk', 'vi', 'zh-CN'],
+>>>>>>> bencopy
     // string, the name of the function for translating messages.
     // Defaults to 'Yii::t'. This is used as a mark to find the messages to be
     // translated. You may use a string for single function name or an array for

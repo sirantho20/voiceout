@@ -64,9 +64,12 @@ return array(
     ),
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
+=======
+>>>>>>> bencopy
     array(
         'name' => 'DOM extension',
         'mandatory' => false,
@@ -75,9 +78,12 @@ return array(
         'memo' => 'Required for REST API to send XML responses via <code>yii\web\XmlResponseFormatter</code>.'
     ),
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> master
 =======
 >>>>>>> bencopy
 >>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
+=======
+>>>>>>> bencopy
 );

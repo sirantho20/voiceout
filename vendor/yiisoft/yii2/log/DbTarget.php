@@ -83,6 +83,7 @@ class DbTarget extends Target
             if (!is_string($text)) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 $text = VarDumper::export($text);
 =======
                 $text = var_export($text, true);
@@ -93,6 +94,9 @@ class DbTarget extends Target
                 $text = VarDumper::export($text);
 >>>>>>> bencopy
 >>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
+=======
+                $text = VarDumper::export($text);
+>>>>>>> bencopy
             }
             $command->bindValues([
                 ':level' => $level,

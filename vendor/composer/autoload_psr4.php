@@ -12,9 +12,9 @@ return array(
     'yii\\composer\\' => array($vendorDir . '/yiisoft/yii2-composer'),
     'yii\\codeception\\' => array($vendorDir . '/yiisoft/yii2-codeception'),
     'yii\\bootstrap\\' => array($vendorDir . '/yiisoft/yii2-bootstrap'),
-    'yii\\authclient\\' => array($vendorDir . '/yiisoft/yii2-authclient'),
     'yii\\' => array($vendorDir . '/yiisoft/yii2'),
     'kartik\\' => array($vendorDir . '/kartik-v/yii2-field-range', $vendorDir . '/kartik-v/dependent-dropdown', $vendorDir . '/kartik-v/bootstrap-fileinput', $vendorDir . '/kartik-v/bootstrap-star-rating', $vendorDir . '/kartik-v/yii2-widgets'),
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     'dosamigos\\transliterator\\' => array($vendorDir . '/2amigos/yii2-transliterator-helper'),
@@ -27,6 +27,9 @@ return array(
     'dosamigos\\transliterator\\' => array($vendorDir . '/2amigos/yii2-transliterator-helper'),
 >>>>>>> bencopy
 >>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
+=======
+    'dosamigos\\transliterator\\' => array($vendorDir . '/2amigos/yii2-transliterator-helper'),
+>>>>>>> bencopy
     'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),
     'Zelenin\\yii\\behaviors\\' => array($vendorDir . '/zelenin/yii2-slug-behavior'),
 );

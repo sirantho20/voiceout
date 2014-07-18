@@ -5,6 +5,9 @@ $vendorDir = dirname(__DIR__);
 return array (
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> bencopy
   '2amigos/yii2-transliterator-helper' => 
 =======
   'kartik-v/yii2-field-range' => 
@@ -34,6 +37,7 @@ return array (
     array (
       '@kartik' => $vendorDir . '/kartik-v/yii2-field-range',
     ),
+<<<<<<< HEAD
 =======
   'kartik-v/yii2-field-range' => 
   array (
@@ -67,6 +71,8 @@ return array (
 =======
 >>>>>>> bencopy
 >>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
+=======
+>>>>>>> bencopy
   ),
   'yiisoft/yii2-bootstrap' => 
   array (

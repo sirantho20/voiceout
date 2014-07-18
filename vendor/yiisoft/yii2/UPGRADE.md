@@ -76,6 +76,7 @@ Upgrade from Yii 2.0 Beta
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 * `\yii\rbac\PhpManager` now stores data in three separate files instead of one. In order to convert old file to
 new ones save the following code as `convert.php` that should be placed in the same directory your `rbac.php` is in: 
@@ -126,6 +127,8 @@ Run it once, delete `rbac.php`. If you've configured `authFile` property, remove
 configure `itemFile`, `assignmentFile` and `ruleFile`.
 =======
 >>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
+=======
+>>>>>>> bencopy
 * `yii\caching\GroupDependency` was renamed to `TagDependency`. You should create such a dependency using the code
   `new \yii\caching\TagDependency(['tags' => 'TagName'])`, where `TagName` is similar to the group name that you
   previously used.
@@ -177,6 +180,7 @@ new ones save the following code as `convert.php` that should be placed in the s
 
   Run it once, delete `rbac.php`. If you've configured `authFile` property, remove the line from config and instead
   configure `itemFile`, `assignmentFile` and `ruleFile`.
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 * `\yii\rbac\PhpManager` now stores data in three separate files instead of one. In order to convert old file to
@@ -230,6 +234,8 @@ configure `itemFile`, `assignmentFile` and `ruleFile`.
 =======
 >>>>>>> bencopy
 >>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
+=======
+>>>>>>> bencopy
 
 * Static helper `yii\helpers\Security` has been converted into an application component. You should change all usage of
   its methods to a new syntax, for example: instead of `yii\helpers\Security::hashData()` use `Yii::$app->getSecurity()->hashData()`.

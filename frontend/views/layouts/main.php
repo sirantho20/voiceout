@@ -1,17 +1,16 @@
 <?php
-use backend\assets\AppAsset;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
+use frontend\assets\AppAsset;
+use frontend\widgets\Alert;
 
 /**
  * @var \yii\web\View $this
  * @var string $content
  */
-echo Html::csrfMetaTags();
 AppAsset::register($this);
-
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -37,6 +36,7 @@ AppAsset::register($this);
                 ['label' => 'Home', 'url' => ['/site/index']],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 ['label' => 'About', 'url' => ['/site/about']],
                 ['label' => 'Contact', 'url' => ['/site/contact']],
                 ['label' => 'New Complaint', 'url' => ['/complaint/new']],
@@ -49,8 +49,14 @@ AppAsset::register($this);
                 ['label' => 'New Complaint', 'url' => ['/complaint/new']],
 >>>>>>> bencopy
 >>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
+=======
+                ['label' => 'About', 'url' => ['/site/about']],
+                ['label' => 'Contact', 'url' => ['/site/contact']],
+                ['label' => 'New Complaint', 'url' => ['/complaint/new']],
+>>>>>>> bencopy
             ];
             if (Yii::$app->user->isGuest) {
+                $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
                 $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
             } else {
                 $menuItems[] = [
@@ -70,6 +76,7 @@ AppAsset::register($this);
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
+        <?= Alert::widget() ?>
         <?= $content ?>
         </div>
     </div>

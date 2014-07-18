@@ -137,6 +137,7 @@ class QueryBuilder extends \yii\db\QueryBuilder
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
@@ -153,6 +154,8 @@ class QueryBuilder extends \yii\db\QueryBuilder
 =======
 >>>>>>> bencopy
 >>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
+=======
+>>>>>>> bencopy
         $clauses = [
             $this->buildSelect($query->select, $params, $query->distinct, $query->selectOption),
             $this->buildFrom($query->from, $params),
@@ -160,6 +163,7 @@ class QueryBuilder extends \yii\db\QueryBuilder
             $this->buildWhere($query->where, $params),
             $this->buildGroupBy($query->groupBy),
             $this->buildHaving($query->having, $params),
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
             $this->buildOrderBy($query->orderBy),
@@ -172,6 +176,9 @@ class QueryBuilder extends \yii\db\QueryBuilder
             $this->buildOrderBy($query->orderBy),
 >>>>>>> bencopy
 >>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
+=======
+            $this->buildOrderBy($query->orderBy),
+>>>>>>> bencopy
             $this->isOldMssql() ? '' : $this->buildLimit($query->limit, $query->offset),
         ];
 
@@ -233,9 +240,12 @@ class QueryBuilder extends \yii\db\QueryBuilder
         $sql = str_replace($originalOrdering, '', $sql);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
+=======
+>>>>>>> bencopy
 
         if ($originalOrdering === '') {
             // hack so LIMIT will work because ROW_NUMBER requires an ORDER BY clause
@@ -243,11 +253,14 @@ class QueryBuilder extends \yii\db\QueryBuilder
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> master
 =======
 >>>>>>> bencopy
 >>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
+=======
+>>>>>>> bencopy
         $sql = preg_replace('/^([\s(])*SELECT( DISTINCT)?(?!\s*TOP\s*\()/i', "\\1SELECT\\2 rowNum = ROW_NUMBER() over ({$originalOrdering}),", $sql);
         $sql = "SELECT TOP {$limit} {$select} FROM ($sql) sub WHERE rowNum > {$offset}";
         return $sql;
@@ -280,6 +293,7 @@ class QueryBuilder extends \yii\db\QueryBuilder
     {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         $pdo = $this->db->getSlavePdo();
         $version = preg_split("/\./", $pdo->getAttribute(\PDO::ATTR_SERVER_VERSION));
 =======
@@ -294,6 +308,10 @@ class QueryBuilder extends \yii\db\QueryBuilder
         $version = preg_split("/\./", $pdo->getAttribute(\PDO::ATTR_SERVER_VERSION));
 >>>>>>> bencopy
 >>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
+=======
+        $pdo = $this->db->getSlavePdo();
+        $version = preg_split("/\./", $pdo->getAttribute(\PDO::ATTR_SERVER_VERSION));
+>>>>>>> bencopy
         return $version[0] < 11;
     }
 }

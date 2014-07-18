@@ -37,18 +37,23 @@ return [
         'enablePrettyUrl' => true,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         'showScriptName' => false
 =======
 =======
 >>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
         'showScriptName' => true,
+=======
+        'showScriptName' => false,
+>>>>>>> bencopy
         ],
-        'view' => [
+    /*    'view' => [
             'theme' => [
                 'pathMap' => [
                     '@dektrium/user/views' => '@app/views/user',
                 ],
             ],
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> master
 =======
@@ -57,5 +62,8 @@ return [
 >>>>>>> bencopy
 >>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
         ],
+=======
+        ], */
+>>>>>>> bencopy
     ],
 ];

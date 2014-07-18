@@ -4,6 +4,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 class ComposerAutoloaderInite7ed24bb9c1c482b9fa770e94bad4e98
 =======
 class ComposerAutoloaderInitf7f0c73f6c06538f86ec594e5e93f170
@@ -14,6 +15,9 @@ class ComposerAutoloaderInitf7f0c73f6c06538f86ec594e5e93f170
 class ComposerAutoloaderInite7ed24bb9c1c482b9fa770e94bad4e98
 >>>>>>> bencopy
 >>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
+=======
+class ComposerAutoloaderInite7ed24bb9c1c482b9fa770e94bad4e98
+>>>>>>> bencopy
 {
     private static $loader;
 
@@ -30,6 +34,7 @@ class ComposerAutoloaderInite7ed24bb9c1c482b9fa770e94bad4e98
             return self::$loader;
         }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         spl_autoload_register(array('ComposerAutoloaderInite7ed24bb9c1c482b9fa770e94bad4e98', 'loadClassLoader'), true, true);
@@ -53,6 +58,11 @@ class ComposerAutoloaderInite7ed24bb9c1c482b9fa770e94bad4e98
         spl_autoload_unregister(array('ComposerAutoloaderInite7ed24bb9c1c482b9fa770e94bad4e98', 'loadClassLoader'));
 >>>>>>> bencopy
 >>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
+=======
+        spl_autoload_register(array('ComposerAutoloaderInite7ed24bb9c1c482b9fa770e94bad4e98', 'loadClassLoader'), true, true);
+        self::$loader = $loader = new \Composer\Autoload\ClassLoader();
+        spl_autoload_unregister(array('ComposerAutoloaderInite7ed24bb9c1c482b9fa770e94bad4e98', 'loadClassLoader'));
+>>>>>>> bencopy
 
         $map = require __DIR__ . '/autoload_namespaces.php';
         foreach ($map as $namespace => $path) {
@@ -75,6 +85,7 @@ class ComposerAutoloaderInite7ed24bb9c1c482b9fa770e94bad4e98
         foreach ($includeFiles as $file) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             composerRequiree7ed24bb9c1c482b9fa770e94bad4e98($file);
 =======
             composerRequiref7f0c73f6c06538f86ec594e5e93f170($file);
@@ -85,6 +96,9 @@ class ComposerAutoloaderInite7ed24bb9c1c482b9fa770e94bad4e98
             composerRequiree7ed24bb9c1c482b9fa770e94bad4e98($file);
 >>>>>>> bencopy
 >>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
+=======
+            composerRequiree7ed24bb9c1c482b9fa770e94bad4e98($file);
+>>>>>>> bencopy
         }
 
         return $loader;
@@ -93,6 +107,7 @@ class ComposerAutoloaderInite7ed24bb9c1c482b9fa770e94bad4e98
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 function composerRequiree7ed24bb9c1c482b9fa770e94bad4e98($file)
 =======
 function composerRequiref7f0c73f6c06538f86ec594e5e93f170($file)
@@ -103,6 +118,9 @@ function composerRequiref7f0c73f6c06538f86ec594e5e93f170($file)
 function composerRequiree7ed24bb9c1c482b9fa770e94bad4e98($file)
 >>>>>>> bencopy
 >>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
+=======
+function composerRequiree7ed24bb9c1c482b9fa770e94bad4e98($file)
+>>>>>>> bencopy
 {
     require $file;
 }
