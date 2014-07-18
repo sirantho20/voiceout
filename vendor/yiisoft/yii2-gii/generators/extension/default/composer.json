@@ -2,7 +2,11 @@
 	"name": "<?= $generator->vendorName ?>/<?= $generator->packageName ?>",
 	"description": "<?= $generator->description ?>",
 	"type": "<?= $generator->type ?>",
+<<<<<<< HEAD
 	"keywords": "<?= $generator->keywordsArrayJson ?>",
+=======
+	"keywords": <?= $generator->keywordsArrayJson ?>,
+>>>>>>> bencopy
 	"license": "<?= $generator->license ?>",
 	"authors": [
 		{

@@ -15,6 +15,11 @@ return array(
     'yii\\authclient\\' => array($vendorDir . '/yiisoft/yii2-authclient'),
     'yii\\' => array($vendorDir . '/yiisoft/yii2'),
     'kartik\\' => array($vendorDir . '/kartik-v/yii2-field-range', $vendorDir . '/kartik-v/dependent-dropdown', $vendorDir . '/kartik-v/bootstrap-fileinput', $vendorDir . '/kartik-v/bootstrap-star-rating', $vendorDir . '/kartik-v/yii2-widgets'),
+<<<<<<< HEAD
     'dektrium\\user\\' => array($vendorDir . '/dektrium/yii2-user'),
+=======
+    'dosamigos\\transliterator\\' => array($vendorDir . '/2amigos/yii2-transliterator-helper'),
+>>>>>>> bencopy
     'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),
+    'Zelenin\\yii\\behaviors\\' => array($vendorDir . '/zelenin/yii2-slug-behavior'),
 );

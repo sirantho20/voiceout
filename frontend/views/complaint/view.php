@@ -2,10 +2,14 @@
 /**
  * @var yii\web\View $this
  */
+use frontend\components\Voh;
 ?>
 <h1>complaint/view</h1>
-
-<p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
-</p>
+<?php
+    $voh = new Voh();
+    $complaint =  $voh->hashTag('I dislike #adabraka_branch #lovely very much. They are a bunch of lazy #bankers');
+    print_r($complaint);
+    echo "<p>&nbsp;</p>";   
+    echo $voh->linkTag('I dislike #adabraka_branch very much. They are a bunch of lazy #bankers');
+ 
+    

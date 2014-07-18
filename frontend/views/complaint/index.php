@@ -2,10 +2,16 @@
 /**
  * @var yii\web\View $this
  */
+use frontend\components\Voh;
+$voh = new Voh();
+$this->title = $model->company_id.  substr($model->complaint_id,0,100);
 ?>
-<h1>complaint/index</h1>
+<h1 class="lead">Complaint Number: <?= $model->complaint_id ?></h1>
 
-<p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
-</p>
+<div class="">
+    <h3 class="lead">Company: <?= $model->company_id ?></h3>
+<blockquote>
+  <p><?= $voh->linkTag($model->complaint) ?></p>
+  <footer>Someone famous in <cite title=""><?= $model->user_id ?></cite></footer>
+</blockquote>  
+</div>

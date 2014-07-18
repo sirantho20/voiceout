@@ -35,6 +35,7 @@ return [
         'urlManager' => [
         'class' => 'yii\web\UrlManager',
         'enablePrettyUrl' => true,
+<<<<<<< HEAD
         'showScriptName' => true,
         ],
         'view' => [
@@ -43,6 +44,9 @@ return [
                     '@dektrium/user/views' => '@app/views/user',
                 ],
             ],
+=======
+        'showScriptName' => false
+>>>>>>> bencopy
         ],
     ],
 ];

@@ -3,6 +3,7 @@
 $vendorDir = dirname(__DIR__);
 
 return array (
+<<<<<<< HEAD
   'kartik-v/yii2-field-range' => 
   array (
     'name' => 'kartik-v/yii2-field-range',
@@ -30,6 +31,34 @@ return array (
       '@dektrium/user' => $vendorDir . '/dektrium/yii2-user',
     ),
     'bootstrap' => 'dektrium\\user\\Bootstrap',
+=======
+  '2amigos/yii2-transliterator-helper' => 
+  array (
+    'name' => '2amigos/yii2-transliterator-helper',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@dosamigos/transliterator' => $vendorDir . '/2amigos/yii2-transliterator-helper',
+    ),
+  ),
+  'zelenin/yii2-slug-behavior' => 
+  array (
+    'name' => 'zelenin/yii2-slug-behavior',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@Zelenin/yii/behaviors' => $vendorDir . '/zelenin/yii2-slug-behavior',
+    ),
+  ),
+  'kartik-v/yii2-field-range' => 
+  array (
+    'name' => 'kartik-v/yii2-field-range',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@kartik' => $vendorDir . '/kartik-v/yii2-field-range',
+    ),
+>>>>>>> bencopy
   ),
   'yiisoft/yii2-bootstrap' => 
   array (

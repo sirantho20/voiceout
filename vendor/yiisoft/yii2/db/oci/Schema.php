@@ -7,6 +7,8 @@
 
 namespace yii\db\oci;
 
+use yii\base\InvalidCallException;
+use yii\db\Connection;
 use yii\db\TableSchema;
 use yii\db\ColumnSchema;
 
@@ -52,10 +54,17 @@ class Schema extends \yii\db\Schema
         // does nothing as Oracle does not support this
     }
 
+<<<<<<< HEAD
 	/**
 	 * @inheritdoc
 	 */
 	public function quoteSimpleTableName($name)
+=======
+    /**
+     * @inheritdoc
+     */
+    public function quoteSimpleTableName($name)
+>>>>>>> bencopy
     {
         return strpos($name, '"') !== false ? $name : '"' . $name . '"';
     }
@@ -194,7 +203,14 @@ EOD;
     public function getLastInsertID($sequenceName = '')
     {
         if ($this->db->isActive) {
+<<<<<<< HEAD
             return $this->db->createCommand("SELECT {$sequenceName}.CURRVAL FROM DUAL")->queryScalar();
+=======
+            // get the last insert id from the master connection
+            return $this->db->useMaster(function (Connection $db) use ($sequenceName) {
+                return $db->createCommand("SELECT {$sequenceName}.CURRVAL FROM DUAL")->queryScalar();
+            });
+>>>>>>> bencopy
         } else {
             throw new InvalidCallException('DB Connection is not active.');
         }

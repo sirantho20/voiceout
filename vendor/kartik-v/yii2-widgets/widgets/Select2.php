@@ -89,7 +89,11 @@ class Select2 extends InputWidget
         $this->_hidden = !empty($this->pluginOptions['data']) ||
             !empty($this->pluginOptions['query']) ||
             !empty($this->pluginOptions['ajax']) ||
+<<<<<<< HEAD
             !empty($this->pluginOptions['tags']);
+=======
+            isset($this->pluginOptions['tags']);
+>>>>>>> bencopy
         if (!isset($this->data) && !$this->_hidden) {
             throw new InvalidConfigException("No 'data' source found for Select2. Either the 'data' property must be set OR one of 'data', 'query', 'ajax', or 'tags' must be set within 'pluginOptions'.");
         }
@@ -130,15 +134,30 @@ class Select2 extends InputWidget
                 Html::addCssClass($group, 'input-group' . $size . ' select2-bootstrap-prepend');
             }
             if (is_array($append)) {
-                $content = ArrayHelper::getValue($append, 'content', '');
-                if (isset($append['asButton']) && $append['asButton'] == true) {
-                    $append = Html::tag('div', $content, ['class' => 'input-group-btn']);
-                } else {
-                    $append = Html::tag('span', $content, ['class' => 'input-group-addon']);
+                $newappend = '';
+                foreach ($append as $eachappend)
+                {
+                    $content = ArrayHelper::getValue($eachappend, 'content', '');
+                    if (isset($eachappend['asButton']) && $eachappend['asButton'] == true) {
+                        $newappend .= Html::tag('div', $content, ['class' => 'input-group-btn']);
+                    } else {
+                        $newappend .= Html::tag('span', $content, ['class' => 'input-group-addon']);
+                    }
+                    Html::addCssClass($group, 'input-group' . $size . ' select2-bootstrap-append');
+                    
+                    //original code
+                    /* 
+                    $content = ArrayHelper::getValue($append, 'content', '');
+                    if (isset($append['asButton']) && $append['asButton'] == true) {
+                        $append = Html::tag('div', $content, ['class' => 'input-group-btn']);
+                    } else {
+                        $append = Html::tag('span', $content, ['class' => 'input-group-addon']);
+                    }
+                    Html::addCssClass($group, 'input-group' . $size . ' select2-bootstrap-append');
+                    */
                 }
-                Html::addCssClass($group, 'input-group' . $size . ' select2-bootstrap-append');
             }
-            $addonText = $prepend . $input . $append;
+            $addonText = $prepend . $input . $newappend;
             $contentBefore = ArrayHelper::getValue($addon, 'contentBefore', '');
             $contentAfter = ArrayHelper::getValue($addon, 'contentAfter', '');
             return Html::tag('div', $contentBefore . $addonText . $contentAfter, $group);
@@ -157,10 +176,17 @@ class Select2 extends InputWidget
         $class = $this->pluginLoading ? 'kv-hide ' : '';
         if (!isset($this->addon) && isset($this->size)) {
             $class .= 'input-' . $this->size;
+<<<<<<< HEAD
         }
         if ($this->pluginLoading) {
             $this->_loadIndicator = '<div class="kv-plugin-loading loading-' . $this->options['id'] . '">&nbsp;</div>';
         }
+=======
+        }
+        if ($this->pluginLoading) {
+            $this->_loadIndicator = '<div class="kv-plugin-loading loading-' . $this->options['id'] . '">&nbsp;</div>';
+        }
+>>>>>>> bencopy
         Html::addCssClass($this->options, $class);
         if ($this->_hidden) {
             $input = $this->getInput('textInput');

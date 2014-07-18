@@ -39,6 +39,8 @@ class Complaint extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public $photo;
+    
     public static function tableName()
     {
         return 'mup_complaint';
@@ -50,9 +52,9 @@ class Complaint extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['complaint_id', 'company_id', 'user_id', 'complaint', 'date_added', 'date_updated', 'slug'], 'required'],
+            [['complaint_id', 'company_id', 'user_id', 'complaint', 'date_added', 'date_updated'], 'required'],
             [['rating'], 'integer'],
-            [['date_added', 'date_updated'], 'safe'],
+            [['date_added', 'date_updated', 'photo'], 'safe'],
             [['complaint_id', 'company_id', 'user_id'], 'string', 'max' => 12],
             [['cookie_id'], 'string', 'max' => 45],
             [['complaint', 'hashtag', 'slug'], 'string', 'max' => 255],
@@ -84,6 +86,7 @@ class Complaint extends \yii\db\ActiveRecord
             'has_audio' => 'Has Audio',
             'location' => 'Location',
             'slug' => 'Slug',
+            'photo' => 'Photo',
         ];
     }
 
@@ -154,23 +157,35 @@ class Complaint extends \yii\db\ActiveRecord
             $this->complaint_id = $voh->newComplaintId();
             $this->date_added = new Expression('Now()');
             $this->user_id = (Yii::$app->user->isGuest)?Voh::guest_id:Yii::$app->user->id;
+            $this->rating = 0;
+            $this->is_private = 'N';
+            $this->published = 'Y';
+            $this->has_audio = 'N';
+            $this->has_picture = 'N';
         }
         $this->date_updated = new Expression('Now()');
+        $this->hashtag = $voh->hashTag($this->complaint);
         return parent::beforeValidate();
     }
     
     /*
     * Behaviors for this model
     */
-    public function behaviors(){
-      return array(
-        'sluggable' => array(
-          'class'=>'frontend\extensions\SluggableBehavior',
-          'columns' => array('company_id', 'complaint'),
-          'unique' => true,
-          'update' => true,
-        ),
-      );
+    public function behaviors()
+    {
+    return [
+        'slug' => [
+            'class' => 'Zelenin\yii\behaviors\Slug',
+            'source_attribute' => ['complaint_id','complaint'],
+            'slug_attribute' => 'slug',
+
+            // optional params
+            'translit' => true,
+            'replacement' => '-',
+            'lowercase' => true,
+            'unique' => true
+        ]
+    ];
     }
     
 }   

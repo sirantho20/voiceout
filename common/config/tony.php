@@ -13,5 +13,10 @@ return [
             'viewPath' => '@common/mail',
             'useFileTransport' => true,
         ],
+        'urlManager' => [
+                'class' => 'yii\web\UrlManager',
+                'enablePrettyUrl' => true,
+                'showScriptName' => false
+         ],
     ],
 ];

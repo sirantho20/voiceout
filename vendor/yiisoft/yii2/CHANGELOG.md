@@ -65,6 +65,10 @@ Yii Framework 2 Change Log
 - Bug #4123: Trace level in logger had no effect in Targets, traces where not logged (cebe)
 - Bug #4127: `CaptchaValidator` clientside error message wasn't formed properly (samdark)
 - Bug #4162: Fixed bug where schema name was not used in ’SHOW CREATE TABLE’ query in `yii\db\mysql\Schema` (stevekr)
+<<<<<<< HEAD
+=======
+- Bug #4241: `yii\widgets\Pjax` was incorrectly setting container id (mitalcoi)
+>>>>>>> bencopy
 - Bug: Fixed inconsistent return of `\yii\console\Application::runAction()` (samdark)
 - Bug: URL encoding for the route parameter added to `\yii\web\UrlManager` (klimov-paul)
 - Bug: Fixed the bug that requesting protected or private action methods would cause 500 error instead of 404 (qiangxue)
@@ -99,6 +103,10 @@ Yii Framework 2 Change Log
 - Enh #3298: Supported configuring `View::theme` using a class name (netyum, qiangxue)
 - Enh #3328: `BaseMailer` generates better text body from html body (armab)
 - Enh #3380: Allow `value` in `defaultValueValidator` to be a closure (Alex-Code)
+<<<<<<< HEAD
+=======
+- Enh #3384: Added callback-style transactions (leandrogehlen, Ragazzo, samdark)
+>>>>>>> bencopy
 - Enh #3399, #3241: Added support for MS SQL Server older than 2012 (fourteenmeister, samdark)
 - Enh #3472: Added configurable option to encode spaces in dropDownLists and listBoxes (kartik-v)
 - Enh #3518: `yii\helpers\Html::encode()` now replaces invalid code sequences with "�" (DaSourcerer)
@@ -113,6 +121,10 @@ Yii Framework 2 Change Log
 - Enh #3636: Hide menu container tag with empty items in `yii\widgets\Menu` (arturf)
 - Enh #3643: Improved Mime-Type detection by using the `mime.types` file from apache http project to dected mime types by file extension (cebe, pavel-voronin, trejder)
 - Enh #3765: Added `yii\web\User::enableSession` to support authentication without using session (qiangxue)
+<<<<<<< HEAD
+=======
+- Enh #3708: Added database replication and automatic read-write splitting support for `yii\db\Connection` (qiangxue)
+>>>>>>> bencopy
 - Enh #3773: Added `FileValidator::mimeTypes` to support validating MIME types of files (Ragazzo)
 - Enh #3774: Added `FileValidator::checkExtensionByMimeType` to support validating file types against file mime-types (Ragazzo)
 - Enh #3801: Base migration controller `yii\console\controllers\BaseMigrateController` extracted (klimov-paul)
@@ -135,6 +147,12 @@ Yii Framework 2 Change Log
 - Enh #4080: Added proper handling and support of the symlinked directories in `FileHelper`, added $options parameter in `FileHelper::removeDirectory()` (resurtm)
 - Enh #4086: changedAttributes of afterSave Event now contain old values (dizews)
 - Enh #4114: Added `Security::generateRandomBytes()`, improved tests (samdark)
+<<<<<<< HEAD
+=======
+- Enh #4209: Added `beforeCopy`, `afterCopy`, `forceCopy` properties to AssetManager (cebe)
+- Enh #4297: Added check for DOM extension to requirements (samdark)
+- Enh #4317: Added `absoluteAuthTimeout` to yii\web\User (ivokund, nkovacs)
+>>>>>>> bencopy
 - Enh: Added support for using sub-queries when building a DB query with `IN` condition (qiangxue)
 - Enh: Supported adding a new response formatter without the need to reconfigure existing formatters (qiangxue)
 - Enh: Added `yii\web\UrlManager::addRules()` to simplify adding new URL rules (qiangxue)
@@ -166,10 +184,18 @@ Yii Framework 2 Change Log
 - Chg #3899: Moved `MailEvent` class to `yii\mail` namespace (cebe)
 - Chg #3956: Flash messages set via `Yii::$app->session->setFlash()` will be removed only if they are accessed (qiangxue)
 - Chg #3989: The default value for `yii\log\FileTarget::$rotateByCopy` now defaults to true to work on windows by default (cebe)
+<<<<<<< HEAD
+=======
+- Chg #4051: Renamed `yii\caching\GroupDependency` to `TagDependency` and added support for associating multiple tags to a single cached data item (qiangxue)
+>>>>>>> bencopy
 - Chg #4071: `mail` component renamed to `mailer`, `yii\log\EmailTarget::$mail` renamed to `yii\log\EmailTarget::$mailer` (samdark)
 - Chg #4147: `BaseMailer::compose()` will not overwrite the `message` parameter if it is explicitly provided (qiangxue)
 - Chg #4201: change default value of `SyslogTarget::facility` from LOG_SYSLOG to LOG_USER (dizews)
 - Chg #4227: `\yii\widgets\LinkPager::$hideOnSinglePage` is now `true` by default (samdark)
+<<<<<<< HEAD
+=======
+- Chg #4318: `yii\helpers\Html::ul()` and `ol()` will return an empty list tag if an empty item array is given (qiangxue)
+>>>>>>> bencopy
 - Chg: Replaced `clearAll()` and `clearAllAssignments()` in `yii\rbac\ManagerInterface` with `removeAll()`, `removeAllRoles()`, `removeAllPermissions()`, `removeAllRules()` and `removeAllAssignments()` (qiangxue)
 - Chg: Added `$user` as the first parameter of `yii\rbac\Rule::execute()` (qiangxue)
 - Chg: `yii\grid\DataColumn::getDataCellValue()` visibility is now `public` to allow accessing the value from a GridView directly (cebe)
