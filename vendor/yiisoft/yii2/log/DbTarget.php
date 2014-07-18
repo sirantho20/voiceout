@@ -81,7 +81,11 @@ class DbTarget extends Target
         foreach ($this->messages as $message) {
             list($text, $level, $category, $timestamp) = $message;
             if (!is_string($text)) {
+<<<<<<< HEAD
                 $text = VarDumper::export($text);
+=======
+                $text = var_export($text, true);
+>>>>>>> master
             }
             $command->bindValues([
                 ':level' => $level,

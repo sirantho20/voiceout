@@ -1,6 +1,11 @@
 /*!
+<<<<<<< HEAD
  * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014
  * @version 1.8.0
+=======
+ * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013
+ * @version 1.7.0
+>>>>>>> master
  *
  * File input styled for Bootstrap 3.0 that utilizes HTML5 File Input's advanced 
  * features including the FileReader API. This plugin is inspired by the blog article at
@@ -176,7 +181,10 @@
             self.initialPreviewContent = html;
             self.$preview.html(html);
             self.$caption.html(caption);
+<<<<<<< HEAD
             self.$captionContainer.attr('title', caption);            
+=======
+>>>>>>> master
             self.$container.removeClass('file-input-new');
         },
         clear: function (e) {
@@ -197,7 +205,10 @@
             else {
                 self.$preview.html('');
                 self.$caption.html('');
+<<<<<<< HEAD
                 self.$captionContainer.attr('title', '');
+=======
+>>>>>>> master
                 self.$container.removeClass('file-input-new').addClass('file-input-new');
             }
         },

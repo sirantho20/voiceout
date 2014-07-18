@@ -2,7 +2,27 @@
 return [
     'bootstrap' => ['gii'],
     'modules' => [
-    'gii' => 'yii\gii\Module',
+        'gii' => 'yii\gii\Module',
+        'user' => [
+           'class' => 'dektrium\user\Module',
+           'allowUnconfirmedLogin' => true,
+           'confirmWithin' => 21600,
+           'cost' => 12,
+           'admins' => ['admin'],
+           'controllerMap' => [
+                'admin' => 'backend\controllers\AdminController',
+                'security' => 'backend\controllers\SecurityController'
+            ],
+           'components' => [
+               'manager' => [
+                   'userClass'    => 'backend\models\User',
+                   'accountClass' => 'backend\models\Account',
+                   'profileClass' => 'backend\models\Profile',
+                   
+               ]
+               
+           ]
+       ],
     ],
     
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
@@ -15,7 +35,18 @@ return [
         'urlManager' => [
         'class' => 'yii\web\UrlManager',
         'enablePrettyUrl' => true,
+<<<<<<< HEAD
         'showScriptName' => false
+=======
+        'showScriptName' => true,
+        ],
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@dektrium/user/views' => '@app/views/user',
+                ],
+            ],
+>>>>>>> master
         ],
     ],
 ];

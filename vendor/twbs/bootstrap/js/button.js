@@ -97,6 +97,15 @@
   }
 
 
+  // FOCUS SHIM (FOR BUTTON GROUPS)
+  // ==============================
+
+  function getBtnTarget(target) {
+    var $target = $(target)
+    return $target.hasClass('btn') ? $target : $target.parent('.btn')
+  }
+
+
   // BUTTON DATA-API
   // ===============
 
@@ -107,8 +116,16 @@
       Plugin.call($btn, 'toggle')
       e.preventDefault()
     })
+<<<<<<< HEAD
     .on('focus.bs.button.data-api blur.bs.button.data-api', '[data-toggle^="button"]', function (e) {
       $(e.target).closest('.btn').toggleClass('focus', e.type == 'focus')
+=======
+    .on('focus.bs.button.data-api', '[data-toggle^="button"]', function (e) {
+      getBtnTarget(e.target).addClass('focus')
+    })
+    .on('blur.bs.button.data-api', '[data-toggle^="button"]', function (e) {
+      getBtnTarget(e.target).removeClass('focus')
+>>>>>>> master
     })
 
 }(jQuery);

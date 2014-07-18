@@ -89,7 +89,11 @@ class Select2 extends InputWidget
         $this->_hidden = !empty($this->pluginOptions['data']) ||
             !empty($this->pluginOptions['query']) ||
             !empty($this->pluginOptions['ajax']) ||
+<<<<<<< HEAD
             isset($this->pluginOptions['tags']);
+=======
+            !empty($this->pluginOptions['tags']);
+>>>>>>> master
         if (!isset($this->data) && !$this->_hidden) {
             throw new InvalidConfigException("No 'data' source found for Select2. Either the 'data' property must be set OR one of 'data', 'query', 'ajax', or 'tags' must be set within 'pluginOptions'.");
         }
@@ -172,10 +176,17 @@ class Select2 extends InputWidget
         $class = $this->pluginLoading ? 'kv-hide ' : '';
         if (!isset($this->addon) && isset($this->size)) {
             $class .= 'input-' . $this->size;
+<<<<<<< HEAD
         }
         if ($this->pluginLoading) {
             $this->_loadIndicator = '<div class="kv-plugin-loading loading-' . $this->options['id'] . '">&nbsp;</div>';
         }
+=======
+        }
+        if ($this->pluginLoading) {
+            $this->_loadIndicator = '<div class="kv-plugin-loading loading-' . $this->options['id'] . '">&nbsp;</div>';
+        }
+>>>>>>> master
         Html::addCssClass($this->options, $class);
         if ($this->_hidden) {
             $input = $this->getInput('textInput');
