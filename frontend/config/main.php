@@ -28,6 +28,19 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'urlManager' => [
+                'class' => 'yii\web\UrlManager',
+                'enablePrettyUrl' => true,
+                'showScriptName' => false,
+                'rules' => [
+                    //'<controller:\w+>/<id:\d+>' => '<controller>/view',
+                    'complaint/new' => 'complaint/new',
+                    'complaint/tag' => 'complaint/tag',
+                    'complaint/<slug:[a-zA-Z0-9-]+>' => 'complaint/index',
+                    '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                    '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                ]
+         ],
     ],
     'params' => $params,
 ];

@@ -8,6 +8,7 @@ use yii\web\UploadedFile;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 use yii\helpers\Json;
+use app\models\Pictures;
 
 class ComplaintController extends \yii\web\Controller
 {
@@ -36,7 +37,8 @@ class ComplaintController extends \yii\web\Controller
     protected function save($model)
     {
         if ($model->validate())
-        {/*
+        {   
+            /*
             * Prepare picture for upload
             */
            $fileName = '';
@@ -49,7 +51,7 @@ class ComplaintController extends \yii\web\Controller
                $model->photo = $fileName;
                $model->has_image = 'Y';
            }
-
+           
            if ($model->save(false))
            {
                 if ($fileName != '')
@@ -66,7 +68,7 @@ class ComplaintController extends \yii\web\Controller
                      */
                     $uploadedFile->saveAs(Yii::$app->basePath.'/../images/complaint_images/'.$fileName);
                 }
-                $this->redirect(Url::toRoute('/complaint/view'));
+                $this->redirect(Url::toRoute('/complaint/'.$model->slug));
                 Yii::$app->end();
            }
            else
@@ -91,12 +93,39 @@ class ComplaintController extends \yii\web\Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $slug = \yii\helpers\Html::encode(trim(Yii::$app->request->get('slug')));
+        $id = '';
+        if (strlen($slug) > 0)
+        {
+            $id = substr($slug,0,10);
+            $id = (int)$id;
+        }
+        $model = Complaint::find()->where(['complaint_id'=>$id])->one();
+        if ($model === null)
+            throw new \yii\web\HttpException(404,'The complaint you are looking for does not exist');
+        else 
+        {
+            return $this->render('index',['model'=>$model]);  
+        }
+        Yii::$app->end();
     }
 
-    public function actionView()
+    public function actionView($id)
     {
-        return $this->render('view');
+        print_r($id);
+        Yii::$app->end();
+        $complaint_id = trim(Yii::$app->request->get());
+        if (!empty($complaint_id) && strlen($complaint_id)>8)
+        {
+            $id = explode('-', $complaint_id);
+            $complaint = Complaint::findOne('complaint_id=:id',[':id'=>$id]);
+            return $this->render('view',['model'=>$complaint]);
+        }
+        else 
+        {
+            
+        }
+        
     }
 
 }

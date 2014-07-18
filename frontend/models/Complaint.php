@@ -54,14 +54,13 @@ class Complaint extends \yii\db\ActiveRecord
         return [
             [['complaint_id', 'company_id', 'user_id', 'complaint', 'date_added', 'date_updated'], 'required'],
             [['rating'], 'integer'],
-            [['date_added', 'date_updated'], 'safe'],
+            [['date_added', 'date_updated', 'photo'], 'safe'],
             [['complaint_id', 'company_id', 'user_id'], 'string', 'max' => 12],
             [['cookie_id'], 'string', 'max' => 45],
             [['complaint', 'hashtag', 'slug'], 'string', 'max' => 255],
             [['is_private', 'published', 'has_picture', 'has_audio'], 'string', 'max' => 1],
             [['location'], 'string', 'max' => 100],
-            [['complaint_id'], 'unique'],
-            [['photo'],'safe']
+            [['complaint_id'], 'unique']
         ];
     }
 
@@ -87,6 +86,7 @@ class Complaint extends \yii\db\ActiveRecord
             'has_audio' => 'Has Audio',
             'location' => 'Location',
             'slug' => 'Slug',
+            'photo' => 'Photo',
         ];
     }
 
@@ -158,8 +158,13 @@ class Complaint extends \yii\db\ActiveRecord
             $this->date_added = new Expression('Now()');
             $this->user_id = (Yii::$app->user->isGuest)?Voh::guest_id:Yii::$app->user->id;
             $this->rating = 0;
+            $this->is_private = 'N';
+            $this->published = 'Y';
+            $this->has_audio = 'N';
+            $this->has_picture = 'N';
         }
         $this->date_updated = new Expression('Now()');
+        $this->hashtag = $voh->hashTag($this->complaint);
         return parent::beforeValidate();
     }
     
@@ -171,7 +176,7 @@ class Complaint extends \yii\db\ActiveRecord
     return [
         'slug' => [
             'class' => 'Zelenin\yii\behaviors\Slug',
-            'source_attribute' => ['company_id','complaint'],
+            'source_attribute' => ['complaint_id','complaint'],
             'slug_attribute' => 'slug',
 
             // optional params

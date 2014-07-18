@@ -15,7 +15,7 @@ return [
         'urlManager' => [
         'class' => 'yii\web\UrlManager',
         'enablePrettyUrl' => true,
-        'showScriptName' => true
+        'showScriptName' => false
         ],
     ],
 ];

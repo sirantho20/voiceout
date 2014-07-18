@@ -41,7 +41,7 @@ class Voh
         do {
             $id = $this->randomInteger(10);
         }
-        while (Complaint::find('complaint_id=:id',array(':id'=>$id))->exists());
+        while (Complaint::find()->where(['complaint_id'=>$id])->exists());
         return $id;
     }
     /*
@@ -53,7 +53,7 @@ class Voh
         do {
             $id = $this->randomInteger(12);
         }
-        while (Company::find('company_id=:id',array(':id'=>$id))->exists());
+        while (Company::find()->where(['company_id'=>$id])->exists());
         return $id;
     }
     
@@ -66,7 +66,7 @@ class Voh
         do {
             $id = $this->randomInteger(10);
         }
-        while (User::find('user_id=:id',array(':id'=>$id))->exists());
+        while (User::find()->where(['user_id'=>$id])->exists());
         return $id;
     }
     
@@ -93,7 +93,7 @@ class Voh
         //$ret = preg_replace("#(^|[\n ])([\w]+?://[\w]+[^ \"\n\r\t< ]*)#", "\\1<a href=\"\\2\" target=\"_blank\">\\2", $ret);
         //$ret = preg_replace("#(^|[\n ])((www|ftp)\.[^ \"\t\n\r< ]*)#", "\\1<a href=\"http://\\2\" target=\"_blank\">\\2", $ret);
         //$ret = preg_replace("/@(\w+)/", "<a href=\"http://www.twitter.com/\\1\" target=\"_blank\">@\\1</a>", $ret);
-        $ret = preg_replace("/#(\w+)/", "<a href=\"http://voiceout/complaint/tag?q=\\1\" target=\"_self\">#\\1</a>", $ret);
+        $ret = preg_replace("/#(\w+)/", "<a href=\"http://voiceout/frontend/index.php/complaint/tag?q=\\1\" target=\"_self\">#\\1</a>", $ret);
         return $ret;
     }
     

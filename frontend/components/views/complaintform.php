@@ -67,7 +67,7 @@ $this->registerJs($generalscript,View::POS_READY);
 <div class="panel-body">
 <div class="complaint-form">
 
-    <?php $form = ActiveForm::begin(['id'=>'complaint-form','action'=>  Url::toRoute('/complaint/new'),'enableAjaxValidation'=>true,'enableClientValidation'=>false]); ?>
+    <?php $form = ActiveForm::begin(['id'=>'complaint-form','action'=>  Url::toRoute('/complaint/new'),'enableAjaxValidation'=>false,'enableClientValidation'=>true]); ?>
     <?= $form->field($model, 'complaint')->textarea(['maxlength' => 250,'style'=>'height: 70px;','placeholder'=>'Please input your complaint here'])->label(false) ?>
     <?php 
     echo $form->field($model, 'company_id')->label(false)->widget(Select2::classname(), [
