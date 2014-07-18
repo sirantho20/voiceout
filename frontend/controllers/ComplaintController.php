@@ -7,6 +7,7 @@ use app\models\Complaint;
 use yii\web\UploadedFile;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
+use yii\helpers\Json;
 
 class ComplaintController extends \yii\web\Controller
 {
@@ -28,7 +29,7 @@ class ComplaintController extends \yii\web\Controller
     {
         if(isset($_POST['ajax']) && $_POST['ajax']==='complaint-form')
         {
-            echo json_encode(ActiveForm::validate($model));
+            echo Json::encode(ActiveForm::validate($model));
             Yii::$app->end();
         }
     }

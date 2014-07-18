@@ -19,7 +19,11 @@ use yii\web\View;
  
 // The controller action that will render the list
 $url = \yii\helpers\Url::toRoute(['/company/getcompany']);
- 
+$complaintstyle = <<< STYLE
+#complaint-complaint {
+border:none;
+}        
+STYLE;
 // Script to initialize the selection based on the value of the select2 element
 $initScript = <<< SCRIPT
 function (element, callback) {
@@ -50,9 +54,9 @@ setCount($(this)[0], elem);
 });
 //Character count
 var elem = $('.char-counter');
-$("#complaint-complaint").limiter(250, elem);              
+$("#complaint-complaint").limiter(250, elem);
 GENERAL;
-
+//$this->registerCss($complaintstyle,View::POS_HEAD);
 $this->registerJs($generalscript,View::POS_READY);
 ?>
 
@@ -64,10 +68,9 @@ $this->registerJs($generalscript,View::POS_READY);
 <div class="complaint-form">
 
     <?php $form = ActiveForm::begin(['id'=>'complaint-form','action'=>  Url::toRoute('/complaint/new'),'enableAjaxValidation'=>true,'enableClientValidation'=>false]); ?>
-
-    <?php
-    // The widget
-    echo $form->field($model, 'company_id')->widget(Select2::classname(), [
+    <?= $form->field($model, 'complaint')->textarea(['maxlength' => 250,'style'=>'height: 70px;','placeholder'=>'Please input your complaint here'])->label(false) ?>
+    <?php 
+    echo $form->field($model, 'company_id')->label(false)->widget(Select2::classname(), [
         'options' => ['placeholder' => 'Select a company ...'],
         'pluginOptions' => [
             'allowClear' => true,
@@ -82,31 +85,41 @@ $this->registerJs($generalscript,View::POS_READY);
         ],
         'addon' => [
             'prepend' => [
-                'content' => '<i class="glyphicon glyphicon-search"></i>'
+                'content' => '@',
             ],
             'append' => [
-                'content' => Html::button('<i class="glyphicon glyphicon-map-marker"></i>', [
-                    'class'=>'btn btn-primary',
-                    'title'=>'Mark on map',
+                [
+                'content' => '<span class="char-counter"></span>',
+                ],
+                [
+                'content' => '<span><i class="glyphicon glyphicon-map-marker"></i></span>',
+                ],
+                [
+                'content' => '<span onclick="openWindow()" style="cursor:pointer;"><i class="glyphicon glyphicon-paperclip"></i></span>',
+                ],
+                [
+                'content' => Html::submitButton('<span>Send <i class="glyphicon glyphicon-bullhorn"></i></span>', [
+                    'class'=>$model->isNewRecord ? 'btn btn-primary' : 'btn btn-success',
+                    'title'=>'',
                     'data-toggle'=>'tooltip'
                 ]),
                 'asButton'=>true,
+                ]
             ]
         ]
     ]);
     ?>
+    <?= $form->field($model, 'location')->hiddenInput()->label(false) ?>
+    <?= $form->field($model, 'photo')->fileInput(['style'=>'display:none;'])->label(false) ?>
 
-    <?= $form->field($model, 'complaint',['options'=>['label'=>'n']])->textInput(['maxlength' => 255]) ?>
-    <span class="char-counter"></span>
-    <?= $form->field($model, 'rating')->textInput() ?>
-    <?= $form->field($model, 'is_private')->textInput(['maxlength' => 1]) ?>
-    <?= $form->field($model, 'location')->textInput(['maxlength' => 100]) ?>
 
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-    </div>
 
     <?php ActiveForm::end(); ?>
   </div>
 </div>
 </div>
+<script>
+    function openWindow(){
+    document.getElementById("complaint-photo").click();
+}
+</script>

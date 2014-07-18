@@ -130,15 +130,30 @@ class Select2 extends InputWidget
                 Html::addCssClass($group, 'input-group' . $size . ' select2-bootstrap-prepend');
             }
             if (is_array($append)) {
-                $content = ArrayHelper::getValue($append, 'content', '');
-                if (isset($append['asButton']) && $append['asButton'] == true) {
-                    $append = Html::tag('div', $content, ['class' => 'input-group-btn']);
-                } else {
-                    $append = Html::tag('span', $content, ['class' => 'input-group-addon']);
+                $newappend = '';
+                foreach ($append as $eachappend)
+                {
+                    $content = ArrayHelper::getValue($eachappend, 'content', '');
+                    if (isset($eachappend['asButton']) && $eachappend['asButton'] == true) {
+                        $newappend .= Html::tag('div', $content, ['class' => 'input-group-btn']);
+                    } else {
+                        $newappend .= Html::tag('span', $content, ['class' => 'input-group-addon']);
+                    }
+                    Html::addCssClass($group, 'input-group' . $size . ' select2-bootstrap-append');
+                    
+                    //original code
+                    /* 
+                    $content = ArrayHelper::getValue($append, 'content', '');
+                    if (isset($append['asButton']) && $append['asButton'] == true) {
+                        $append = Html::tag('div', $content, ['class' => 'input-group-btn']);
+                    } else {
+                        $append = Html::tag('span', $content, ['class' => 'input-group-addon']);
+                    }
+                    Html::addCssClass($group, 'input-group' . $size . ' select2-bootstrap-append');
+                    */
                 }
-                Html::addCssClass($group, 'input-group' . $size . ' select2-bootstrap-append');
             }
-            $addonText = $prepend . $input . $append;
+            $addonText = $prepend . $input . $newappend;
             $contentBefore = ArrayHelper::getValue($addon, 'contentBefore', '');
             $contentAfter = ArrayHelper::getValue($addon, 'contentAfter', '');
             return Html::tag('div', $contentBefore . $addonText . $contentAfter, $group);
