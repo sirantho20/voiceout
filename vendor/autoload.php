@@ -5,7 +5,14 @@
 require_once __DIR__ . '/composer' . '/autoload_real.php';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 return ComposerAutoloaderInite7ed24bb9c1c482b9fa770e94bad4e98::getLoader();
 =======
 return ComposerAutoloaderInitf7f0c73f6c06538f86ec594e5e93f170::getLoader();
 >>>>>>> master
+=======
+return ComposerAutoloaderInitf7f0c73f6c06538f86ec594e5e93f170::getLoader();
+=======
+return ComposerAutoloaderInite7ed24bb9c1c482b9fa770e94bad4e98::getLoader();
+>>>>>>> bencopy
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9

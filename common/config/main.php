@@ -36,8 +36,11 @@ return [
         'class' => 'yii\web\UrlManager',
         'enablePrettyUrl' => true,
 <<<<<<< HEAD
+<<<<<<< HEAD
         'showScriptName' => false
 =======
+=======
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
         'showScriptName' => true,
         ],
         'view' => [
@@ -46,7 +49,13 @@ return [
                     '@dektrium/user/views' => '@app/views/user',
                 ],
             ],
+<<<<<<< HEAD
 >>>>>>> master
+=======
+=======
+        'showScriptName' => false
+>>>>>>> bencopy
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
         ],
     ],
 ];

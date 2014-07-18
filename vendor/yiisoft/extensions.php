@@ -4,7 +4,11 @@ $vendorDir = dirname(__DIR__);
 
 return array (
 <<<<<<< HEAD
+<<<<<<< HEAD
   '2amigos/yii2-transliterator-helper' => 
+=======
+  'kartik-v/yii2-field-range' => 
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
   array (
     'name' => '2amigos/yii2-transliterator-helper',
     'version' => '9999999-dev',
@@ -57,8 +61,12 @@ return array (
     array (
       '@dektrium/user' => $vendorDir . '/dektrium/yii2-user',
     ),
+<<<<<<< HEAD
     'bootstrap' => 'dektrium\\user\\Bootstrap',
 >>>>>>> master
+=======
+>>>>>>> bencopy
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
   ),
   'yiisoft/yii2-bootstrap' => 
   array (

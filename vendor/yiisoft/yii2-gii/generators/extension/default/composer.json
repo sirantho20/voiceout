@@ -3,10 +3,17 @@
 	"description": "<?= $generator->description ?>",
 	"type": "<?= $generator->type ?>",
 <<<<<<< HEAD
+<<<<<<< HEAD
 	"keywords": <?= $generator->keywordsArrayJson ?>,
 =======
 	"keywords": "<?= $generator->keywordsArrayJson ?>",
 >>>>>>> master
+=======
+	"keywords": "<?= $generator->keywordsArrayJson ?>",
+=======
+	"keywords": <?= $generator->keywordsArrayJson ?>,
+>>>>>>> bencopy
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
 	"license": "<?= $generator->license ?>",
 	"authors": [
 		{

@@ -1,4 +1,10 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+version 2.6.0
+=============
+=======
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
 version 2.7.0
 =============
 **Date:** 18-Jul-2014
@@ -16,10 +22,14 @@ version 2.6.0
 =============
 **Date:** 01-Jul-2014
 
+<<<<<<< HEAD
 =======
 version 2.6.0
 =============
 >>>>>>> master
+=======
+>>>>>>> bencopy
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
 1. Issue Fixes from #73 to #95.
 2. Added `language` property to `InputWidget` along with `initLanguage` method for automatic language setting in `pluginOptions`.
    The `language` property will be auto defaulted to `Yii::$app->language` if not set.

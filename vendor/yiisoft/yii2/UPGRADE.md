@@ -75,6 +75,57 @@ Upgrade from Yii 2.0 Beta
   Please update all references in the code and config files.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+* `\yii\rbac\PhpManager` now stores data in three separate files instead of one. In order to convert old file to
+new ones save the following code as `convert.php` that should be placed in the same directory your `rbac.php` is in: 
+
+```php
+<?php
+$oldFile = 'rbac.php';
+$itemsFile = 'items.php';
+$assignmentsFile = 'assignments.php';
+$rulesFile = 'rules.php';
+
+$oldData = include $oldFile;
+
+function saveToFile($data, $fileName) {
+    $out = var_export($data, true);
+    $out = "<?php\nreturn " . $out . ";";
+    $out = str_replace(['array (', ')'], ['[', ']'], $out);
+    file_put_contents($fileName, $out);
+}
+
+$items = [];
+$assignments = [];
+if (isset($oldData['items'])) {
+    foreach ($oldData['items'] as $name => $data) {
+        if (isset($data['assignments'])) {
+            foreach ($data['assignments'] as $userId => $assignmentData) {
+                $assignments[$userId] = $assignmentData['roleName'];
+            }
+            unset($data['assignments']);
+        }
+        $items[$name] = $data;
+    }
+}
+
+$rules = [];
+if (isset($oldData['rules'])) {
+    $rules = $oldData['rules'];
+}
+
+saveToFile($items, $itemsFile);
+saveToFile($assignments, $assignmentsFile);
+saveToFile($rules, $rulesFile);
+
+echo "Done!\n";
+```
+
+Run it once, delete `rbac.php`. If you've configured `authFile` property, remove the line from config and instead
+configure `itemFile`, `assignmentFile` and `ruleFile`.
+=======
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
 * `yii\caching\GroupDependency` was renamed to `TagDependency`. You should create such a dependency using the code
   `new \yii\caching\TagDependency(['tags' => 'TagName'])`, where `TagName` is similar to the group name that you
   previously used.
@@ -126,6 +177,7 @@ new ones save the following code as `convert.php` that should be placed in the s
 
   Run it once, delete `rbac.php`. If you've configured `authFile` property, remove the line from config and instead
   configure `itemFile`, `assignmentFile` and `ruleFile`.
+<<<<<<< HEAD
 =======
 * `\yii\rbac\PhpManager` now stores data in three separate files instead of one. In order to convert old file to
 new ones save the following code as `convert.php` that should be placed in the same directory your `rbac.php` is in: 
@@ -175,6 +227,9 @@ echo "Done!\n";
 Run it once, delete `rbac.php`. If you've configured `authFile` property, remove the line from config and instead
 configure `itemFile`, `assignmentFile` and `ruleFile`.
 >>>>>>> master
+=======
+>>>>>>> bencopy
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
 
 * Static helper `yii\helpers\Security` has been converted into an application component. You should change all usage of
   its methods to a new syntax, for example: instead of `yii\helpers\Security::hashData()` use `Yii::$app->getSecurity()->hashData()`.

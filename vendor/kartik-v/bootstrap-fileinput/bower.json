@@ -1,10 +1,17 @@
 {
     "name": "bootstrap-fileinput",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "version": "1.8.0",
 =======
     "version": "1.7.0",
 >>>>>>> master
+=======
+    "version": "1.7.0",
+=======
+    "version": "1.8.0",
+>>>>>>> bencopy
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
     "homepage": "https://github.com/kartik-v/bootstrap-fileinput",
     "authors": [
         "Kartik Visweswaran <kartikv2@gmail.com>"

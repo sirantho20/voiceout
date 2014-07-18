@@ -117,15 +117,25 @@
       e.preventDefault()
     })
 <<<<<<< HEAD
+<<<<<<< HEAD
     .on('focus.bs.button.data-api blur.bs.button.data-api', '[data-toggle^="button"]', function (e) {
       $(e.target).closest('.btn').toggleClass('focus', e.type == 'focus')
 =======
+=======
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
     .on('focus.bs.button.data-api', '[data-toggle^="button"]', function (e) {
       getBtnTarget(e.target).addClass('focus')
     })
     .on('blur.bs.button.data-api', '[data-toggle^="button"]', function (e) {
       getBtnTarget(e.target).removeClass('focus')
+<<<<<<< HEAD
 >>>>>>> master
+=======
+=======
+    .on('focus.bs.button.data-api blur.bs.button.data-api', '[data-toggle^="button"]', function (e) {
+      $(e.target).closest('.btn').toggleClass('focus', e.type == 'focus')
+>>>>>>> bencopy
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
     })
 
 }(jQuery);

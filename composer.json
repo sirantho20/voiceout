@@ -20,10 +20,17 @@
 		"yiisoft/yii2-swiftmailer": "*",
                 "kartik-v/yii2-widgets": "dev-master",
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "zelenin/yii2-slug-behavior": "dev-master"  
 =======
                 "dektrium/yii2-user": "*"
 >>>>>>> master
+=======
+                "dektrium/yii2-user": "*"
+=======
+                "zelenin/yii2-slug-behavior": "dev-master"  
+>>>>>>> bencopy
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
 	},
 	"require-dev": {
 		"yiisoft/yii2-codeception": "*",

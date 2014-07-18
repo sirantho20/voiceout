@@ -63,6 +63,10 @@ return array(
         'memo' => 'Required for files upload to detect correct file mime-types.'
     ),
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
     array(
         'name' => 'DOM extension',
         'mandatory' => false,
@@ -70,6 +74,10 @@ return array(
         'by' => '<a href="http://php.net/manual/en/book.dom.php">Document Object Model</a>',
         'memo' => 'Required for REST API to send XML responses via <code>yii\web\XmlResponseFormatter</code>.'
     ),
+<<<<<<< HEAD
 =======
 >>>>>>> master
+=======
+>>>>>>> bencopy
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
 );

@@ -5,10 +5,17 @@
         "This file is @generated automatically"
     ],
 <<<<<<< HEAD
+<<<<<<< HEAD
     "hash": "e2c8aa88d25f384ae05d954f85551aff",
 =======
     "hash": "91eb1fe62d4a5b67824eb07428b0fe2a",
 >>>>>>> master
+=======
+    "hash": "91eb1fe62d4a5b67824eb07428b0fe2a",
+=======
+    "hash": "e2c8aa88d25f384ae05d954f85551aff",
+>>>>>>> bencopy
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
     "packages": [
         {
             "name": "2amigos/yii2-transliterator-helper",
@@ -219,7 +226,11 @@
                 "type": "git",
                 "url": "https://github.com/kartik-v/bootstrap-fileinput.git",
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "reference": "05d02d9b8a1a0980af2417581511c594a140d632"
+=======
+                "reference": "935228776103cd729ac44ca34de62a8a4fa7cb85"
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
             },
             "dist": {
                 "type": "zip",
@@ -230,9 +241,15 @@
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/935228776103cd729ac44ca34de62a8a4fa7cb85",
                 "reference": "935228776103cd729ac44ca34de62a8a4fa7cb85",
 >>>>>>> master
+=======
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/05d02d9b8a1a0980af2417581511c594a140d632",
+                "reference": "05d02d9b8a1a0980af2417581511c594a140d632",
+>>>>>>> bencopy
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
                 "shasum": ""
             },
             "type": "library",
@@ -264,10 +281,17 @@
                 "upload"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2014-07-15 13:50:55"
 =======
             "time": "2014-07-08 18:14:27"
 >>>>>>> master
+=======
+            "time": "2014-07-08 18:14:27"
+=======
+            "time": "2014-07-15 13:50:55"
+>>>>>>> bencopy
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
         },
         {
             "name": "kartik-v/bootstrap-star-rating",
@@ -359,7 +383,11 @@
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-field-range.git",
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "reference": "6fcdc1d5a6b0e5fe211314eb362c189152c20387"
+=======
+                "reference": "a857dde298315e92bf1ba81d8f32e2bbe7609936"
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
             },
             "dist": {
                 "type": "zip",
@@ -370,9 +398,15 @@
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://api.github.com/repos/kartik-v/yii2-field-range/zipball/a857dde298315e92bf1ba81d8f32e2bbe7609936",
                 "reference": "a857dde298315e92bf1ba81d8f32e2bbe7609936",
 >>>>>>> master
+=======
+                "url": "https://api.github.com/repos/kartik-v/yii2-field-range/zipball/6fcdc1d5a6b0e5fe211314eb362c189152c20387",
+                "reference": "6fcdc1d5a6b0e5fe211314eb362c189152c20387",
+>>>>>>> bencopy
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
                 "shasum": ""
             },
             "require": {
@@ -411,10 +445,17 @@
                 "yii2"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2014-07-14 08:53:02"
 =======
             "time": "2014-06-01 20:09:56"
 >>>>>>> master
+=======
+            "time": "2014-06-01 20:09:56"
+=======
+            "time": "2014-07-14 08:53:02"
+>>>>>>> bencopy
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
         },
         {
             "name": "kartik-v/yii2-widgets",
@@ -423,7 +464,11 @@
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-widgets.git",
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "reference": "c8e6184bbe1eaa5244f9ffe2826f6390939092c7"
+=======
+                "reference": "1ac1b26aa307c419be084765da47a50f7dcf585d"
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
             },
             "dist": {
                 "type": "zip",
@@ -434,9 +479,15 @@
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://api.github.com/repos/kartik-v/yii2-widgets/zipball/1ac1b26aa307c419be084765da47a50f7dcf585d",
                 "reference": "1ac1b26aa307c419be084765da47a50f7dcf585d",
 >>>>>>> master
+=======
+                "url": "https://api.github.com/repos/kartik-v/yii2-widgets/zipball/c8e6184bbe1eaa5244f9ffe2826f6390939092c7",
+                "reference": "c8e6184bbe1eaa5244f9ffe2826f6390939092c7",
+>>>>>>> bencopy
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
                 "shasum": ""
             },
             "require": {
@@ -472,10 +523,17 @@
                 "yii2"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2014-07-17 18:48:02"
 =======
             "time": "2014-07-10 08:59:39"
 >>>>>>> master
+=======
+            "time": "2014-07-10 08:59:39"
+=======
+            "time": "2014-07-17 18:48:02"
+>>>>>>> bencopy
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -538,7 +596,11 @@
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "reference": "541a75f92c9b9e5b13fe1c331f9d10ba2e12b4de"
+=======
+                "reference": "94472ee74ac6732a3abd0d32ad5c3a68370090c0"
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
             },
             "dist": {
                 "type": "zip",
@@ -549,9 +611,15 @@
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://api.github.com/repos/twbs/bootstrap/zipball/94472ee74ac6732a3abd0d32ad5c3a68370090c0",
                 "reference": "94472ee74ac6732a3abd0d32ad5c3a68370090c0",
 >>>>>>> master
+=======
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/541a75f92c9b9e5b13fe1c331f9d10ba2e12b4de",
+                "reference": "541a75f92c9b9e5b13fe1c331f9d10ba2e12b4de",
+>>>>>>> bencopy
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
                 "shasum": ""
             },
             "replace": {
@@ -590,10 +658,17 @@
                 "web"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2014-07-17 04:56:13"
 =======
             "time": "2014-07-10 07:03:24"
 >>>>>>> master
+=======
+            "time": "2014-07-10 07:03:24"
+=======
+            "time": "2014-07-17 04:56:13"
+>>>>>>> bencopy
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
         },
         {
             "name": "yiisoft/jquery",
@@ -651,7 +726,11 @@
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "reference": "f20f99e7f6f9fc4a005bd62b5c1b66b67c2cb01b"
+=======
+                "reference": "fa821d6d778c85c0c8491ef5bb356f029525851d"
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
             },
             "dist": {
                 "type": "zip",
@@ -662,9 +741,15 @@
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/fa821d6d778c85c0c8491ef5bb356f029525851d",
                 "reference": "fa821d6d778c85c0c8491ef5bb356f029525851d",
 >>>>>>> master
+=======
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/f20f99e7f6f9fc4a005bd62b5c1b66b67c2cb01b",
+                "reference": "f20f99e7f6f9fc4a005bd62b5c1b66b67c2cb01b",
+>>>>>>> bencopy
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
                 "shasum": ""
             },
             "require": {
@@ -733,8 +818,11 @@
                 "yii2"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2014-07-17 18:45:44"
 =======
+=======
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
             "time": "2014-07-09 21:17:35"
         },
         {
@@ -780,7 +868,13 @@
                 "yii2"
             ],
             "time": "2014-07-02 12:30:26"
+<<<<<<< HEAD
 >>>>>>> master
+=======
+=======
+            "time": "2014-07-17 18:45:44"
+>>>>>>> bencopy
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -917,6 +1011,10 @@
             ],
             "time": "2014-06-26 14:28:28"
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
         },
         {
             "name": "zelenin/yii2-slug-behavior",
@@ -964,8 +1062,12 @@
                 "yii2"
             ],
             "time": "2014-04-29 17:17:30"
+<<<<<<< HEAD
 =======
 >>>>>>> master
+=======
+>>>>>>> bencopy
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
         }
     ],
     "packages-dev": [
@@ -1093,7 +1195,11 @@
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-gii.git",
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "reference": "c50b66be57b5b666c6f8e660e9d9b2948255a64d"
+=======
+                "reference": "b42d638192bb9b4b7d7e73e747dfcda9db4d9985"
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
             },
             "dist": {
                 "type": "zip",
@@ -1104,9 +1210,15 @@
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/b42d638192bb9b4b7d7e73e747dfcda9db4d9985",
                 "reference": "b42d638192bb9b4b7d7e73e747dfcda9db4d9985",
 >>>>>>> master
+=======
+                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/c50b66be57b5b666c6f8e660e9d9b2948255a64d",
+                "reference": "c50b66be57b5b666c6f8e660e9d9b2948255a64d",
+>>>>>>> bencopy
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
                 "shasum": ""
             },
             "require": {
@@ -1139,10 +1251,17 @@
                 "yii2"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2014-07-17 16:31:56"
 =======
             "time": "2014-07-09 23:54:30"
 >>>>>>> master
+=======
+            "time": "2014-07-09 23:54:30"
+=======
+            "time": "2014-07-17 16:31:56"
+>>>>>>> bencopy
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
         }
     ],
     "aliases": [

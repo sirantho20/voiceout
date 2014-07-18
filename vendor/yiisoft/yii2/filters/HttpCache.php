@@ -86,10 +86,17 @@ class HttpCache extends ActionFilter
      * for detailed explanation of these values.
      *
 <<<<<<< HEAD
+<<<<<<< HEAD
      * If this property is `null`, then `session_cache_limiter()` will not be called. As a result,
 =======
      * If this is property is null, then `session_cache_limiter()` will not be called. As a result,
 >>>>>>> master
+=======
+     * If this is property is null, then `session_cache_limiter()` will not be called. As a result,
+=======
+     * If this property is `null`, then `session_cache_limiter()` will not be called. As a result,
+>>>>>>> bencopy
+>>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
      * PHP will send headers according to the `session.cache_limiter` PHP ini setting.
      */
     public $sessionCacheLimiter = '';
