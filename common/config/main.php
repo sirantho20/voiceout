@@ -37,7 +37,7 @@ return [
         'enablePrettyUrl' => true,
         'showScriptName' => false,
         ],
-    /*    'view' => [
+    /*   'view' => [
             'theme' => [
                 'pathMap' => [
                     '@dektrium/user/views' => '@app/views/user',
