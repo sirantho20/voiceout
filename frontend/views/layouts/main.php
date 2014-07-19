@@ -34,26 +34,9 @@ AppAsset::register($this);
             ]);
             $menuItems = [
                 ['label' => 'Home', 'url' => ['/site/index']],
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
                 ['label' => 'About', 'url' => ['/site/about']],
                 ['label' => 'Contact', 'url' => ['/site/contact']],
                 ['label' => 'New Complaint', 'url' => ['/complaint/new']],
-=======
->>>>>>> master
-=======
-=======
-                ['label' => 'About', 'url' => ['/site/about']],
-                ['label' => 'Contact', 'url' => ['/site/contact']],
-                ['label' => 'New Complaint', 'url' => ['/complaint/new']],
->>>>>>> bencopy
->>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
-=======
-                ['label' => 'About', 'url' => ['/site/about']],
-                ['label' => 'Contact', 'url' => ['/site/contact']],
-                ['label' => 'New Complaint', 'url' => ['/complaint/new']],
->>>>>>> bencopy
             ];
             if (Yii::$app->user->isGuest) {
                 $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];

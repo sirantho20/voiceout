@@ -467,18 +467,7 @@ module.exports = function (grunt) {
     var done = this.async();
     npmShrinkwrap({ dev: true, dirname: __dirname }, function (err) {
       if (err) {
-<<<<<<< HEAD
-<<<<<<< HEAD
         grunt.fail.warn(err);
-=======
-        grunt.fail.warn(err)
->>>>>>> master
-=======
-        grunt.fail.warn(err)
-=======
-        grunt.fail.warn(err);
->>>>>>> bencopy
->>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
       }
       var dest = 'test-infra/npm-shrinkwrap.json';
       fs.renameSync('npm-shrinkwrap.json', dest);

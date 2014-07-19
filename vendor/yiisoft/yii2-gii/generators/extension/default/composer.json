@@ -2,22 +2,7 @@
 	"name": "<?= $generator->vendorName ?>/<?= $generator->packageName ?>",
 	"description": "<?= $generator->description ?>",
 	"type": "<?= $generator->type ?>",
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 	"keywords": <?= $generator->keywordsArrayJson ?>,
-=======
-	"keywords": "<?= $generator->keywordsArrayJson ?>",
->>>>>>> master
-=======
-	"keywords": "<?= $generator->keywordsArrayJson ?>",
-=======
-	"keywords": <?= $generator->keywordsArrayJson ?>,
->>>>>>> bencopy
->>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
-=======
-	"keywords": <?= $generator->keywordsArrayJson ?>,
->>>>>>> bencopy
 	"license": "<?= $generator->license ?>",
 	"authors": [
 		{

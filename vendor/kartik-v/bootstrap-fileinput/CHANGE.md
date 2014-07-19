@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
 version 1.8.0
 =============
 Date: 15-Jul-2014
@@ -10,12 +5,6 @@ Date: 15-Jul-2014
 ### Additions
 1. (enh #9): Enhanced caption template and styling for captions to prevent overflow of long file names out of the caption container.
 
-<<<<<<< HEAD
-=======
->>>>>>> master
-=======
->>>>>>> bencopy
->>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
 version 1.7.0
 =============
 Date: 02-Jul-2014

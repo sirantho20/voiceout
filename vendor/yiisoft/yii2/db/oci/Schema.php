@@ -54,35 +54,10 @@ class Schema extends \yii\db\Schema
         // does nothing as Oracle does not support this
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-	/**
-	 * @inheritdoc
-	 */
-	public function quoteSimpleTableName($name)
-=======
->>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
-=======
->>>>>>> bencopy
     /**
      * @inheritdoc
      */
     public function quoteSimpleTableName($name)
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-	/**
-	 * @inheritdoc
-	 */
-	public function quoteSimpleTableName($name)
->>>>>>> master
-=======
->>>>>>> bencopy
->>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
-=======
->>>>>>> bencopy
     {
         return strpos($name, '"') !== false ? $name : '"' . $name . '"';
     }
@@ -221,29 +196,10 @@ EOD;
     public function getLastInsertID($sequenceName = '')
     {
         if ($this->db->isActive) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-            return $this->db->createCommand("SELECT {$sequenceName}.CURRVAL FROM DUAL")->queryScalar();
-=======
->>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
-=======
->>>>>>> bencopy
             // get the last insert id from the master connection
             return $this->db->useMaster(function (Connection $db) use ($sequenceName) {
                 return $db->createCommand("SELECT {$sequenceName}.CURRVAL FROM DUAL")->queryScalar();
             });
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-            return $this->db->createCommand("SELECT {$sequenceName}.CURRVAL FROM DUAL")->queryScalar();
->>>>>>> master
-=======
->>>>>>> bencopy
->>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
-=======
->>>>>>> bencopy
         } else {
             throw new InvalidCallException('DB Connection is not active.');
         }

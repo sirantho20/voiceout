@@ -35,17 +35,7 @@ return [
         'urlManager' => [
         'class' => 'yii\web\UrlManager',
         'enablePrettyUrl' => true,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        'showScriptName' => false
-=======
-=======
->>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
-        'showScriptName' => true,
-=======
         'showScriptName' => false,
->>>>>>> bencopy
         ],
     /*    'view' => [
             'theme' => [
@@ -53,17 +43,6 @@ return [
                     '@dektrium/user/views' => '@app/views/user',
                 ],
             ],
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> master
-=======
-=======
-        'showScriptName' => false
->>>>>>> bencopy
->>>>>>> 69e84d5e6f1210d42c81e28bae2ee694dd85add9
-        ],
-=======
         ], */
->>>>>>> bencopy
     ],
 ];
