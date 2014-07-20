@@ -3,9 +3,10 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
-use kartik\widgets\Select2;
+use frontend\components\Select2;
 use yii\web\JsExpression;
 use yii\web\View;
+use yii\bootstrap\Modal;
 
 /**
  * @var yii\web\View $this
@@ -56,7 +57,6 @@ setCount($(this)[0], elem);
 var elem = $('.char-counter');
 $("#complaint-complaint").limiter(250, elem);
 GENERAL;
-//$this->registerCss($complaintstyle,View::POS_HEAD);
 $this->registerJs($generalscript,View::POS_READY);
 ?>
 
@@ -92,7 +92,7 @@ $this->registerJs($generalscript,View::POS_READY);
                 'content' => '<span class="char-counter"></span>',
                 ],
                 [
-                'content' => '<span><i class="glyphicon glyphicon-map-marker"></i></span>',
+                'content' => '<span data-target="#w0" data-toggle="modal" style="cursor:pointer;"><i class="glyphicon   glyphicon-map-marker"></i></span>',
                 ],
                 [
                 'content' => '<span onclick="openWindow()" style="cursor:pointer;"><i class="glyphicon glyphicon-paperclip"></i></span>',
@@ -119,7 +119,17 @@ $this->registerJs($generalscript,View::POS_READY);
 </div>
 </div>
 <script>
-    function openWindow(){
+function openWindow(){
     document.getElementById("complaint-photo").click();
 }
 </script>
+<?php
+Modal::begin([
+    'header' => '<h4>Add Location</h4>',
+    'footer' => Html::button('Add', ['class'=>'btn btn-primary']),
+]);
+
+echo 'Say hello...';
+
+Modal::end();
+?>

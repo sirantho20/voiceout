@@ -84,4 +84,49 @@ return array (
       '@yii/gii' => $vendorDir . '/yiisoft/yii2-gii',
     ),
   ),
+  'kartik-v/yii2-popover-x' => 
+  array (
+    'name' => 'kartik-v/yii2-popover-x',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@kartik' => $vendorDir . '/kartik-v/yii2-popover-x',
+    ),
+  ),
+  'kartik-v/yii2-checkbox-x' => 
+  array (
+    'name' => 'kartik-v/yii2-checkbox-x',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@kartik' => $vendorDir . '/kartik-v/yii2-checkbox-x',
+    ),
+  ),
+  'kartik-v/yii2-money' => 
+  array (
+    'name' => 'kartik-v/yii2-money',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@kartik' => $vendorDir . '/kartik-v/yii2-money',
+    ),
+  ),
+  'kartik-v/yii2-slider' => 
+  array (
+    'name' => 'kartik-v/yii2-slider',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@kartik' => $vendorDir . '/kartik-v/yii2-slider',
+    ),
+  ),
+  'kartik-v/yii2-grid' => 
+  array (
+    'name' => 'kartik-v/yii2-grid',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@kartik' => $vendorDir . '/kartik-v/yii2-grid',
+    ),
+  ),
 );

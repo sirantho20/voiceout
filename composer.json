@@ -19,7 +19,9 @@
 		"yiisoft/yii2-bootstrap": "*",
 		"yiisoft/yii2-swiftmailer": "*",
                 "kartik-v/yii2-widgets": "dev-master",
-                "zelenin/yii2-slug-behavior": "dev-master"  
+                "zelenin/yii2-slug-behavior": "dev-master",
+                "kartik-v/yii2-popover-x": "dev-master",
+                "kartik-v/yii2-grid": "*"
 	},
 	"require-dev": {
 		"yiisoft/yii2-codeception": "*",

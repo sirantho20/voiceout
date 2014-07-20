@@ -81,6 +81,12 @@ class ComplaintController extends \yii\web\Controller
         
     }
     
+    public function actionAll()
+    {
+        $model = Complaint::find()->all();
+        return $this->render('all',['model'=>$model]);
+    }
+    
     public function actionDelete()
     {
         return $this->render('delete');

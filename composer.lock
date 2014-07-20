@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e2c8aa88d25f384ae05d954f85551aff",
+    "hash": "25d9b024f30a192f19d6e1c5ab0e4592",
     "packages": [
         {
             "name": "2amigos/yii2-transliterator-helper",
@@ -154,6 +154,50 @@
             "time": "2013-11-30 08:25:19"
         },
         {
+            "name": "kartik-v/bootstrap-checkbox-x",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/bootstrap-checkbox-x.git",
+                "reference": "1c77f7d4b0663533ad6c6fe3f6fe4489c7703695"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-checkbox-x/zipball/1c77f7d4b0663533ad6c6fe3f6fe4489c7703695",
+                "reference": "1c77f7d4b0663533ad6c6fe3f6fe4489c7703695",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD 3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "An extended checkbox plugin for bootstrap with three states and additional styles.",
+            "homepage": "https://github.com/kartik-v/bootstrap-checkbox-x",
+            "keywords": [
+                "bootstrap",
+                "checkbox",
+                "indeterminate",
+                "jquery",
+                "null",
+                "state",
+                "three"
+            ],
+            "time": "2014-07-19 17:37:41"
+        },
+        {
             "name": "kartik-v/bootstrap-fileinput",
             "version": "dev-master",
             "source": {
@@ -196,6 +240,50 @@
                 "upload"
             ],
             "time": "2014-07-15 13:50:55"
+        },
+        {
+            "name": "kartik-v/bootstrap-popover-x",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/bootstrap-popover-x.git",
+                "reference": "b7a4a53ecc2ec816634f2145422a8a803db9b638"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-popover-x/zipball/b7a4a53ecc2ec816634f2145422a8a803db9b638",
+                "reference": "b7a4a53ecc2ec816634f2145422a8a803db9b638",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD 3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "Bootstrap Popover Extended - Popover with modal behavior, styling enhancements and more.",
+            "homepage": "https://github.com/kartik-v/bootstrap-popover-x",
+            "keywords": [
+                "bootstrap",
+                "extended",
+                "jquery",
+                "modal",
+                "modal-popover",
+                "popover",
+                "popover-x"
+            ],
+            "time": "2014-07-19 17:39:12"
         },
         {
             "name": "kartik-v/bootstrap-star-rating",
@@ -281,6 +369,54 @@
             "time": "2014-07-03 09:54:02"
         },
         {
+            "name": "kartik-v/yii2-checkbox-x",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-checkbox-x.git",
+                "reference": "417ea758ab4855d9d291890465f2c46037a0e7ba"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-checkbox-x/zipball/417ea758ab4855d9d291890465f2c46037a0e7ba",
+                "reference": "417ea758ab4855d9d291890465f2c46037a0e7ba",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/bootstrap-checkbox-x": "*",
+                "kartik-v/yii2-widgets": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD 3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "Extended checkbox widget for bootstrap with three states and additional styles.",
+            "homepage": "https://github.com/kartik-v/yii2-checkbox-x",
+            "keywords": [
+                "bootstrap",
+                "checkbox",
+                "indeterminate",
+                "jquery",
+                "null",
+                "state",
+                "three"
+            ],
+            "time": "2014-07-14 05:43:23"
+        },
+        {
             "name": "kartik-v/yii2-field-range",
             "version": "dev-master",
             "source": {
@@ -330,6 +466,198 @@
                 "yii2"
             ],
             "time": "2014-07-14 08:53:02"
+        },
+        {
+            "name": "kartik-v/yii2-grid",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-grid.git",
+                "reference": "87a66d04df3167d67fb3534bf1be6aeb4324982f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-grid/zipball/87a66d04df3167d67fb3534bf1be6aeb4324982f",
+                "reference": "87a66d04df3167d67fb3534bf1be6aeb4324982f",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/yii2-checkbox-x": "*",
+                "kartik-v/yii2-money": "*",
+                "kartik-v/yii2-slider": "*",
+                "kartik-v/yii2-widgets": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD 3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "Yii 2 GridView on steroids. Various enhancements and utilities for the Yii 2.0 GridView widget.",
+            "homepage": "https://github.com/kartik-v/yii2-grid",
+            "keywords": [
+                "extension",
+                "grid",
+                "widget",
+                "yii2"
+            ],
+            "time": "2014-07-16 11:05:39"
+        },
+        {
+            "name": "kartik-v/yii2-money",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-money.git",
+                "reference": "d899b46e460198e45511778bb2b0aedb5db70858"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-money/zipball/d899b46e460198e45511778bb2b0aedb5db70858",
+                "reference": "d899b46e460198e45511778bb2b0aedb5db70858",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/yii2-widgets": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD 3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "An advanced money mask input for Yii 2.0 based on jquery maskmoney plugin styled for Bootstrap 3.",
+            "homepage": "https://github.com/kartik-v/yii2-money",
+            "keywords": [
+                "bootstrap",
+                "bootstrap 3",
+                "currency",
+                "extension",
+                "format",
+                "jquery",
+                "mask",
+                "money",
+                "widget",
+                "yii2"
+            ],
+            "time": "2014-07-14 09:01:46"
+        },
+        {
+            "name": "kartik-v/yii2-popover-x",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-popover-x.git",
+                "reference": "f6964ff6bd2a453a33bce3b0d0677022a18addab"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-popover-x/zipball/f6964ff6bd2a453a33bce3b0d0677022a18addab",
+                "reference": "f6964ff6bd2a453a33bce3b0d0677022a18addab",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/bootstrap-popover-x": "*",
+                "kartik-v/yii2-widgets": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD 3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "An extended bootstrap 3.0 popover widget which combines both the bootstrap popover and modal features and includes various new styling enhancements.",
+            "homepage": "https://github.com/kartik-v/yii2-popover-x",
+            "keywords": [
+                "bootstrap",
+                "extended",
+                "jquery",
+                "modal",
+                "modal-popover",
+                "popover",
+                "popover-x"
+            ],
+            "time": "2014-07-16 18:09:07"
+        },
+        {
+            "name": "kartik-v/yii2-slider",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-slider.git",
+                "reference": "a960aa2c5e53526f2d0467e6aee61594ec730c00"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-slider/zipball/a960aa2c5e53526f2d0467e6aee61594ec730c00",
+                "reference": "a960aa2c5e53526f2d0467e6aee61594ec730c00",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/yii2-widgets": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD 3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "An advanced slider input for Yii Framework 2 for both touch enabled and desktop devices based on bootstrap-slider.",
+            "homepage": "https://github.com/kartik-v/yii2-slider",
+            "keywords": [
+                "bootstrap",
+                "bootstrap 3",
+                "extension",
+                "range",
+                "slider",
+                "widget",
+                "yii2"
+            ],
+            "time": "2014-07-14 14:57:26"
         },
         {
             "name": "kartik-v/yii2-widgets",
@@ -967,7 +1295,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "kartik-v/yii2-widgets": 20,
-        "zelenin/yii2-slug-behavior": 20
+        "zelenin/yii2-slug-behavior": 20,
+        "kartik-v/yii2-popover-x": 20
     },
     "platform": {
         "php": ">=5.4.0"

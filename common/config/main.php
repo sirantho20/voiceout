@@ -23,6 +23,9 @@ return [
                
            ]
        ],
+        'gridview' => [
+            'class' => '\kartik\grid\Module'
+        ]
     ],
     
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
@@ -37,7 +40,7 @@ return [
         'enablePrettyUrl' => true,
         'showScriptName' => false,
         ],
-    /*   'view' => [
+    /*  'view' => [
             'theme' => [
                 'pathMap' => [
                     '@dektrium/user/views' => '@app/views/user',
