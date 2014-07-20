@@ -45,8 +45,9 @@ class ComplaintController extends \yii\web\Controller
            $uploadedFile=UploadedFile::getInstance($model,'photo');
            if($uploadedFile != null){
                $rnd = rand(0,9999);
-               $extension = explode('.', $uploadedFile->name);
-               $ext = $extension[count($extension)-1];
+               //$extension = explode('.', $uploadedFile->name);
+               //$ext = $extension[count($extension)-1];
+               $ext = $uploadedFile->extension;
                $fileName = $model->complaint_id."_".$model->company_id."{$rnd}".time().".".$ext;  // company id+random number+timestamp+extension
                $model->photo = $fileName;
                $model->has_picture = 'Y';

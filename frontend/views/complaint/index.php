@@ -8,15 +8,30 @@ use app\models\Pictures;
 $voh = new Voh();
 $this->title = Company::getCompanyName($model->company_id).' - '.substr($model->complaint,0,100);
 ?>
-<h1 class="lead">Complaint Number: <?= $model->complaint_id ?></h1>
-
-<div class="col-lg-9">
-    <h3 class="lead">Company: <?= Company::getCompanyName($model->company_id) ?></h3>
-<blockquote>
-  <p><?= $voh->linkTag($model->complaint) ?></p>
-  <footer>Someone famous in <cite title=""><?= $model->user_id ?></cite></footer>
-</blockquote>  
-</div>
-<div class="col-lg-3">
-    <?php echo ($model->has_picture == 'Y')?"<img src='".Yii::$app->basePath.'/assets/images/complaints/'.Pictures::getPictureLink($model->complaint_id)."' alt='' />":""; ?>
+<div class="row">
+    <div class="col-lg-2">
+        <?php echo ($model->has_picture == 'Y')?'<img src="/frontend/assets/images/complaints/'.Pictures::getPictureLink($model->complaint_id).'" alt="" class="img-thumbnail" style="width:100%; height:140px; margin-top: 25px;" />':""; ?>
+    </div>
+    <div class="col-lg-7">
+        <h3 class="lead"><?= Company::getCompanyName($model->company_id) ?></h3>
+      <p><?= $voh->linkTag($model->complaint) ?></p>
+      <footer><cite title="">By: <?= ($model->user_id == '1000010000')?'Anonymous':'' ?> | Date: <?= $model->date_added ?> | Complaint Id:<?= $model->complaint_id ?></cite></footer> 
+      <hr class="divider" />
+      Share this: 
+      <?php 
+      if ($model->hashtag != ''){
+          echo '<hr class="divider" /> Tags: ' ;
+          $tags = explode(',', $model->hashtag);
+          foreach ($tags as $tag) {
+              echo '<span class="label-info" style="padding:1px 9px; margin-right:10px;display:inline-block; border-radius: 10px">'.$tag.'</span>';
+          }
+       }
+       ?>
+    </div>
+    <div class="col-lg-3">
+        <p>&nbsp;</p>
+        <button class="btn btn-danger btn-block disabled">Escalate</button>
+        <button class="btn btn-info btn-block">Follow</button>
+        <button class="btn btn-success btn-block">Answer Now</button>
+    </div>
 </div>

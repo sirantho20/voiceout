@@ -2,7 +2,7 @@
 /**
  * @var yii\web\View $this
  */
-$this->title = 'My Yii Application';
+$this->title = 'Voice Out - Better Customer Service';
 use frontend\components\ComplaintWidget;
 ?>
 <div class="site-index">
