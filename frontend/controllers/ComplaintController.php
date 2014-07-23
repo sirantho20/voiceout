@@ -69,12 +69,13 @@ class ComplaintController extends \yii\web\Controller
                      */
                     $uploadedFile->saveAs(Yii::$app->basePath.'/assets/images/complaints/'.$fileName);
                 }
+                Yii::$app->session->setFlash('success','Complaint created successfully. Your complaint will be forwarded for appropriate action');
                 $this->redirect(Url::toRoute('/complaint/'.$model->slug));
                 Yii::$app->end();
            }
            else
            {
-                Yii::app()->user->setFlash('new-complaint-failure','Failed to create complaint. Try again');
+                Yii::$app->session->setFlash('error','Failed to create complaint. Try again');
                 $this->redirect(Yii::$app->user->returnUrl);
                 Yii::$app->end();
            }

@@ -23,15 +23,15 @@ $this->title = Company::getCompanyName($model->company_id).' - '.substr($model->
           echo '<hr class="divider" /> Tags: ' ;
           $tags = explode(',', $model->hashtag);
           foreach ($tags as $tag) {
-              echo '<span class="label-info" style="padding:1px 9px; margin-right:10px;display:inline-block; border-radius: 10px">'.$tag.'</span>';
+              echo '<span class="label label-default" style="margin-right:10px;">'.$tag.'</span>';
           }
        }
        ?>
     </div>
     <div class="col-lg-3">
         <p>&nbsp;</p>
-        <button class="btn btn-danger btn-block disabled">Escalate</button>
-        <button class="btn btn-info btn-block">Follow</button>
+        <button class="btn btn-danger btn-block disabled"><span class="badge pull-right">100</span>Escalate</button>
+        <button class="btn btn-info btn-block"><span class="badge pull-right">42</span>Follow</button>
         <button class="btn btn-success btn-block">Answer Now</button>
     </div>
 </div>

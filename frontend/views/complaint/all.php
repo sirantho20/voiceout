@@ -15,7 +15,7 @@ $this->title = 'All Complaints';
     <thead>
         <tr>
             <th>No.</th>
-            <th>Company</th>
+            <th width="180">Company</th>
             <th>Complaint</th>
             <th>Date</th>
         </tr>
@@ -34,3 +34,12 @@ $this->title = 'All Complaints';
         
     </tfoot>
 </table>
+<ul class="pagination">
+  <li><a href="#">&laquo;</a></li>
+  <li class="active disabled"><a href="#">1</a></li>
+  <li><a href="#">2</a></li>
+  <li><a href="#">3</a></li>
+  <li><a href="#">4</a></li>
+  <li><a href="#">5</a></li>
+  <li><a href="#">&raquo;</a></li>
+</ul>

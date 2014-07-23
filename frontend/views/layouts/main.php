@@ -4,7 +4,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
-use frontend\widgets\Alert;
+use kartik\widgets\AlertBlock;
 
 /**
  * @var \yii\web\View $this
@@ -62,7 +62,11 @@ AppAsset::register($this);
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
-        <?= Alert::widget() ?>
+        <?php echo AlertBlock::widget([
+            'useSessionFlash' => true,
+            'type' => AlertBlock::TYPE_ALERT,
+            'delay' => 2000,
+        ]); ?>
         <?= $content ?>
         </div>
     </div>

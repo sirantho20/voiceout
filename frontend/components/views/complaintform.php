@@ -57,7 +57,16 @@ setCount($(this)[0], elem);
 var elem = $('.char-counter');
 $("#complaint-complaint").limiter(250, elem);
 GENERAL;
+$map = <<< MAP
+$('#add-location').click(function () {
+        $.getScript("http://maps.google.com/maps/api/js?sensor=false&callback=initialize");
+        $("#w0").on("shown.bs.modal", function () {
+            google.maps.event.trigger(map, "resize");
+        });
+});   
+MAP;
 $this->registerJs($generalscript,View::POS_READY);
+$this->registerJs($map,View::POS_READY);
 ?>
 
 <div class="panel panel-default">
@@ -92,7 +101,7 @@ $this->registerJs($generalscript,View::POS_READY);
                 'content' => '<span class="char-counter"></span>',
                 ],
                 [
-                'content' => '<span data-target="#w0" data-toggle="modal" style="cursor:pointer;"><i class="glyphicon   glyphicon-map-marker"></i></span>',
+                'content' => '<span id="add-location" data-target="#w0" data-toggle="modal" style="cursor:pointer;"><i class="glyphicon   glyphicon-map-marker"></i></span>',
                 ],
                 [
                 'content' => '<span onclick="openWindow()" style="cursor:pointer;"><i class="glyphicon glyphicon-paperclip"></i></span>',
@@ -118,18 +127,107 @@ $this->registerJs($generalscript,View::POS_READY);
   </div>
 </div>
 </div>
+<?php
+Modal::begin([
+    'header' => '<h4>Add Location (Drag marker to select)</h4>',
+    'footer' => Html::button('Add', ['class'=>'btn btn-primary','data-dismiss'=>'modal','id'=>'btnAddLocation']).Html::button('Clear Location',['onclick'=>'js:$("#complaint-location").val("")','class'=>'btn btn-primary']).Html::button('close',['data-dismiss'=>'modal','class'=>'btn btn-primary']),
+]);
+
+echo '<div id="map_canvas" style="width: 100%; height: 250px"></div>';
+
+Modal::end();
+?>
 <script>
 function openWindow(){
     document.getElementById("complaint-photo").click();
 }
+
+var map;
+var initialLocation;
+var browserSupportFlag =  new Boolean();
+var accra;
+var marker;
+function initialize() {
+  accra = new google.maps.LatLng(5.5912087,-0.1797295);
+  var myOptions = {
+    zoom: 13,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+  var isFirefox = typeof InstallTrigger !== 'undefined';
+  if (!isFirefox){
+  // Try W3C Geolocation (Preferred)
+  if(navigator.geolocation) {
+    browserSupportFlag = true;
+    navigator.geolocation.getCurrentPosition(function(position) {
+      initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+        map.setCenter(initialLocation);
+        marker = new google.maps.Marker({
+            map:map,
+            draggable:true,
+            animation: google.maps.Animation.DROP,
+            position: initialLocation
+        });
+    google.maps.event.addListener(marker, 'click', toggleBounce);
+    google.maps.event.addListener(marker,'dragend',function(event) {
+    document.getElementById('complaint-location').value = event.latLng.lat()+','+event.latLng.lng();
+    });
+
+    }, function() {
+      handleNoGeolocation(browserSupportFlag);
+    },{ enableHighAccuracy: true, timeout: 100, maximumAge: 0 }
+);
+  }
+  // Browser doesn't support Geolocation
+  else {
+    browserSupportFlag = false;
+    handleNoGeolocation(browserSupportFlag);
+  }
+}
+else
+{
+    map.setCenter(accra);
+    marker = new google.maps.Marker({
+            map:map,
+            draggable:true,
+            animation: google.maps.Animation.DROP,
+            position: accra
+    });
+    google.maps.event.addListener(marker, 'click', toggleBounce);
+    google.maps.event.addListener(marker,'dragend',function(event) {
+        document.getElementById('complaint-location').value = event.latLng.lat()+','+event.latLng.lng();
+    });
+    
+}
+
+  function handleNoGeolocation(errorFlag) {
+    if (errorFlag == true) {
+      initialLocation = accra;
+      
+    } else {
+      initialLocation = accra;
+    }
+    map.setCenter(initialLocation);
+    marker = new google.maps.Marker({
+            map:map,
+            draggable:true,
+            animation: google.maps.Animation.DROP,
+            position: initialLocation
+    });
+    google.maps.event.addListener(marker, 'click', toggleBounce);
+    google.maps.event.addListener(marker,'dragend',function(event) {
+        document.getElementById('complaint-location').value = event.latLng.lat()+','+event.latLng.lng();
+    });
+  }
+  
+  function toggleBounce() {
+
+  if (marker.getAnimation() != null) {
+    marker.setAnimation(null);
+  } else {
+    marker.setAnimation(google.maps.Animation.BOUNCE);
+  }
+}
+
+}
 </script>
-<?php
-Modal::begin([
-    'header' => '<h4>Add Location</h4>',
-    'footer' => Html::button('Add', ['class'=>'btn btn-primary']),
-]);
-
-echo 'Say hello...';
-
-Modal::end();
-?>
