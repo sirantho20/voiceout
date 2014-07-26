@@ -97,5 +97,27 @@ class Voh
         return $ret;
     }
     
+    public static function truncateByWord($string, $maxCharLength = 100, $append = '...')
+    {
+    $string = strip_tags($string);
+    $words = preg_split('/\s+/', $string);
+
+    $reformed_string = '';
+    for($i = 0, $size = sizeof($words); $i < $size; $i++){
+        if(strlen($reformed_string.' '.$words[$i]) > $maxCharLength){
+            if($append){
+                $reformed_string .= $append;
+            }
+            break;
+        }else{
+            if($i > 0){
+                $reformed_string .= (' '.$words[$i]);
+            }else{
+                $reformed_string .= $words[$i];
+            }
+        }
+    }
+    return $reformed_string;
+    }
 
 }

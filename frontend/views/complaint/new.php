@@ -6,4 +6,5 @@
 use frontend\components\ComplaintWidget;
 $this->title = 'New Complaint';
 ?>
-<?= ComplaintWidget::widget(['mode'=>'advanced']); ?>
+
+    <div class="container"><?= ComplaintWidget::widget(['mode'=>'advanced']); ?></div>

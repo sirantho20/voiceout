@@ -11,6 +11,7 @@ use yii\helpers\Url;
 
 $this->title = 'All Complaints';
 ?>
+<div class="container">
 <table class="table table-hover">
     <thead>
         <tr>
@@ -43,3 +44,4 @@ $this->title = 'All Complaints';
   <li><a href="#">5</a></li>
   <li><a href="#">&raquo;</a></li>
 </ul>
+</div><!-- @end of container -->

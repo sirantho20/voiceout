@@ -67,6 +67,7 @@ $('#add-location').click(function () {
 MAP;
 $this->registerJs($generalscript,View::POS_READY);
 $this->registerJs($map,View::POS_READY);
+$this->registerCssFile('/frontend/assets/fontawesome/css/font-awesome.min.css');
 ?>
 
 <div class="panel panel-default">
@@ -133,7 +134,7 @@ Modal::begin([
     'footer' => Html::button('Add', ['class'=>'btn btn-primary','data-dismiss'=>'modal','id'=>'btnAddLocation']).Html::button('Clear Location',['onclick'=>'js:$("#complaint-location").val("")','class'=>'btn btn-primary']).Html::button('close',['data-dismiss'=>'modal','class'=>'btn btn-primary']),
 ]);
 
-echo '<div id="map_canvas" style="width: 100%; height: 250px"></div>';
+echo '<div id="map_canvas" style="width: 100%; height: 250px"><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p><center><h4><span class="spinner"><i class="fa fa-spinner fa-spin"></i></span> Loading...</h4></center><p></div>';
 
 Modal::end();
 ?>

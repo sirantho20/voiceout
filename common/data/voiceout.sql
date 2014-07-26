@@ -134,7 +134,10 @@ CREATE TABLE `mup_company` (
 
 LOCK TABLES `mup_company` WRITE;
 /*!40000 ALTER TABLE `mup_company` DISABLE KEYS */;
-INSERT INTO `mup_company` VALUES (1,'1','Softcube Limited','2014-05-27 19:52:44','2014-05-27 19:52:44','y',NULL,NULL,'softcube','y',NULL);
+INSERT INTO `mup_company` VALUES (1,'123123456456','Softcube Limited','2014-05-27 19:52:44','2014-05-27 19:52:44','y',NULL,NULL,'softcube','y',NULL);
+INSERT INTO `mup_company` VALUES (2,'456456789789','Airtel Ghana','2014-05-27 19:52:44','2014-05-27 19:52:44','y',NULL,NULL,'airtel-ghana','y',NULL);
+INSERT INTO `mup_company` VALUES (3,'789789123123','Vodafone','2014-05-27 19:52:44','2014-05-27 19:52:44','y',NULL,NULL,'vodafone','y',NULL);
+INSERT INTO `mup_company` VALUES (4,'987987654654','Electricity Company of Ghana','2014-05-27 19:52:44','2014-05-27 19:52:44','y',NULL,NULL,'electricity-company-of-ghana','y',NULL);
 /*!40000 ALTER TABLE `mup_company` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -393,14 +396,17 @@ CREATE TABLE `mup_reply` (
   `date_addded` datetime NOT NULL,
   `date_updated` datetime NOT NULL,
   `company_id` varchar(12) NOT NULL,
+  `user_id` varchar(12) NOT NULL,
+  `type` CHAR(1) NOT NULL DEFAULT 'R',
   PRIMARY KEY (`id`),
   KEY `fk_company_reply_idx` (`company_id`),
   KEY `fk_complaint_reply_idx` (`complaint_id`),
+  KEY `fk_user_reply_idx` (`user_id`),
   CONSTRAINT `fk_company_reply` FOREIGN KEY (`company_id`) REFERENCES `mup_company` (`company_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_complaint_reply` FOREIGN KEY (`complaint_id`) REFERENCES `mup_complaint` (`complaint_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `fk_complaint_reply` FOREIGN KEY (`complaint_id`) REFERENCES `mup_complaint` (`complaint_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT `fk_user_reply` FOREIGN KEY (`user_id`) REFERENCES `mup_user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
 --
 -- Dumping data for table `mup_reply`
 --
@@ -443,6 +449,27 @@ LOCK TABLES `mup_user` WRITE;
 /*!40000 ALTER TABLE `mup_user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+--
+-- Table structure for table `mup_reply_best`
+--
+
+CREATE TABLE IF NOT EXISTS `mup_reply_best` (
+  `id` int(11) NOT NULL,
+  `complaint_id` varchar(12) NOT NULL,
+  `reply_id` int(11) NOT NULL,
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `complaint_id` (`complaint_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `mup_timeline` (
+  `id` int(11) NOT NULL,
+  `company_id` varchar(12) NOT NULL,
+  `action_type` char(1) NOT NULL COMMENT 'F-Following,R-Reply,A-Answer,E-Escalate,U-Unfollow,B-Best Answer',
+  `date_added` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

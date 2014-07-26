@@ -9,6 +9,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 use yii\helpers\Json;
 use app\models\Pictures;
+use app\models\Reply;
 
 class ComplaintController extends \yii\web\Controller
 {
@@ -43,7 +44,7 @@ class ComplaintController extends \yii\web\Controller
             */
            $fileName = '';
            $uploadedFile=UploadedFile::getInstance($model,'photo');
-           if($uploadedFile != null){
+           if(trim($uploadedFile->name) != ''){
                $rnd = rand(0,9999);
                //$extension = explode('.', $uploadedFile->name);
                //$ext = $extension[count($extension)-1];
@@ -121,6 +122,41 @@ class ComplaintController extends \yii\web\Controller
     public function actionView($id)
     {
        return $this->render('view',['model'=>$complaint]);
+    }
+    
+    public static function ComplaintList()
+    {
+        $model = Complaint::find()->orderBy('date_added DESC')->limit(15)->all();
+        return $model;
+    }
+    
+    public function actionReply()
+    {
+        $model = new Reply;
+        if ($model->load(Yii::$app->request->post()))
+        {
+            $this->performReplyAjaxValidation($model);
+            $this->save($model);
+        }
+        else
+        {
+            return $this->render('new');
+        }
+        
+    }
+    
+    protected function performReplyAjaxValidation($model)
+    {
+        if(isset($_POST['ajax']) && $_POST['ajax']==='complaint-reply')
+        {
+            echo Json::encode(ActiveForm::validate($model));
+            Yii::$app->end();
+        }
+    }
+    
+    public static function Timeline()
+    {
+        
     }
 
 }

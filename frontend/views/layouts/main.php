@@ -58,15 +58,17 @@ AppAsset::register($this);
             NavBar::end();
         ?>
 
-        <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?php echo AlertBlock::widget([
-            'useSessionFlash' => true,
-            'type' => AlertBlock::TYPE_ALERT,
-            'delay' => 2000,
-        ]); ?>
+        <div class="container-fluid">
+            <div class="container top-container">
+                <?= Breadcrumbs::widget([
+                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                ]) ?>
+                <?php echo AlertBlock::widget([
+                    'useSessionFlash' => true,
+                    'type' => AlertBlock::TYPE_ALERT,
+                    'delay' => 2000,
+                ]); ?>
+            </div>
         <?= $content ?>
         </div>
     </div>
