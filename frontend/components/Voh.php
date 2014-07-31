@@ -6,6 +6,7 @@
 namespace frontend\components;
 
 use app\models\Complaint;
+use Yii;
 
 class Voh 
 {
@@ -119,5 +120,79 @@ class Voh
     }
     return $reformed_string;
     }
-
+    
+    public static function ComplaintTimeline($complaint_id){
+        if (isset($complaint_id) && $complaint_id != ''){
+            if (\app\models\Timeline::find()->where(['complaint_id'=>$complaint_id])->exists())
+            {
+                $timeline = \app\models\Timeline::find()->where(['complaint_id'=>$complaint_id])->all();
+                echo Yii::$app->view->renderFile('@app/components/views/complainttimeline.php',['timeline'=>$timeline]);       
+            }
+            else
+            {
+                return "<h3>No replies yet. Be the first to reply!</h3>";
+            }            
+        }
+    }
+    
+    public static function EscalateCounter($complaint_id)
+    {
+        if (trim($complaint_id) != '')
+        {
+            $count = \app\models\Escalate::find()->where(['complaint_id'=>$complaint_id,'type'=>'E'])->count();
+            return $count;
+        }
+    }
+    public static function EscalateUserCounter($complaint_id,$user_id)
+    {
+        if (trim($complaint_id)!='' && trim($user_id)!='')
+        {
+            if(\app\models\Escalate::find()->where(['complaint_id'=>$complaint_id,'user_id'=>$user_id,'type'=>'E'])->exists())
+            {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
+    }
+    public static function ReplyCounter($complaint_id)
+    {
+        if (trim($complaint_id) != '')
+        {
+            $count = \app\models\Reply::find()->where(['complaint_id'=>$complaint_id,'type'=>'R'])->count();
+            return $count;
+        }
+    }
+    public static function FollowCounter($complaint_id)
+    {
+        if (trim($complaint_id) != '')
+        {
+            $count = \app\models\ComplaintFollowing::find()->where(['complaint_id'=>$complaint_id])->count();
+            return $count;
+        }
+    }
+    public static function FollowUserCounter($complaint_id,$user_id)
+    {
+        if (trim($complaint_id)!='' && trim($user_id)!='')
+        {
+            if(\app\models\ComplaintFollowing::find()->where(['complaint_id'=>$complaint_id,'user_id'=>$user_id])->exists())
+            {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
+    }
+    public function CompanyTimeline(){
+        
+    }
+    
 }

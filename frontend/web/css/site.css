@@ -120,6 +120,9 @@ a.desc:after {
     font-size: 14px !important;
     line-height: 1.6;
 }
+.comment-box .escalate {
+    padding: 10px 10px 0 10px;
+}
 .front-complaint {
         overflow: hidden;
         margin-bottom: 20px;
@@ -189,4 +192,141 @@ overflow: hidden;
 .pre-footer ul {
     margin-left: 0;
     padding-left: 15px;
+}
+.discussion-timeline {
+    position: relative;
+    width: 100%;
+}
+.discussion-timeline:before {
+    background-color: #F3F3F3;
+    bottom: 0;
+    content: "";
+    display: block;
+    left: 79px;
+    position: absolute;
+    top: 0;
+    width: 2px;
+    z-index: -1;
+}
+.timeline-comment-wrapper>.timeline-comment:after,.timeline-comment-wrapper>.timeline-comment:before,.timeline-new-comment .timeline-comment:after,.timeline-new-comment .timeline-comment:before{position:absolute;top:11px;left:-16px;right:100%;width:0;height:0;display:block;content:" ";border-color:transparent;border-style:solid solid outset;pointer-events:none}
+.timeline-comment-wrapper>.timeline-comment:after,.timeline-new-comment .timeline-comment:after{border-width:7px;border-right-color:#f7f7f7;margin-top:1px;margin-left:2px}
+.timeline-comment-wrapper>.timeline-comment:before,.timeline-new-comment .timeline-comment:before{border-right-color:#dddddd;border-width:8px}
+.timeline-comment-wrapper{position:relative;padding-left:64px;margin-top:15px;margin-bottom:15px;border-top:2px solid #fff;border-bottom:2px solid #fff}
+.timeline-comment-wrapper:first-child{margin-top:0}.discussion-timeline-actions .timeline-comment-wrapper:first-child{margin-top:15px}
+.timeline-comment-wrapper .timeline-comment.unread-item:after,.timeline-comment-wrapper .timeline-comment.unread-item:before{position:absolute;top:11px;left:-16px;right:100%;width:0;height:0;display:block;content:" ";border-color:transparent;border-style:solid solid outset;pointer-events:none}
+.timeline-comment-wrapper .timeline-comment.unread-item:after{border-width:7px;border-right-color:#fffef1;margin-top:1px;margin-left:2px}.timeline-comment-wrapper .timeline-comment.unread-item:before{border-right-color:#e9dba5;border-width:8px}
+.timeline-comment-avatar{float:left;margin-left:-64px;border-radius:4px}.timeline-comment{position:relative;background-color:#fff;border:1px solid #ddd;border-radius:3px}
+.timeline-comment.current-user{border-color:#bfccd1}.timeline-comment.current-user:after{border-right-color:#f2f8fa}
+.timeline-comment.current-user:before{border-right-color:#bfccd1}
+.timeline-comment.current-user .timeline-comment-header{color:#8e9597;background-color:#f2f8fa;border-bottom-color:#e1edf1}
+.timeline-comment.will-transition-once{transition:border-color 0.65s ease-out;-webkit-transition:border-color 0.65s ease-out 0}
+.timeline-comment.will-transition-once .timeline-comment-header{transition:background-color 0.65s ease-out, border-bottom-color 0.65s ease-out;-webkit-transition:background-color 0.65s ease-out, border-bottom-color 0.65s ease-out}
+.timeline-comment.will-transition-once .timeline-comment-label{transition:border-color 0.65s ease-out;-webkit-transition:border-color 0.65s ease-out 0}
+.timeline-comment.will-transition-once:before,.timeline-comment.will-transition-once:after{transition:border-right-color 0.65s ease-out;-webkit-transition:border-right-color 0.65s ease-out 0}
+.timeline-comment.unread-item{border-color:#e9dba5}.timeline-comment.unread-item .timeline-comment-header{background-color:#fffef1;border-bottom-color:#f3ebce}
+.timeline-comment.unread-item .timeline-comment-label{border-color:#e9dba5}
+.timeline-comment:empty{display:none}.timeline-comment .comment+.comment{border-top:1px solid #e5e5e5}
+.timeline-comment .comment+.comment:before,.timeline-comment .comment+.comment:after{display:none}
+.timeline-comment .comment+.comment .timeline-comment-header{border-top-left-radius:0;border-top-right-radius:0}
+.timeline-comment-header{padding-left:15px;padding-right:15px;color:#999;background-color:#f7f7f7;border-bottom:1px solid #eee;border-top-left-radius:3px;border-top-right-radius:3px}
+.timeline-comment-header .author{font-weight:bold;color:#555}
+.timeline-comment-header .timestamp,.timeline-comment-header .comment-type-icon{color:inherit}
+.timeline-comment-header .timestamp{white-space:nowrap}.timeline-comment-header code{word-break:break-all}
+.timeline-comment-label{float:right;margin:8px 0 0 10px;padding:2px 5px;font-size:12px;border:1px solid rgba(0,0,0,0.1);border-radius:3px}
+.timeline-comment-label-spammy{color:#bd2c00;border-color:#bd2c00}.timeline-comment-header-text{max-width:78%;padding-top:10px;padding-bottom:10px}
+.timeline-comment-header-text code a{color:inherit}
+.timeline-comment-header-gravatar{float:left;margin-top:10px;margin-right:5px;border-radius:2px}
+.timeline-comment-actions{float:right;margin-right:-5px;margin-left:10px}
+.timeline-comment-actions .octicon{padding:10px 5px;color:inherit;opacity:0.5}
+.timeline-comment-actions .octicon:hover{opacity:1;color:#4183c4;text-decoration:none}
+.comment-body {
+    font-size: 14px;
+    overflow: initial;
+    padding: 15px;
+    width: 100%;
+}
+.closed-banner{position:relative;margin:15px 0 -15px;height:19px;overflow:visible;background:#f3f3f3;border-radius:0;border-bottom:15px solid white}
+.discussion-item{position:relative;margin:15px 0 15px 79px;padding-left:25px;line-height:20px}
+.discussion-item+.discussion-item{padding-top:15px;border-top:1px solid #f5f5f5}
+.discussion-item .avatar{float:left;margin-top:2px;margin-right:5px;border-radius:3px}
+.discussion-item .author{color:#555;font-weight:bold}
+.discussion-item .timestamp{color:inherit;white-space:nowrap}
+.discussion-item .label-color{padding:2px 4px;font-size:12px;font-weight:bold;border-radius:2px}
+.discussion-item .label-color a:hover{text-decoration:none}
+.discussion-item-icon{float:left;width:32px;height:32px;margin-top:-7px;margin-left:-40px;line-height:28px;color:#666666;text-align:center;background-color:#f3f3f3;border:2px solid #fff;border-radius:50%}
+.discussion-item-icon.octicon-pencil{font-size:14px}.discussion-item-header{min-height:30px;padding-top:5px;padding-bottom:5px;color:#777}
+.discussion-item-header .discussion-item-private{vertical-align:-1px}
+.discussion-item-header:last-child{padding-bottom:0}
+.discussion-item-header .commit-ref{font-size:85%;vertical-align:baseline}
+.discussion-item-header .button-outline{float:right;padding:4px 8px;margin-top:-5px}
+.discussion-item-body{margin-top:5px}
+.discussion-item-link{color:#777}
+.discussion-item-link:hover{color:#4183c4}
+.discussion-item-help{vertical-align:middle;color:#999}
+.discussion-item-help:hover{color:#4183c4}
+.discussion-item-help-rollup{font-size:22px}
+.discussion-item-entity{font-weight:bold;color:#333}
+.discussion-item-entity:hover{color:#4183c4;text-decoration:none}
+.discussion-item-ref-title{margin-top:0;margin-bottom:0;line-height:1.2}
+.discussion-item-ref-title .issue-num{font-weight:normal;color:#999}
+.discussion-item-ref-title .title-link{color:#333}
+.discussion-item-ref-title .title-link:hover{color:#4183c4;text-decoration:none}
+.discussion-item-ref-title .title-link:hover .issue-num{color:inherit}
+.discussion-item-private{display:inline-block;padding-left:1px;padding-right:1px;margin-left:3px;font-size:14px;color:#a1882b;vertical-align:1px}
+.discussion-item-rollup-ref .state{margin-top:2px}.discussion-item-reopened .discussion-item-icon{color:#fff;background-color:#6cc644}
+.discussion-item-merged .discussion-item-icon {
+    background-color: #6E5494;
+    color: #FFFFFF;
+    padding-left: 2px;
+}
+.discussion-item-escalate .discussion-item-icon {
+    background-color: #BD2C00;
+    color: #FFFFFF;
+}
+.discussion-item-follow .discussion-item-icon {
+    background-color: #5BC0DE;
+    color: #FFFFFF;
+}
+/* complaint sidebar styles */
+.complaint-sidebar {
+    background-image: linear-gradient(to right, #f7f9fa 0%, #FFFFFF 8px);
+    box-shadow: 1px 0 0 #EEEEEE inset;
+    padding: 12px 0 15px 20px;
+    min-height: 250px;
+}
+
+.discussion-sidebar-item {
+    color: #999999;
+    font-size: 12px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.discussion-sidebar-item + .discussion-sidebar-item {
+    border-top: 1px solid #EEEEEE;
+}
+.discussion-sidebar-heading {
+    color: #777777;
+    font-size: 14px;
+    line-height: 16px;
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+.commit-desc {
+    display: block;
+    padding-top: 3px;
+}
+.level2 {
+    background: #fda128;
+}
+.level3 {
+    background: #fc6921;
+}
+.level4 {
+    background: #fc411d;
+}
+.level5 {
+    background: #fc0d1b;
+}
+.rating-container .rating-stars {
+    color: #fc0d1b;
 }

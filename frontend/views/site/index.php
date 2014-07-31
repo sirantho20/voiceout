@@ -8,6 +8,7 @@ use app\models\Company;
 use app\models\Pictures;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use frontend\components\Voh;
 ?>
 <div class="site-index">
 <div class="container">
@@ -98,7 +99,7 @@ Report below</p>
                             <div class="meta-info"><span class="">By: Anonymous</span><span class="bullet"> • </span><span class="">2 minutes ago</span></div>
                          </div>
                         <p class="description"><?php echo \frontend\components\Voh::truncateByWord(Html::encode($complaint->complaint), 160, '...') ;  ?><p>
-                        <div class="attributes"><a href="<?= Url::toRoute("/complaint/".$complaint->slug) ?>" class="btn btn-default btn-xs pull-left">View</a> <span class="pull-right"><i class="glyphicon glyphicon-heart-empty"></i> 20 &nbsp; <span><span class="pull-right"><i class="glyphicon glyphicon-comment"></i> 2 &nbsp; <span><span class="pull-right"><i class="glyphicon glyphicon-fire gly"></i> 10</span></div>
+                        <div class="attributes"><a href="<?= Url::toRoute("/complaint/".$complaint->slug) ?>" class="btn btn-default btn-xs pull-left">View</a> <span class="pull-right"><i class="glyphicon glyphicon-heart-empty"></i> <?= Voh::FollowCounter($complaint->complaint_id) ?>&nbsp; <span><span class="pull-right"><i class="glyphicon glyphicon-comment"></i> <?= Voh::ReplyCounter($complaint->complaint_id) ?>&nbsp; <span><span class="pull-right"><i class="glyphicon glyphicon-fire"></i> <?= Voh::EscalateCounter($complaint->complaint_id) ?></span></div>
                     </div>
             <?php
                     }
@@ -149,11 +150,11 @@ E: info@ivoiceout.com
                 </div>
                 <div class="col-sm-4">
                     <h4>Subscribe to updates</h4>
-                    <p>Receive free tips on how to offer better customer service.Subscribe below</p>
+                    <p>Receive free tips on how to offer better customer service. Subscribe below</p>
                     <div class="input-group">
                         <input type="text" placeholder="Email address" class="form-control">
                         <span class="input-group-btn">
-                          <button class="btn btn-default" type="button">Subscribe!</button>
+                          <button class="btn btn-success" type="button">Subscribe!</button>
                         </span>
                     </div><!-- /input-group -->
                 </div>

@@ -5,23 +5,21 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "mup_timeline".
+ * This is the model class for table "mup_company_following".
  *
  * @property integer $id
  * @property string $company_id
- * @property string $action_type
- * @property string $action_id
+ * @property string $user_id
  * @property string $date_added
- * @property string $complaint_id
  */
-class Timeline extends \yii\db\ActiveRecord
+class CompanyFollowing extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'mup_timeline';
+        return 'mup_company_following';
     }
 
     /**
@@ -30,10 +28,9 @@ class Timeline extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['company_id', 'action_type', 'action_id', 'date_added'], 'required'],
+            [['company_id', 'user_id', 'date_added'], 'required'],
             [['date_added'], 'safe'],
-            [['company_id', 'action_id', 'complaint_id'], 'string', 'max' => 12],
-            [['action_type'], 'string', 'max' => 1]
+            [['company_id', 'user_id'], 'string', 'max' => 45]
         ];
     }
 
@@ -45,10 +42,8 @@ class Timeline extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'company_id' => 'Company ID',
-            'action_type' => 'Action Type',
-            'action_id' => 'Action ID',
+            'user_id' => 'User ID',
             'date_added' => 'Date Added',
-            'complaint_id' => 'Complaint ID',
         ];
     }
 }

@@ -37,6 +37,7 @@ dataType: "json"
 }
 SCRIPT;
 $generalscript = <<< GENERAL
+$("[data-toggle='tooltip']").tooltip(); 
 $.fn.extend({
 limiter: function(limit, elem){
 $(this).on("keyup focus lostfocus", function() {
@@ -102,10 +103,10 @@ $this->registerCssFile('/frontend/assets/fontawesome/css/font-awesome.min.css');
                 'content' => '<span class="char-counter"></span>',
                 ],
                 [
-                'content' => '<span id="add-location" data-target="#w0" data-toggle="modal" style="cursor:pointer;"><i class="glyphicon   glyphicon-map-marker"></i></span>',
+                'content' => '<span id="add-location" data-target="#w0" data-toggle="modal" style="cursor:pointer;"><i class="glyphicon   glyphicon-map-marker" data-toggle="tooltip" title="Add location"></i></span>',
                 ],
                 [
-                'content' => '<span onclick="openWindow()" style="cursor:pointer;"><i class="glyphicon glyphicon-paperclip"></i></span>',
+                'content' => '<span onclick="openWindow()" style="cursor:pointer;"><i class="glyphicon glyphicon-paperclip" data-toggle="tooltip" title="Add photo"></i></span>',
                 ],
                 [
                 'content' => Html::submitButton('<span>Send <i class="glyphicon glyphicon-bullhorn"></i></span>', [

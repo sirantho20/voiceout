@@ -66,7 +66,7 @@ AppAsset::register($this);
                 <?php echo AlertBlock::widget([
                     'useSessionFlash' => true,
                     'type' => AlertBlock::TYPE_ALERT,
-                    'delay' => 2000,
+                    'delay' => 5000,
                 ]); ?>
             </div>
         <?= $content ?>

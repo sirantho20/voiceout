@@ -10,6 +10,9 @@ use yii\helpers\Url;
 use yii\helpers\Json;
 use app\models\Pictures;
 use app\models\Reply;
+use app\models\Escalate;
+use app\models\Timeline;
+use app\models\ComplaintFollowing;
 
 class ComplaintController extends \yii\web\Controller
 {
@@ -110,11 +113,13 @@ class ComplaintController extends \yii\web\Controller
             $id = (int)$id;
         }
         $model = Complaint::find()->where(['complaint_id'=>$id])->one();
+        $reply = new Reply;
+        $escalate = new Escalate;
         if ($model === null)
             throw new \yii\web\HttpException(404,'The complaint you are looking for does not exist');
         else 
         {
-            return $this->render('index',['model'=>$model]);  
+            return $this->render('index',['model'=>$model,'reply'=>$reply,'escalate'=>$escalate]);  
         }
         Yii::$app->end();
     }
@@ -135,28 +140,123 @@ class ComplaintController extends \yii\web\Controller
         $model = new Reply;
         if ($model->load(Yii::$app->request->post()))
         {
-            $this->performReplyAjaxValidation($model);
-            $this->save($model);
+            //$this->performReplyAjaxValidation($model);
+            if ($model->validate())
+            {
+                $timeline = new Timeline;
+                $model->save(false);
+                $timeline->id = null;
+                $timeline->company_id = $model->company_id;
+                $timeline->action_type = "R";
+                $timeline->complaint_id = $model->complaint_id;
+                $timeline->action_id = $model->id;
+                $timeline->date_added = new \yii\db\Expression('Now()');
+                $timeline->save(false);
+                
+                Yii::$app->session->setFlash('success', 'Complaint escalated successfully');
+                $this->redirect(Yii::$app->request->referrer);
+                Yii::$app->end();
+            }
+            else
+            {
+                Yii::$app->session->setFlash('error', 'Unable to add reply. Please try again');
+                $this->redirect(Yii::$app->request->referrer);
+                Yii::$app->end();
+            }
         }
         else
         {
-            return $this->render('new');
+                Yii::$app->session->setFlash('error', 'Unable to add reply. Please try again');
+                $this->redirect(Yii::$app->request->referrer);
+                Yii::$app->end();
         }
         
     }
     
-    protected function performReplyAjaxValidation($model)
+     public function actionEscalate()
     {
-        if(isset($_POST['ajax']) && $_POST['ajax']==='complaint-reply')
+        $model = new Escalate;
+        if ($model->load(Yii::$app->request->post()))
         {
-            echo Json::encode(ActiveForm::validate($model));
-            Yii::$app->end();
+            if ($model->validate())
+            {
+                if (\frontend\components\Voh::EscalateUserCounter($model->complaint_id, $model->user_id))
+                {
+                    Yii::$app->session->setFlash('error', 'You have already escalated this complaint');
+                    $this->redirect(Yii::$app->request->referrer);
+                    Yii::$app->end();
+                }
+                $timeline = new Timeline;
+                $model->save(false);
+                $timeline->id = null;
+                $timeline->company_id = $model->company_id;
+                $timeline->action_type = "E";
+                $timeline->complaint_id = $model->complaint_id;
+                $timeline->action_id = $model->id;
+                $timeline->date_added = new \yii\db\Expression('Now()');
+                $timeline->save(false);
+                Yii::$app->session->setFlash('success', 'Complaint escalated successfully');
+                $this->redirect(Yii::$app->request->referrer);
+                Yii::$app->end();
+            }
+            else
+            {
+                Yii::$app->session->setFlash('error', 'Unable to escalate this complaint. Please try again');
+                $this->redirect(Yii::$app->request->referrer);
+                Yii::$app->end();
+            }
         }
+        else
+        {
+                Yii::$app->session->setFlash('error', 'Unable to escalate this complaint. Please try again');
+                $this->redirect(Yii::$app->request->referrer);
+                Yii::$app->end();
+        }
+        
     }
     
-    public static function Timeline()
+    public function actionFollow()
     {
-        
+        $model = new ComplaintFollowing;
+        if (isset($_GET['complaint_id']) && isset($_GET['company_id']))
+        {
+            $complaint_id = trim(strip_tags($_GET['complaint_id']));
+            $company_id = trim(strip_tags($_GET['company_id']));
+            $model->complaint_id = $complaint_id;
+            if ($model->validate())
+            {
+                if (\frontend\components\Voh::FollowUserCounter($model->complaint_id, $model->user_id))
+                {
+                    Yii::$app->session->setFlash('error', 'You are already following this complaint');
+                    $this->redirect(Yii::$app->request->referrer);
+                    Yii::$app->end();
+                }
+                $timeline = new Timeline;
+                $model->save(false);
+                $timeline->id = null;
+                $timeline->company_id = $company_id;
+                $timeline->action_type = "F";
+                $timeline->complaint_id = $model->complaint_id;
+                $timeline->action_id = $model->id;
+                $timeline->date_added = new \yii\db\Expression('Now()');
+                $timeline->save(false);
+                Yii::$app->session->setFlash('success', 'You are now following this complaint');
+                $this->redirect(Yii::$app->request->referrer);
+                Yii::$app->end();
+            }
+            else
+            {
+                Yii::$app->session->setFlash('error', 'Unable to follow this complaint. Please try again');
+                $this->redirect(Yii::$app->request->referrer);
+                Yii::$app->end();
+            }
+        }
+        else 
+        {
+                Yii::$app->session->setFlash('error', 'Unable to follow this complaint. Please try again');
+                $this->redirect(Yii::$app->request->referrer);
+                Yii::$app->end();
+        }
     }
 
 }

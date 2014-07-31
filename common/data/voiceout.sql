@@ -398,6 +398,7 @@ CREATE TABLE `mup_reply` (
   `company_id` varchar(12) NOT NULL,
   `user_id` varchar(12) NOT NULL,
   `type` CHAR(1) NOT NULL DEFAULT 'R',
+  `level` VARCHAR(5) NULL,
   PRIMARY KEY (`id`),
   KEY `fk_company_reply_idx` (`company_id`),
   KEY `fk_complaint_reply_idx` (`complaint_id`),
@@ -453,9 +454,9 @@ UNLOCK TABLES;
 --
 -- Table structure for table `mup_reply_best`
 --
-
+DROP TABLE IF EXISTS `mup_reply_best`;
 CREATE TABLE IF NOT EXISTS `mup_reply_best` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `complaint_id` varchar(12) NOT NULL,
   `reply_id` int(11) NOT NULL,
   `date_added` datetime NOT NULL,
@@ -463,13 +464,33 @@ CREATE TABLE IF NOT EXISTS `mup_reply_best` (
   UNIQUE KEY `complaint_id` (`complaint_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+DROP TABLE IF EXISTS `mup_timeline`;
 CREATE TABLE `mup_timeline` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `company_id` varchar(12) NOT NULL,
   `action_type` char(1) NOT NULL COMMENT 'F-Following,R-Reply,A-Answer,E-Escalate,U-Unfollow,B-Best Answer',
-  `date_added` datetime NOT NULL
+  `action_id` varchar(12) NOT NULL,
+  `date_added` datetime NOT NULL,
+  `complaint_id` VARCHAR(12) NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+DROP TABLE IF EXISTS `mup_complaint_following`;
+CREATE TABLE `mup_complaint_following` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `complaint_id` VARCHAR(45) NOT NULL,
+  `user_id` VARCHAR(45) NOT NULL,
+  `date_added` DATETIME NOT NULL,
+  PRIMARY KEY (`id`));
+
+DROP TABLE IF EXISTS `mup_company_following`;
+CREATE TABLE `mup_company_following` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `company_id` varchar(45) NOT NULL,
+  `user_id` varchar(45) NOT NULL,
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

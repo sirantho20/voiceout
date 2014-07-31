@@ -21,7 +21,7 @@ use frontend\components\Voh;
  * @property MupCompany $company
  * @property MupComplaint $complaint
  */
-class Reply extends \yii\db\ActiveRecord
+class Escalate extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -63,6 +63,7 @@ class Reply extends \yii\db\ActiveRecord
             'level' => 'Level',
         ];
     }
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -79,9 +80,6 @@ class Reply extends \yii\db\ActiveRecord
         return $this->hasOne(MupComplaint::className(), ['complaint_id' => 'complaint_id']);
     }
     
-    /*
-     * set date and other options before validation
-     */
     public function beforeValidate() {
         if ($this->isNewRecord)
         {
