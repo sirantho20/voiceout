@@ -40,6 +40,7 @@ return [
                     'complaint/reply' => 'complaint/reply',
                     'complaint/escalate' => 'complaint/escalate',
                     'complaint/follow' => 'complaint/follow',
+                    'complaint/unfollow' => 'complaint/unfollow',
                     'complaint/<slug:[a-zA-Z0-9-]+>' => 'complaint/index',
                     '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                     '<controller:\w+>/<action:\w+>' => '<controller>/<action>',

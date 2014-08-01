@@ -258,5 +258,33 @@ class ComplaintController extends \yii\web\Controller
                 Yii::$app->end();
         }
     }
+    
+    public function actionUnfollow()
+    {
+        if (isset($_GET['complaint_id']) && isset($_GET['company_id']))
+        {
+            $complaint_id = trim(strip_tags($_GET['complaint_id']));
+            $company_id = trim(strip_tags($_GET['company_id']));
+            //get current user
+            $user_id = \frontend\components\Voh::guest_id;
+            if (\frontend\components\Voh::FollowUserCounter($complaint_id, $user_id))
+            {
+                $follow = ComplaintFollowing::find()->where(['complaint_id'=>$complaint_id,'user_id'=>$user_id])->one();
+                $timeline = Timeline::find()->where(['action_id'=>$follow->id,'action_type'=>'F'])->one();
+                $timeline->delete();
+                $follow->delete();
+                Yii::$app->session->setFlash('success', 'You are no more following this complaint');
+                $this->redirect(Yii::$app->request->referrer);
+                Yii::$app->end();
+            }
+            
+        }
+        else 
+        {
+                Yii::$app->session->setFlash('error', 'Unable to stop following this complaint. Please try again');
+                $this->redirect(Yii::$app->request->referrer);
+                Yii::$app->end();
+        }
+    }
 
 }
