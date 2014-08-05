@@ -6,6 +6,8 @@
 namespace frontend\components;
 
 use app\models\Complaint;
+use app\models\Company;
+use app\models\User;
 use Yii;
 
 class Voh 

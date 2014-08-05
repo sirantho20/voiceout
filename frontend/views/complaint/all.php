@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use app\models\Company;
 use yii\helpers\Url;
-
+use yii\widgets\LinkPager;
 /**
  * @var yii\web\View $this
  * @var app\models\Complaint $model
@@ -35,13 +35,11 @@ $this->title = 'All Complaints';
         
     </tfoot>
 </table>
-<ul class="pagination">
-  <li><a href="#">&laquo;</a></li>
-  <li class="active disabled"><a href="#">1</a></li>
-  <li><a href="#">2</a></li>
-  <li><a href="#">3</a></li>
-  <li><a href="#">4</a></li>
-  <li><a href="#">5</a></li>
-  <li><a href="#">&raquo;</a></li>
-</ul>
+<?php    
+// display pagination
+echo LinkPager::widget([
+    'pagination' => $pages,
+]);
+?>
+
 </div><!-- @end of container -->

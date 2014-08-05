@@ -4,6 +4,8 @@ namespace app\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
+use yii\db\Expression;
+use frontend\components\Voh;
 
 /**
  * This is the model class for table "mup_company".
@@ -19,13 +21,13 @@ use yii\helpers\ArrayHelper;
  * @property string $slug
  * @property string $is_registered
  * @property integer $license_package
+ * @property string $description
  *
  * @property MupCategory $category
  * @property MupIndustry $industry
  * @property MupLicensePacakges $licensePackage
  * @property MupCompanyDetails[] $mupCompanyDetails
  * @property MupCompanyUsers[] $mupCompanyUsers
- * @property MupComplaint[] $mupComplaints
  * @property MupReply[] $mupReplies
  */
 class Company extends \yii\db\ActiveRecord
@@ -44,13 +46,14 @@ class Company extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['company_id', 'company_name', 'date_added', 'date_updated', 'slug'], 'required'],
+            [['company_id', 'company_name', 'date_added', 'date_updated', 'slug', 'description'], 'required'],
             [['date_added', 'date_updated'], 'safe'],
             [['industry_id', 'category_id', 'license_package'], 'integer'],
             [['company_id'], 'string', 'max' => 12],
             [['company_name'], 'string', 'max' => 100],
             [['confirmed', 'is_registered'], 'string', 'max' => 1],
             [['slug'], 'string', 'max' => 255],
+            [['description'], 'string', 'max' => 140],
             [['company_id'], 'unique'],
             [['company_name'], 'unique']
         ];
@@ -73,6 +76,7 @@ class Company extends \yii\db\ActiveRecord
             'slug' => 'Slug',
             'is_registered' => 'Is Registered',
             'license_package' => 'License Package',
+            'description' => 'Description',
         ];
     }
 
@@ -148,4 +152,47 @@ class Company extends \yii\db\ActiveRecord
             return $model->company_name;
         } 
     }
+    
+     /*
+     *  @return company slug give id. if no id, return an array of all
+     */
+    public static function getCompanySlug($id)
+    {
+        $id = (int)$id;
+        $model = self::find()->where(['company_id'=>$id])->one();
+        return $model->slug;
+    }
+    
+    /*
+    * Behaviors for this model
+    */
+    public function behaviors()
+    {
+    return [
+        'slug' => [
+            'class' => 'Zelenin\yii\behaviors\Slug',
+            'source_attribute' => ['company_id','company_name'],
+            'slug_attribute' => 'slug',
+
+            // optional params
+            'translit' => true,
+            'replacement' => '-',
+            'lowercase' => true,
+            'unique' => true
+        ]
+    ];
+    }
+    
+    public function beforeValidate() {
+        $voh = new Voh;
+        if ($this->isNewRecord)
+        {
+            $this->company_id = $voh->newCompanyId();
+            $this->date_added = new Expression('Now()');
+        }
+        $this->date_updated = new Expression('Now()');
+        
+        return parent::beforeValidate();
+    }
+    
 }
