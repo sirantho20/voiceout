@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?php $form = ActiveForm::begin(['id' => 'login-form','options' => ['class' => 'smart-form client-form']]) ?>
                 <header>
-                    Log In <?= \yii\helpers\Url::base('http') ?>
+                    Log In
                 </header>
 <fieldset>
                 <section>

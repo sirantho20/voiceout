@@ -8,7 +8,7 @@ return [
            'allowUnconfirmedLogin' => true,
            'confirmWithin' => 21600,
            'cost' => 12,
-           'admins' => ['admin'],
+           'admins' => ['admin','tony'],
            'controllerMap' => [
                 'admin' => 'backend\controllers\AdminController',
                 'security' => 'backend\controllers\SecurityController'
@@ -38,8 +38,14 @@ return [
         'urlManager' => [
         'class' => 'yii\web\UrlManager',
         'enablePrettyUrl' => true,
-        'showScriptName' => true,
+        'showScriptName' => false,
         ],
-        
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@dektrium/user/views' => '@backend/views/user'
+                ],
+            ],
+        ],
     ],
 ];

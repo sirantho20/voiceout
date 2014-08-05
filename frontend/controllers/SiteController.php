@@ -9,6 +9,7 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use dektrium\user\controllers\SecurityController as BaseUserController;
 
 /**
  * Site controller
@@ -69,18 +70,7 @@ class SiteController extends Controller
 
     public function actionLogin()
     {
-        if (!\Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        } else {
-            return $this->render('login', [
-                'model' => $model,
-            ]);
-        }
+       return $this->redirect(['user/login']);
     }
 
     public function actionLogout()
@@ -111,5 +101,10 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+    
+    public function actionSignup()
+    {
+        return $this->redirect(['user/register']);
     }
 }
