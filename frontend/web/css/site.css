@@ -353,3 +353,48 @@ overflow: hidden;
 .complaint-item .complaint-item-body { float: left;font-size: 12px;height: 55px;line-height: 1.5em;overflow: hidden;padding: 3px;width: 55%; color:#555;}
 .complaint-item .complaint-item-action { float: right; width: 25%; padding: 12px 10px; display: block;text-align: right;  }
 .company-sidebar { background-image: linear-gradient(to right, #f7f9fa 0%, #ffffff 8px); box-shadow: 1px 0 0 #eeeeee inset; min-height: 250px; padding: 12px 0 15px 20px;}
+.frc { padding:0; }
+.frc-item { height: 180px; padding: 10px; margin: 2px; background: #ffffff; overflow: hidden;}
+.frc .frc-img { height: 70px; overflow: hidden; width: 70px; float: left; border: 1px solid #f5f5f5; margin-right: 10px; margin-bottom: 10px; }
+.frc-section { background: #efefef; padding-bottom: 20px; }
+.frc .meta-info { color: #C7C7C7; font-size: 1.0em; font-weight: 100; }
+.frc .description { color: #C7C7C7; font-size: 1.1em; font-weight: 100; height: 130px; display: block; overflow: hidden; margin-bottom: 8px; }
+.frc .ftext { margin: 2px 0; padding: 0;float: left; width:50%;}
+.frc h4 {
+     color: #555;
+    font-size: 1.2em;
+    font-weight: 400;
+    margin-bottom: 2px;
+    margin-top:0;
+}
+.frc h4 a {
+    color: #555;
+}
+.frc .attributes {
+    width: 50px;
+    height: 180px;
+    border-left: 1px solid #efefef;
+    color: #C7C7C7;
+    float: right;
+    padding: 10px 5px;
+    font-size: 12px;
+    margin-top: -10px;
+    padding: 20px 0 15px 3px;
+    text-align: center;
+}
+.frc .attributes span { margin-bottom: 10px; display: inline-block; }
+.fmenu { background: #f7f9fa; border-top: solid 1px #DDDDDD; border-bottom: solid 1px #dddddd; margin-bottom: 1px; }
+.fmenu .container { padding-left: 2px; padding-right: 2px; }
+.fmenu .cmenu ul { margin: 0; padding: 0; list-style: none; display: block; width: 100%; }
+.fmenu .cmenu li { margin: 0; padding: 0; display: block; float: left; width: 33.33%; }
+.fmenu .cmenu a { padding: 10px 15px; width:100%; display: block; float: left; border-left: solid 1px #dddddd; color:#555; text-decoration: none; }
+.fmenu .cmenu li:first-child a { border-left-color: #f7f9fa; padding-left: none;}
+.fmenu .cmenu li:last-child a { border-right:1px solid #dddddd; }
+.fmenu .cmenu a:hover,.fmenu .cmenu li.active a { background-color: #eeeeee;}
+.fmenu .cmenu li:first-child a:hover,.fmenu .cmenu li.active:first-child a { border-left: solid 1px #dddddd;}
+.fmenu .cmenu li:last-child a:hover,.fmenu .cmenu li.active:last-child a { border-right: solid 1px #dddddd;}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .frc .ftext { width: 60%; }
+}
