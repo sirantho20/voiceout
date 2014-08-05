@@ -21,7 +21,8 @@
                 "kartik-v/yii2-widgets": "dev-master",
                 "zelenin/yii2-slug-behavior": "dev-master",
                 "kartik-v/yii2-popover-x": "dev-master",
-                "kartik-v/yii2-grid": "*"
+                "kartik-v/yii2-grid": "*",
+                "dektrium/yii2-user": "*"
 	},
 	"require-dev": {
 		"yiisoft/yii2-codeception": "*",

@@ -130,30 +130,15 @@ class Select2 extends InputWidget
                 Html::addCssClass($group, 'input-group' . $size . ' select2-bootstrap-prepend');
             }
             if (is_array($append)) {
-                $newappend = '';
-                foreach ($append as $eachappend)
-                {
-                    $content = ArrayHelper::getValue($eachappend, 'content', '');
-                    if (isset($eachappend['asButton']) && $eachappend['asButton'] == true) {
-                        $newappend .= Html::tag('div', $content, ['class' => 'input-group-btn']);
-                    } else {
-                        $newappend .= Html::tag('span', $content, ['class' => 'input-group-addon']);
-                    }
-                    Html::addCssClass($group, 'input-group' . $size . ' select2-bootstrap-append');
-                    
-                    //original code
-                    /* 
-                    $content = ArrayHelper::getValue($append, 'content', '');
-                    if (isset($append['asButton']) && $append['asButton'] == true) {
-                        $append = Html::tag('div', $content, ['class' => 'input-group-btn']);
-                    } else {
-                        $append = Html::tag('span', $content, ['class' => 'input-group-addon']);
-                    }
-                    Html::addCssClass($group, 'input-group' . $size . ' select2-bootstrap-append');
-                    */
+                $content = ArrayHelper::getValue($append, 'content', '');
+                if (isset($append['asButton']) && $append['asButton'] == true) {
+                    $append = Html::tag('div', $content, ['class' => 'input-group-btn']);
+                } else {
+                    $append = Html::tag('span', $content, ['class' => 'input-group-addon']);
                 }
+                Html::addCssClass($group, 'input-group' . $size . ' select2-bootstrap-append');
             }
-            $addonText = $prepend . $input . $newappend;
+            $addonText = $prepend . $input . $append;
             $contentBefore = ArrayHelper::getValue($addon, 'contentBefore', '');
             $contentAfter = ArrayHelper::getValue($addon, 'contentAfter', '');
             return Html::tag('div', $contentBefore . $addonText . $contentAfter, $group);
@@ -170,7 +155,7 @@ class Select2 extends InputWidget
     protected function renderInput()
     {
         $class = $this->pluginLoading ? 'kv-hide ' : '';
-        if (!isset($this->addon) && isset($this->size)) {
+        if (empty($this->addon) && isset($this->size)) {
             $class .= 'input-' . $this->size;
         }
         if ($this->pluginLoading) {

@@ -138,6 +138,7 @@ class User extends Component
 
     private $_access = [];
 
+
     /**
      * Initializes the application component.
      */
@@ -551,7 +552,7 @@ class User extends Component
         $session->remove($this->idParam);
         $session->remove($this->authTimeoutParam);
 
-        if ($identity instanceof IdentityInterface) {
+        if ($identity) {
             $session->set($this->idParam, $identity->getId());
             if ($this->authTimeout !== null) {
                 $session->set($this->authTimeoutParam, time() + $this->authTimeout);

@@ -3,20 +3,15 @@ return [
     'components' => [
         'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=127.0.0.1;dbname=voiceout',
-            'username' => 'voiceout',
-            'password' => 'voiceout',
+            'dsn' => 'mysql:host=localhost;dbname=voiceout',
+            'username' => 'root',
+            'password' => 'AFtony19833',
             'charset' => 'utf8',
         ],
         'mail' => [
             'class' => 'yii\swiftmailer\Mailer',
             'viewPath' => '@common/mail',
             'useFileTransport' => true,
-        ],
-        'urlManager' => [
-            'class' => 'yii\web\UrlManager',
-            'enablePrettyUrl' => true,
-            'showScriptName' => false
         ],
     ],
 ];

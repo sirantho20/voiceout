@@ -38,14 +38,8 @@ return [
         'urlManager' => [
         'class' => 'yii\web\UrlManager',
         'enablePrettyUrl' => true,
-        'showScriptName' => false,
+        'showScriptName' => true,
         ],
-    /*  'view' => [
-            'theme' => [
-                'pathMap' => [
-                    '@dektrium/user/views' => '@app/views/user',
-                ],
-            ],
-        ], */
+        
     ],
 ];
