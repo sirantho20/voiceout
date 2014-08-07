@@ -1,6 +1,9 @@
 <?php
 return [
     'bootstrap' => ['gii'],
+    'aliases' => [
+        '@dektrium/user' => realpath(__DIR__ . '/../modules/user'),
+    ],
     'modules' => [
         'gii' => 'yii\gii\Module',
         'user' => [
@@ -43,7 +46,7 @@ return [
         'view' => [
             'theme' => [
                 'pathMap' => [
-                    'dektrium/user/views' => '@backend/views/user'
+                    '@dektrium/user/views' => '@app/views/user',
                 ],
             ],
         ],
