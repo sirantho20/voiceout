@@ -14,6 +14,7 @@ use yii\filters\VerbFilter;
  */
 class CompanyDetailsController extends Controller
 {
+    public $layout = '/adminMain';
     public function behaviors()
     {
         return [
@@ -60,25 +61,26 @@ class CompanyDetailsController extends Controller
      */
     public function actionCreate()
     {
-        $model = new CompanyDetails;
+        $model = new CompanyDetails();
 
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $logopath = Yii::$app->controller->module->basePath.'/assets/uploads/logo';
-            $bannerpath = Yii::$app->controller->module->basePath.'/assets/uploads/banner';
+        if ($model->load(Yii::$app->request->post()) && $model->save()) 
+        {
+//            $logopath = Yii::$app->controller->module->basePath.'/assets/uploads/logo';
+//            $bannerpath = Yii::$app->controller->module->basePath.'/assets/uploads/banner';
+//            
+//            $logo = \yii\web\UploadedFile::getInstance($model, 'logo_pic');
+//            $banner = \yii\web\UploadedFile::getInstance($model, 'wallpaper_pic');
+//            
+//            $logo->name = $model->company_id.'logo'.$logo->extension;
+//            $banner->name = $model->company_id.'banner'.$banner->extention;
+//            
+//            $logo->saveAs($logopath.$logo->name);
+//            $banner->saveAs($bannerpath.$banner->name);
+//            
+//            $model->logo_pic = $logo->name;
+//            $model->wallpaper_pic = $banner->name;
             
-            $logo = \yii\web\UploadedFile::getInstance($model, 'logo_pic');
-            $banner = \yii\web\UploadedFile::getInstance($model, 'wallpaper_pic');
-            
-            $logo->name = $model->company_id.'logo'.$logo->extension;
-            $banner->name = $model->company_id.'banner'.$banner->extention;
-            
-            $logo->saveAs($logopath.$logo->name);
-            $banner->saveAs($bannerpath.$banner->name);
-            
-            $model->logo_pic = $logo->name;
-            $model->wallpaper_pic = $banner->name;
-            
-            $model->save();
+//            $model->save();
             
             return $this->redirect(['view', 'id' => $model->id]);
         } 
@@ -86,6 +88,7 @@ class CompanyDetailsController extends Controller
             {
             return $this->render('create', [
                 'model' => $model,
+                'errors' => $model->getErrors()
             ]);
             }
     }
@@ -99,20 +102,14 @@ class CompanyDetailsController extends Controller
     public function actionUpdate()
     {
         $company_id = Yii::$app->user->identity->company_id;
-        $model = CompanyDetails::find(['company_id' => $company_id])->all();
-        if($model)
-        {
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
-            } else {
-                return $this->render('update', [
-                    'model' => $model,
-                ]);
-            }
-        }
-        else 
-        {
-            return $this->redirect(['create']);
+        $models = CompanyDetails::find(['company_id' => $company_id])->all();
+        $id = $models[0]['id'];
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->render('create', ['model' => $model]);
+        } else {
+            return $this->render('create',['model'=>$model]);
         }
     }
 

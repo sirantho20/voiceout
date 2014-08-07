@@ -41,7 +41,7 @@
                                         <a href="#" title="Sites"><i class="fa fa-lg fa-fw fa-comments-o"></i> <span class="menu-item-parent">Complaints</span></a>
                                         <ul>
                                             <li>
-                                                <a href="<?= Url::to(['sites/index']) ?>" title="Manage Sites">Inbox</a>
+                                                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['complaint/index']) ?>" title="Manage Sites">Inbox</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -59,7 +59,7 @@
                                                     <span class="menu-item-parent">Account</span>
                                                 </a>
                                             <ul>
-                                                <li><a href="#">Details</a></li>
+                                                <li><a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['company-details/update','company_id'=>  Yii::$app->user->identity->company_id]) ?>">Details</a></li>
                                                 <li><a href="#">Subscription Plan</a></li>
                                             </ul>
 					</li>

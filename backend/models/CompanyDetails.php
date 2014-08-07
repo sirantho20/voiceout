@@ -85,6 +85,6 @@ class CompanyDetails extends \yii\db\ActiveRecord
     
     public function beforeValidate() {
         $this->company_id = Yii::$app->user->identity->company_id;
-        parent::beforeValidate();
+        return parent::beforeValidate();
     }
 }

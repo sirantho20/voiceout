@@ -17,10 +17,12 @@ use yii\web\AssetBundle;
 
 class smartadminBundle extends AssetBundle {
     
-     public $basePath = '@webroot';
+    public $basePath = '@webroot';
     public $baseUrl = '@web/smartadmin';
     public $css = ['css/font-awesome.min.css','css/smartadmin-production.css','css/smartadmin-skins.css'];
-    public $js = ['js/notification/SmartNotification.min.js',
+    public $js = [  'js/libs/jquery-ui-1.10.3.min.js',
+                    'js/bootstrap/bootstrap.min.js',
+                    'js/notification/SmartNotification.min.js',
                     'js/smartwidgets/jarvis.widget.min.js',
                     'js/plugin/sparkline/jquery.sparkline.min.js',
                     'js/plugin/msie-fix/jquery.mb.browser.min.js',

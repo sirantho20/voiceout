@@ -9,7 +9,6 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="complaint-form">
-
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'complaint_id')->textInput(['maxlength' => 12]) ?>
@@ -25,8 +24,6 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'date_updated')->textInput() ?>
 
     <?= $form->field($model, 'rating')->textInput() ?>
-
-    <?= $form->field($model, 'read_date')->textInput() ?>
 
     <?= $form->field($model, 'cookie_id')->textInput(['maxlength' => 45]) ?>
 
