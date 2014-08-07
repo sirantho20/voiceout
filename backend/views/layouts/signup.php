@@ -25,7 +25,7 @@ use yii\helpers\Html;
 				<!-- END AJAX-DROPDOWN -->
 			</div>
 
-                    <span id="login-header-space"> <span class="hidden-mobile"></span> <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['user/register']) ?>" class="btn btn-danger">Go to Main Website</a> </span>
+                    <span id="login-header-space"> <span class="hidden-mobile"></span> <a href="<?= Yii::$app->urlManager->createAbsoluteUrl('/') ?>" class="btn btn-danger">Go to Main Website</a> </span>
 
 		</header>
 

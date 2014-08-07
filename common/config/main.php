@@ -8,7 +8,7 @@ return [
            'allowUnconfirmedLogin' => true,
            'confirmWithin' => 21600,
            'cost' => 12,
-           'admins' => ['admin'],
+           'admins' => ['admin','tony'],
            'controllerMap' => [
                 'admin' => 'backend\controllers\AdminController',
                 'security' => 'backend\controllers\SecurityController'
@@ -40,12 +40,12 @@ return [
         'enablePrettyUrl' => true,
         'showScriptName' => false,
         ],
-    /*  'view' => [
+        'view' => [
             'theme' => [
                 'pathMap' => [
-                    '@dektrium/user/views' => '@app/views/user',
+                    '@dektrium/user/views' => '@backend/views/user'
                 ],
             ],
-        ], */
+        ],
     ],
 ];

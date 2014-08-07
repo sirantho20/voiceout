@@ -11,6 +11,28 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
+    'modules' => [
+                'user' => [
+           'class' => 'dektrium\user\Module',
+           'allowUnconfirmedLogin' => true,
+           'confirmWithin' => 21600,
+           'cost' => 12,
+           'admins' => ['admin','tony','badjornor'],
+           'controllerMap' => [
+                'admin' => 'backend\controllers\AdminController',
+                'security' => 'backend\controllers\SecurityController'
+            ],
+           'components' => [
+               'manager' => [
+                   'userClass'    => 'backend\models\User',
+                   'accountClass' => 'backend\models\Account',
+                   'profileClass' => 'backend\models\Profile',
+                   
+               ]
+               
+           ]
+       ],
+    ],
     'components' => [
         'user' => [
             'identityClass' => 'common\models\User',
@@ -53,6 +75,11 @@ return [
                     '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
                 ]
          ],
+        'request' => [
+            'enableCookieValidation' => true,
+            'enableCsrfValidation' => true,
+            'cookieValidationKey' => 'Thisr@th3rLong&wINdIngSt!ng',
+        ],
     ],
     'params' => $params,
 ];

@@ -1,13 +1,34 @@
+version 2.0.0
+=============
+**Date:** 25-Jul-2014
+
+1. (enh #12, #13, #14): Various enhancements and fixes.
+2. (enh #15): Enhanced validation of file size through `maxFileSize` configuration.
+3. New plugin events added: `fileerror`, `fileloaded`, `filecleared`.
+4. New plugin methods added: `disable`, `enable`
+5. Enhanced configurable templates for previewing image, text, and other files (and a generic template).
+6. Make caption text configurable through a new parameter `msgSelected`.
+7. Correct calculation of files selected when `initPreview` is false.
+8. Automatic scale images for preview, when images are too wide to fit in container.
+9. Added delimiter option for `initialPreview` to pass multiple content delimited as a string.
+
+version 1.9.0
+=============
+**Date:** 21-Jul-2014
+
+1. (enh #9): Enhanced caption template and styling for captions to prevent overflow of long file names out of the caption container.
+2. (enh #10): Ability to display initial caption, when initialPreview is false.
+
 version 1.8.0
 =============
-Date: 15-Jul-2014
+**Date:** 15-Jul-2014
 
 ### Additions
 1. (enh #9): Enhanced caption template and styling for captions to prevent overflow of long file names out of the caption container.
 
 version 1.7.0
 =============
-Date: 02-Jul-2014
+**Date:** 02-Jul-2014
 
 ### Additions
 1. The plugin now offers an additional `overwriteInitial` option. This is by default set to `true`, whereby, any `initialPreview`
@@ -16,7 +37,7 @@ Date: 02-Jul-2014
 
 version 1.6.0
 =============
-Date: 03-Jun-2014
+**Date:** 03-Jun-2014
 
 ### Additions
 1. The plugin now offers an additional `refresh` method. This enables you to dynamically change element attributes or plugin options
@@ -24,7 +45,7 @@ Date: 03-Jun-2014
 
 version 1.5.0
 =============
-Date: 23-May-2014
+**Date:** 23-May-2014
 
 ### Additions
 1. The plugin now offers an option to display initial preview of images/text/other files. This is useful
@@ -40,10 +61,9 @@ Date: 23-May-2014
 - elPreviewImage
 - elPreviewStatus
 
-
 version 1.0.0
 =============
-Date: 01-Jan-2014 
+**Date:** 01-Jan-2014 
 
 Initial release. The following features are included in this release:
 
