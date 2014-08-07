@@ -108,6 +108,7 @@ CREATE TABLE `mup_company` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `company_id` varchar(12) NOT NULL,
   `company_name` varchar(100) NOT NULL,
+  `description` VARCHAR(140) NOT NULL,
   `date_added` datetime NOT NULL,
   `date_updated` datetime NOT NULL,
   `confirmed` char(1) NOT NULL DEFAULT 'N' COMMENT 'Status of the company. User added companies must be confirmed before they are made public.',
@@ -134,10 +135,10 @@ CREATE TABLE `mup_company` (
 
 LOCK TABLES `mup_company` WRITE;
 /*!40000 ALTER TABLE `mup_company` DISABLE KEYS */;
-INSERT INTO `mup_company` VALUES (1,'123123456456','Softcube Limited','2014-05-27 19:52:44','2014-05-27 19:52:44','y',NULL,NULL,'softcube','y',NULL);
-INSERT INTO `mup_company` VALUES (2,'456456789789','Airtel Ghana','2014-05-27 19:52:44','2014-05-27 19:52:44','y',NULL,NULL,'airtel-ghana','y',NULL);
-INSERT INTO `mup_company` VALUES (3,'789789123123','Vodafone','2014-05-27 19:52:44','2014-05-27 19:52:44','y',NULL,NULL,'vodafone','y',NULL);
-INSERT INTO `mup_company` VALUES (4,'987987654654','Electricity Company of Ghana','2014-05-27 19:52:44','2014-05-27 19:52:44','y',NULL,NULL,'electricity-company-of-ghana','y',NULL);
+INSERT INTO `mup_company` VALUES (1,'123123456456','Softcube Limited','Web applications development experts','2014-05-27 19:52:44','2014-05-27 19:52:44','y',NULL,NULL,'softcube','y',NULL);
+INSERT INTO `mup_company` VALUES (2,'456456789789','Airtel Ghana','Telecommunication & mobile money services','2014-05-27 19:52:44','2014-05-27 19:52:44','y',NULL,NULL,'airtel-ghana','y',NULL);
+INSERT INTO `mup_company` VALUES (3,'789789123123','Vodafone','Telecommunication giant','2014-05-27 19:52:44','2014-05-27 19:52:44','y',NULL,NULL,'vodafone','y',NULL);
+INSERT INTO `mup_company` VALUES (4,'987987654654','Electricity Company of Ghana','Utility service provider','2014-05-27 19:52:44','2014-05-27 19:52:44','y',NULL,NULL,'electricity-company-of-ghana','y',NULL);
 /*!40000 ALTER TABLE `mup_company` ENABLE KEYS */;
 UNLOCK TABLES;
 

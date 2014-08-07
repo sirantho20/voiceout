@@ -24,7 +24,6 @@ abstract class BaseManager extends Component implements ManagerInterface
      */
     public $defaultRoles = [];
 
-
     /**
      * Returns the named auth item.
      * @param string $name the auth item name.

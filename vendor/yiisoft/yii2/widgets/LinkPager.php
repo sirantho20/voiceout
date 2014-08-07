@@ -103,7 +103,6 @@ class LinkPager extends Widget
      */
     public $hideOnSinglePage = true;
 
-
     /**
      * Initializes the pager.
      */

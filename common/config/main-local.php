@@ -4,8 +4,8 @@ return [
         'db' => [
             'class' => 'yii\db\Connection',
             'dsn' => 'mysql:host=localhost;dbname=voiceout',
-            'username' => 'root',
-            'password' => 'AFtony19833',
+            'username' => 'voiceout',
+            'password' => 'voiceout',
             'charset' => 'utf8',
         ],
         'mail' => [

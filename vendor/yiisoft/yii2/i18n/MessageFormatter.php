@@ -47,7 +47,6 @@ class MessageFormatter extends Component
     private $_errorCode = 0;
     private $_errorMessage = '';
 
-
     /**
      * Get the error code from the last operation
      * @link http://php.net/manual/en/messageformatter.geterrorcode.php
@@ -391,8 +390,7 @@ class MessageFormatter extends Component
                         return false;
                     }
                     $selector = trim($plural[$i++]);
-
-                    if ($i == 1 && strncmp($selector, 'offset:', 7) === 0) {
+                    if ($i == 1 && substr($selector, 0, 7) == 'offset:') {
                         $offset = (int) trim(mb_substr($selector, 7, ($pos = mb_strpos(str_replace(["\n", "\r", "\t"], ' ', $selector), ' ', 7)) - 7));
                         $selector = trim(mb_substr($selector, $pos + 1));
                     }

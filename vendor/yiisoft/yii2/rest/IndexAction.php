@@ -31,7 +31,6 @@ class IndexAction extends Action
      */
     public $prepareDataProvider;
 
-
     /**
      * @return ActiveDataProvider
      */

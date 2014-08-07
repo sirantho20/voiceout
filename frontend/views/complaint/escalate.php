@@ -48,7 +48,7 @@ $this->registerJs($script,View::POS_READY);
 $form = ActiveForm::begin(['id'=>'complaint-escalate','action'=>  Url::toRoute('/complaint/escalate'),'method'=>'post','options' => ['enctype'=>'multipart/form-data'],'enableAjaxValidation'=>true,'enableClientValidation'=>false]);
 echo $form->field($model, 'level')->hiddenInput()->label(false)->error(false);
 ?>
-    <input type="checkbox" id="addMessage"/> Add a message
+    <input type="checkbox" id="addMessage" name="addMessage"/> <label for="addMessage">Add a message</label>
     
 <?= $form->field($model, 'complaint_id')->hiddenInput(['value'=>$complaintid])->label(false) ?>
     <div style="display:none;" id="showMessage">

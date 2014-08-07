@@ -68,7 +68,6 @@ class MigrateController extends BaseMigrateController
      */
     public $db = 'db';
 
-
     /**
      * @inheritdoc
      */

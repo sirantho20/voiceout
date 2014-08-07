@@ -85,7 +85,6 @@ class Pjax extends Widget
      */
     public $clientOptions;
 
-
     /**
      * @inheritdoc
      */

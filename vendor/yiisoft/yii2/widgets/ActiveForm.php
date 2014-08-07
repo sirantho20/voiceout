@@ -142,17 +142,6 @@ class ActiveForm extends Widget
      */
     public $beforeValidate;
     /**
-     * @var string|JsExpression a JS callback that is called before any validation has run (Only called when the form is submitted).
-     * The signature of the callback should be:
-     *
-     * ~~~
-     * function ($form, data) {
-     *     ...return false to cancel the validation...
-     * }
-     * ~~~
-     */
-    public $beforeValidateAll;
-    /**
      * @var string|JsExpression a JS callback that is called after validating an attribute.
      * The signature of the callback should be:
      *
@@ -163,42 +152,11 @@ class ActiveForm extends Widget
      */
     public $afterValidate;
     /**
-     * @var string|JsExpression a JS callback that is called after all validation has run (Only called when the form is submitted).
-     * The signature of the callback should be:
-     *
-     * ~~~
-     * function ($form, data, messages) {
-     * }
-     * ~~~
-     */
-    public $afterValidateAll;
-    /**
-     * @var string|JsExpression a JS pre-request callback function on AJAX-based validation.
-     * The signature of the callback should be:
-     *
-     * ~~~
-     * function ($form, jqXHR, textStatus) {
-     * }
-     * ~~~
-     */
-    public $ajaxBeforeSend;
-    /**
-     * @var string|JsExpression a JS callback to be called when the request finishes on AJAX-based validation.
-     * The signature of the callback should be:
-     *
-     * ~~~
-     * function ($form, jqXHR, textStatus) {
-     * }
-     * ~~~
-     */
-    public $ajaxComplete;
-    /**
      * @var array the client validation options for individual attributes. Each element of the array
      * represents the validation options for a particular attribute.
      * @internal
      */
     public $attributes = [];
-
 
     /**
      * Initializes the widget.
@@ -250,7 +208,7 @@ class ActiveForm extends Widget
         if ($this->validationUrl !== null) {
             $options['validationUrl'] = Url::to($this->validationUrl);
         }
-        foreach (['beforeSubmit', 'beforeValidate', 'beforeValidateAll', 'afterValidate', 'afterValidateAll', 'ajaxBeforeSend', 'ajaxComplete'] as $name) {
+        foreach (['beforeSubmit', 'beforeValidate', 'afterValidate'] as $name) {
             if (($value = $this->$name) !== null) {
                 $options[$name] = $value instanceof JsExpression ? $value : new JsExpression($value);
             }

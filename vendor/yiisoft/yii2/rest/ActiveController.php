@@ -52,7 +52,6 @@ class ActiveController extends Controller
      */
     public $createScenario = Model::SCENARIO_DEFAULT;
 
-
     /**
      * @inheritdoc
      */

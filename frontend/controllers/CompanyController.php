@@ -10,6 +10,8 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\db\Query;
 use yii\helpers\Json;
+use app\models\Complaint;
+use app\models\Timeline;
 
 /**
  * CompanyController implements the CRUD actions for Company model.
@@ -34,15 +36,33 @@ class CompanyController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new CompanySearch;
-        $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
-
-        return $this->render('index', [
-            'dataProvider' => $dataProvider,
-            'searchModel' => $searchModel,
-        ]);
+        $slug = \yii\helpers\Html::encode(trim(Yii::$app->request->get('slug')));
+        $id = '';
+        if (strlen($slug) > 0)
+        {
+            $id = substr($slug,0,12);
+            $id = (int)$id;
+        }
+        $model = Company::find()->where(['company_id'=>$id])->one();
+        if ($model === null)
+            throw new \yii\web\HttpException(404,'The company you are looking for does not exist');
+        else 
+        {
+            $complaint = Complaint::find()->where(['company_id'=>$id])->all();
+            if (Yii::$app->request->isAjax)
+               return $this->renderAjax('_complaints',['model'=>$model,'complaint'=>$complaint]);  
+            else
+                return $this->render('index',['model'=>$model,'complaint'=>$complaint]);  
+        }
+        Yii::$app->end();
     }
-
+    
+    public function actionAll()
+    {
+        $model = Company::find()->all();
+        return $this->render('all',['model'=>$model]);
+    }
+    
     /**
      * Displays a single Company model.
      * @param integer $id
@@ -60,7 +80,7 @@ class CompanyController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionNew()
     {
         $model = new Company;
 
@@ -128,6 +148,55 @@ class CompanyController extends Controller
         $out['results'] = ['id' => 0, 'text' => 'No matching records found'];
         }
         echo Json::encode($out);
+    }
+    
+    public function actionFollow()
+    {
+        $model = new \app\models\CompanyFollowing;
+        if (isset($_GET['id']) && $_GET['id'] != '')
+        {
+            $company_id = trim(strip_tags($_GET['id']));
+            $model->company_id = $company_id;
+            if ($model->validate())
+            {
+                if (\frontend\components\Voh::FollowCompanyUser($model->company_id, $model->user_id))
+                {
+                    Yii::$app->session->setFlash('error', 'You are already following this company');
+                    $this->redirect(Yii::$app->request->referrer);
+                    Yii::$app->end();
+                }
+                $timeline = new Timeline;
+                $model->save(false);
+                $timeline->id = null;
+                $timeline->company_id = $company_id;
+                $timeline->action_type = "F";
+                $timeline->action_id = $model->id;
+                $timeline->date_added = new \yii\db\Expression('Now()');
+                $timeline->save(false);
+                Yii::$app->session->setFlash('success', 'You are now following this company');
+                $this->redirect(Yii::$app->request->referrer);
+                Yii::$app->end();
+            }
+            else
+            {
+                Yii::$app->session->setFlash('error', 'Unable to follow this company. Please try again');
+                $this->redirect(Yii::$app->request->referrer);
+                Yii::$app->end();
+            }
+        }
+        else 
+        {
+                Yii::$app->session->setFlash('error', 'Unable to follow this company. Please try again');
+                $this->redirect(Yii::$app->request->referrer);
+                Yii::$app->end();
+        }
+    }
+    
+    public function actionFollowers()
+    {
+  
+            $this->renderAjax('followers');
+        
     }
 
     /**

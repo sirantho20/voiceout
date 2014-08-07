@@ -62,7 +62,6 @@ trait ActiveRelationTrait
      */
     public $inverseOf;
 
-
     /**
      * Clones internal objects.
      */
@@ -107,6 +106,7 @@ trait ActiveRelationTrait
         if ($callable !== null) {
             call_user_func($callable, $relation);
         }
+
         return $this;
     }
 
@@ -133,6 +133,7 @@ trait ActiveRelationTrait
     public function inverseOf($relationName)
     {
         $this->inverseOf = $relationName;
+
         return $this;
     }
 
@@ -239,24 +240,8 @@ trait ActiveRelationTrait
 
             $link = array_values(isset($viaQuery) ? $viaQuery->link : $this->link);
             foreach ($primaryModels as $i => $primaryModel) {
-                if ($this->multiple && count($link) == 1 && is_array($keys = $primaryModel[reset($link)])) {
-                    $value = [];
-                    foreach ($keys as $key) {
-                        if (isset($buckets[$key])) {
-                            if ($this->indexBy !== null) {
-                                // if indexBy is set, array_merge will cause renumbering of numeric array
-                                foreach($buckets[$key] as $bucketKey => $bucketValue) {
-                                    $value[$bucketKey] = $bucketValue;
-                                }
-                            } else {
-                                $value = array_merge($value, $buckets[$key]);
-                            }
-                        }
-                    }
-                } else {
-                    $key = $this->getModelKey($primaryModel, $link);
-                    $value = isset($buckets[$key]) ? $buckets[$key] : ($this->multiple ? [] : null);
-                }
+                $key = $this->getModelKey($primaryModel, $link);
+                $value = isset($buckets[$key]) ? $buckets[$key] : ($this->multiple ? [] : null);
                 if ($primaryModel instanceof ActiveRecordInterface) {
                     $primaryModel->populateRelation($name, $value);
                 } else {
@@ -429,11 +414,7 @@ trait ActiveRelationTrait
             $attribute = reset($this->link);
             foreach ($models as $model) {
                 if (($value = $model[$attribute]) !== null) {
-                    if (is_array($value)) {
-                        $values = array_merge($values, $value);
-                    } else {
-                        $values[] = $value;
-                    }
+                    $values[] = $value;
                 }
             }
         } else {

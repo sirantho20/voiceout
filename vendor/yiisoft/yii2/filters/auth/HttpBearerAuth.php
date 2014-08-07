@@ -36,7 +36,6 @@ class HttpBearerAuth extends AuthMethod
      */
     public $realm = 'api';
 
-
     /**
      * @inheritdoc
      */

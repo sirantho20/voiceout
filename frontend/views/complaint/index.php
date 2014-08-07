@@ -34,7 +34,7 @@ $this->title = Company::getCompanyName($model->company_id).' - '.substr($model->
         <?php echo ($model->has_picture == 'Y')?'<img src="/frontend/assets/images/complaints/'.Pictures::getPictureLink($model->complaint_id).'" alt="" class="img-thumbnail" style="width:100%; height:140px; margin-top: 25px;" />':"<span style='margin-top:22px; width:100%; height: 140px; background: #fafafa; border: 1px solid #f5f5f5;display:block;'><i style='display:block; font-size: 60px; color: #c7c7c7; text-align:center; margin-top: 35px;' class='glyphicon glyphicon-camera'></i></span>"; ?>
     </div>
     <div class="col-sm-7">
-        <h3 class="lead"><?= Company::getCompanyName($model->company_id) ?></h3>
+        <h3 class="lead"><a href="<?=Url::toRoute('/company/'.  Company::getCompanySlug($model->company_id)) ?>"><?= Company::getCompanyName($model->company_id) ?></a></h3>
       <p><?= $voh->linkTag($model->complaint) ?></p>
       <footer><cite title="">By: <?= ($model->user_id == '1000010000')?'Anonymous':'' ?> on <?= date('M d H:i',  strtotime($model->date_added)) ?></cite><?php if (trim($model->location) != ''): ?><span class="pull-right"><a href="javascript::void(0)" data-target="#w1" data-toggle="modal"><i class="glyphicon glyphicon-map-marker"></i> Has location</a></span>  <?php endif; ?> </footer> 
       <hr class="divider" />

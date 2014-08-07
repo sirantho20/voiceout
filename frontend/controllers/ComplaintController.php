@@ -13,7 +13,7 @@ use app\models\Reply;
 use app\models\Escalate;
 use app\models\Timeline;
 use app\models\ComplaintFollowing;
-
+use yii\data\Pagination;
 class ComplaintController extends \yii\web\Controller
 {
     public function actionNew()
@@ -89,8 +89,11 @@ class ComplaintController extends \yii\web\Controller
     
     public function actionAll()
     {
-        $model = Complaint::find()->all();
-        return $this->render('all',['model'=>$model]);
+        $query = Complaint::find();
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count(),'pageSize'=>10]);
+        $model = $query->offset($pages->offset)->limit($pages->limit)->all();
+        return $this->render('all',['model'=>$model, 'pages' => $pages,]);
     }
     
     public function actionDelete()

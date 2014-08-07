@@ -58,12 +58,10 @@ class FileMutex extends Mutex
      * but read-only for other users.
      */
     public $dirMode = 0775;
-
     /**
      * @var resource[] stores all opened lock files. Keys are lock names and values are file handles.
      */
     private $_files = [];
-
 
     /**
      * Initializes mutex component implementation dedicated for UNIX, GNU/Linux, Mac OS X, and other UNIX-like
@@ -72,7 +70,7 @@ class FileMutex extends Mutex
      */
     public function init()
     {
-        if (DIRECTORY_SEPARATOR === '\\') {
+        if (stripos(php_uname('s'), 'win') === 0) {
             throw new InvalidConfigException('FileMutex does not have MS Windows operating system support.');
         }
         $this->mutexPath = Yii::getAlias($this->mutexPath);

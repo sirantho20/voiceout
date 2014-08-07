@@ -64,8 +64,15 @@ return [
                     'complaint/follow' => 'complaint/follow',
                     'complaint/unfollow' => 'complaint/unfollow',
                     'complaint/<slug:[a-zA-Z0-9-]+>' => 'complaint/index',
-//                    '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-//                    '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                    'company/new' => 'company/new',
+                    'company/all' => 'company/all',
+                    'company/follow' => 'company/follow',
+                    'company/unfollow' => 'company/unfollow',
+                    'company/followers' => 'company/followers',
+                    'company/getcompany' => 'company/getcompany',
+                    'company/<slug:[a-zA-Z0-9-]+>' => 'company/index',
+                    '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                    '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
                 ]
          ],
         'request' => [

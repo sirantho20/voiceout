@@ -6,6 +6,8 @@
 namespace frontend\components;
 
 use app\models\Complaint;
+use app\models\Company;
+use app\models\User;
 use Yii;
 
 class Voh 
@@ -191,6 +193,33 @@ class Voh
             return false;
         }
     }
+    
+    public static function FollowCompanyUser($company_id,$user_id)
+    {
+        if (trim($company_id)!='' && trim($user_id)!='')
+        {
+            if(\app\models\CompanyFollowing::find()->where(['company_id'=>$company_id,'user_id'=>$user_id])->exists())
+            {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
+    }
+    
+    public static function FollowCompanyCounter($company_id)
+    {
+        if (trim($company_id) != '')
+        {
+            $count = \app\models\CompanyFollowing::find()->where(['company_id'=>$company_id])->count();
+            return $count;
+        }
+    }
+    
     public function CompanyTimeline(){
         
     }

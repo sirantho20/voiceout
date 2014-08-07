@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
 <div class="company-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype'=>'multipart/form-data'],'enableAjaxValidation'=>true,'enableClientValidation'=>false]); ?>
 
     <?= $form->field($model, 'company_id')->textInput(['maxlength' => 12]) ?>
 

@@ -107,7 +107,6 @@ class Schema extends \yii\db\Schema
         'xml' => self::TYPE_STRING
     ];
 
-
     /**
      * Creates a query builder for the PostgreSQL database.
      * @return QueryBuilder query builder instance

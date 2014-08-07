@@ -57,7 +57,6 @@ class Captcha extends InputWidget
      */
     public $options = ['class' => 'form-control'];
 
-
     /**
      * Initializes the widget.
      */

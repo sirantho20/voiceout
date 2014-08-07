@@ -106,7 +106,7 @@ $this->registerCssFile('/frontend/assets/fontawesome/css/font-awesome.min.css');
                 'content' => '<span id="add-location" data-target="#w0" data-toggle="modal" style="cursor:pointer;"><i class="glyphicon   glyphicon-map-marker" data-toggle="tooltip" title="Add location"></i></span>',
                 ],
                 [
-                'content' => '<span onclick="openWindow()" style="cursor:pointer;"><i class="glyphicon glyphicon-paperclip" data-toggle="tooltip" title="Add photo"></i></span>',
+                'content' => '<span onclick="openWindow()" style="cursor:pointer;"><i class="glyphicon glyphicon-camera" data-toggle="tooltip" title="Add photo"></i></span>',
                 ],
                 [
                 'content' => Html::submitButton('<span>Send <i class="glyphicon glyphicon-bullhorn"></i></span>', [
