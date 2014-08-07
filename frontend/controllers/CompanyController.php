@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 use yii\db\Query;
 use yii\helpers\Json;
 use app\models\Complaint;
+use app\models\Timeline;
 
 /**
  * CompanyController implements the CRUD actions for Company model.
@@ -147,6 +148,48 @@ class CompanyController extends Controller
         $out['results'] = ['id' => 0, 'text' => 'No matching records found'];
         }
         echo Json::encode($out);
+    }
+    
+    public function actionFollow()
+    {
+        $model = new \app\models\CompanyFollowing;
+        if (isset($_GET['id']) && $_GET['id'] != '')
+        {
+            $company_id = trim(strip_tags($_GET['id']));
+            $model->company_id = $company_id;
+            if ($model->validate())
+            {
+                if (\frontend\components\Voh::FollowCompanyUser($model->company_id, $model->user_id))
+                {
+                    Yii::$app->session->setFlash('error', 'You are already following this company');
+                    $this->redirect(Yii::$app->request->referrer);
+                    Yii::$app->end();
+                }
+                $timeline = new Timeline;
+                $model->save(false);
+                $timeline->id = null;
+                $timeline->company_id = $company_id;
+                $timeline->action_type = "F";
+                $timeline->action_id = $model->id;
+                $timeline->date_added = new \yii\db\Expression('Now()');
+                $timeline->save(false);
+                Yii::$app->session->setFlash('success', 'You are now following this company');
+                $this->redirect(Yii::$app->request->referrer);
+                Yii::$app->end();
+            }
+            else
+            {
+                Yii::$app->session->setFlash('error', 'Unable to follow this company. Please try again');
+                $this->redirect(Yii::$app->request->referrer);
+                Yii::$app->end();
+            }
+        }
+        else 
+        {
+                Yii::$app->session->setFlash('error', 'Unable to follow this company. Please try again');
+                $this->redirect(Yii::$app->request->referrer);
+                Yii::$app->end();
+        }
     }
     
     public function actionFollowers()
