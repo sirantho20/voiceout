@@ -45,11 +45,6 @@ class Carousel extends Widget
      */
     public $controls = ['&lsaquo;', '&rsaquo;'];
     /**
-     * @var boolean
-     * If false carousel indicators (<ol> tag with anchors to items) should not be displayed.
-     */
-    public $showIndicators = true;
-    /**
      * @var array list of slides in the carousel. Each array element represents a single
      * slide with the following structure:
      *
@@ -65,7 +60,6 @@ class Carousel extends Widget
      * ```
      */
     public $items = [];
-
 
     /**
      * Initializes the widget.
@@ -95,9 +89,6 @@ class Carousel extends Widget
      */
     public function renderIndicators()
     {
-        if ($this->showIndicators === false) {
-            return '';
-        }
         $indicators = [];
         for ($i = 0, $count = count($this->items); $i < $count; $i++) {
             $options = ['data-target' => '#' . $this->options['id'], 'data-slide-to' => $i];

@@ -22,7 +22,6 @@ abstract class Base extends Component implements MatcherInterface
      */
     protected $baseValue;
 
-
     /**
      * @inheritdoc
      */

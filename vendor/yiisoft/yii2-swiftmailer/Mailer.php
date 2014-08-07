@@ -79,7 +79,6 @@ class Mailer extends BaseMailer
      * @var string message default class name.
      */
     public $messageClass = 'yii\swiftmailer\Message';
-
     /**
      * @var \Swift_Mailer Swift mailer instance.
      */
@@ -88,7 +87,6 @@ class Mailer extends BaseMailer
      * @var \Swift_Transport|array Swift transport instance or its array configuration.
      */
     private $_transport = [];
-
 
     /**
      * @return array|\Swift_Mailer Swift mailer instance or array configuration.

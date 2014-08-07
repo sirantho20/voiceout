@@ -189,7 +189,8 @@ class QueryBuilder extends \yii\db\QueryBuilder
         $originalOrdering = $this->buildOrderBy($query->orderBy);
         if ($query->select) {
             $select = implode(', ', $query->select);
-        } else {
+        }
+        else {
             $select = $query->select = '*';
         }
         if ($select === '*') {
@@ -231,22 +232,14 @@ class QueryBuilder extends \yii\db\QueryBuilder
     }
 
     /**
-     * @var boolean whether MSSQL used is old.
-     */
-    private $_oldMssql;
-
-    /**
-     * @return boolean whether MSSQL used is old.
+     * @return boolean if MSSQL used is old
      * @throws \yii\base\InvalidConfigException
      * @throws \yii\db\Exception
      */
     protected function isOldMssql()
     {
-        if ($this->_oldMssql === null) {
-            $pdo = $this->db->getSlavePdo();
-            $version = preg_split("/\./", $pdo->getAttribute(\PDO::ATTR_SERVER_VERSION));
-            $this->_oldMssql = $version[0] < 11;
-        }
-        return $this->_oldMssql;
+        $pdo = $this->db->getSlavePdo();
+        $version = preg_split("/\./", $pdo->getAttribute(\PDO::ATTR_SERVER_VERSION));
+        return $version[0] < 11;
     }
 }

@@ -1,0 +1,12 @@
+*
+!.gitignore
+!/bin/
+!/swiftmailer/
+!/composer/
+!/twbs/
+!/ezyang/
+!/yiisoft/
+!/phpspec/
+!/cebe/
+!/autoload.php
+!/kartik-v/

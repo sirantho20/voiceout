@@ -25,7 +25,6 @@ class ProfilingPanel extends Panel
      */
     private $_models;
 
-
     /**
      * @inheritdoc
      */

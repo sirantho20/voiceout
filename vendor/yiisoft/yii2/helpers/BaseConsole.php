@@ -453,8 +453,6 @@ class BaseConsole
 
     /**
      * Converts Markdown to be better readable in console environments by applying some ANSI format
-     * @param string $markdown
-     * @return string
      */
     public static function markdownToAnsi($markdown)
     {

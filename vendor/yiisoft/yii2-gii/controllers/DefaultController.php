@@ -27,7 +27,6 @@ class DefaultController extends Controller
      */
     public $generator;
 
-
     public function actionIndex()
     {
         $this->layout = 'main';

@@ -60,7 +60,7 @@ class Swift_Signers_DomainKeySigner implements Swift_Signers_HeaderSigner
     /**
      * Signer identity
      *
-     * @var string
+     * @var unknown_type
      */
     protected $_signerIdentity;
 
@@ -80,6 +80,13 @@ class Swift_Signers_DomainKeySigner implements Swift_Signers_HeaderSigner
     private $_signedHeaders = array();
 
     /**
+     * If debugHeaders is set store debugDatas here
+     *
+     * @var string
+     */
+    private $_debugHeadersData = '';
+
+    /**
      * Stores the signature header
      *
      * @var Swift_Mime_Headers_ParameterizedHeader
@@ -89,7 +96,7 @@ class Swift_Signers_DomainKeySigner implements Swift_Signers_HeaderSigner
     /**
      * Hash Handler
      *
-     * @var resource|null
+     * @var hash_ressource
      */
     private $_hashHandler;
 

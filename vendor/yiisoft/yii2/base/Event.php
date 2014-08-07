@@ -50,7 +50,6 @@ class Event extends Object
 
     private static $_events = [];
 
-
     /**
      * Attaches an event handler to a class-level event.
      *

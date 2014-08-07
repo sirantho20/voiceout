@@ -85,7 +85,6 @@ class NavBar extends Widget
      */
     public $innerContainerOptions = [];
 
-
     /**
      * Initializes the widget.
      */

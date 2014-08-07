@@ -59,7 +59,6 @@ class ButtonDropdown extends Widget
      */
     public $encodeLabel = true;
 
-
     /**
      * Renders the widget.
      */

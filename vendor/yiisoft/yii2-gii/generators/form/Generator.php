@@ -26,7 +26,6 @@ class Generator extends \yii\gii\Generator
     public $viewName;
     public $scenarioName;
 
-
     /**
      * @inheritdoc
      */

@@ -13,10 +13,7 @@
             <h1>Bootstrap File Input Example</h1>
             <form enctype="multipart/form-data">
                 <div class="form-group">
-                    <input id="file-1" type="file" multiple=true data-preview-file-type="any">
-                </div>
-                <div class="form-group">
-                    <input id="file-1a" type="file" class="file" data-preview-file-type="any" data-initial-caption="Kartik" data-overwrite-initial="false">
+                    <input id="file-1" type="file" class="file" multiple=true data-preview-file-type="any">
                 </div>
                 <div class="form-group">
                     <input id="file-2" type="file" class="file" readonly=true>
@@ -38,8 +35,7 @@
 	<script>
     $("#file-1").fileinput({
         initialPreview: ["<img src='Desert.jpg' class='file-preview-image'>", "<img src='Jellyfish.jpg' class='file-preview-image'>"],
-        overwriteInitial: false,
-        maxFileSize: 100
+        overwriteInitial: true
 	});
 	$("#file-3").fileinput({
 		showCaption: false,
@@ -47,11 +43,8 @@
 		fileType: "any"
 	});
     $(".btn-warning").on('click', function() {
-        if ($('#file-4').attr('disabled')) {
-            $('#file-4').fileinput('enable');
-        } else {
-            $('#file-4').fileinput('disable');
-        }
+        $("#file-4").attr('disabled', 'disabled');
+        $('#file-4').fileinput('refresh', {browseLabel: 'Kartik'});
     });
 	</script>
 </html>

@@ -27,12 +27,10 @@ abstract class BasePage extends Component
      * the route and the rest of the name-value pairs are treated as GET parameters, e.g. `array('site/page', 'name' => 'about')`.
      */
     public $route;
-
     /**
      * @var \Codeception\AbstractGuy the testing guy object
      */
     protected $guy;
-
 
     /**
      * Constructor.

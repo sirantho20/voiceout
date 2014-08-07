@@ -98,7 +98,6 @@ class Serializer extends Component
      */
     public $response;
 
-
     /**
      * @inheritdoc
      */

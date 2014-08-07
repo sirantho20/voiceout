@@ -30,7 +30,7 @@ use yii\di\ServiceLocator;
  * @property string $layoutPath The root directory of layout files. Defaults to "[[viewPath]]/layouts".
  * @property array $modules The modules (indexed by their IDs).
  * @property string $uniqueId The unique ID of the module. This property is read-only.
- * @property string $viewPath The root directory of view files. Defaults to "[[basePath]]/views".
+ * @property string $viewPath The root directory of view files. Defaults to "[[basePath]]/view".
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
@@ -106,7 +106,6 @@ class Module extends ServiceLocator
      * [[Controller::defaultAction]].
      */
     public $defaultRoute = 'default';
-
     /**
      * @var string the root directory of the module.
      */
@@ -127,7 +126,6 @@ class Module extends ServiceLocator
      * @var array list of currently requested modules indexed by their class names
      */
     private static $_instances = [];
-
 
     /**
      * Constructor.
@@ -243,7 +241,7 @@ class Module extends ServiceLocator
 
     /**
      * Returns the directory that contains the view files for this module.
-     * @return string the root directory of view files. Defaults to "[[basePath]]/views".
+     * @return string the root directory of view files. Defaults to "[[basePath]]/view".
      */
     public function getViewPath()
     {
@@ -550,6 +548,10 @@ class Module extends ServiceLocator
      */
     public function createControllerByID($id)
     {
+        if (!preg_match('%^[a-z0-9\\-_/]+$%', $id)) {
+            return null;
+        }
+
         $pos = strrpos($id, '/');
         if ($pos === false) {
             $prefix = '';
@@ -557,13 +559,6 @@ class Module extends ServiceLocator
         } else {
             $prefix = substr($id, 0, $pos + 1);
             $className = substr($id, $pos + 1);
-        }
-
-        if (!preg_match('%^[a-z][a-z0-9\\-_]*$%', $className)) {
-            return null;
-        }
-        if ($prefix !== '' && !preg_match('%^[a-z0-9_/]+$%i', $prefix)) {
-            return null;
         }
 
         $className = str_replace(' ', '', ucwords(str_replace('-', ' ', $className))) . 'Controller';

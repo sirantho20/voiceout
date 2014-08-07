@@ -33,7 +33,6 @@ class DefaultController extends Controller
      */
     public $summary;
 
-
     /**
      * @inheritdoc
      */

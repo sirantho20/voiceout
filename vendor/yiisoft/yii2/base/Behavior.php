@@ -25,7 +25,6 @@ class Behavior extends Object
      */
     public $owner;
 
-
     /**
      * Declares event handlers for the [[owner]]'s events.
      *

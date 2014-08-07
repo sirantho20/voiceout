@@ -21,7 +21,6 @@ class ActiveField extends \yii\widgets\ActiveField
      */
     public $model;
 
-
     /**
      * @inheritdoc
      */

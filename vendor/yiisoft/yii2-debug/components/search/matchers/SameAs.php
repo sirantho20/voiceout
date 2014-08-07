@@ -20,7 +20,6 @@ class SameAs extends Base
      */
     public $partial = false;
 
-
     /**
      * @inheritdoc
      */

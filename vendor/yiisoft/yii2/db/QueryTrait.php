@@ -253,6 +253,20 @@ trait QueryTrait
                     return [];
                 }
                 break;
+            case 'IN':
+            case 'NOT IN':
+            case 'LIKE':
+            case 'OR LIKE':
+            case 'NOT LIKE':
+            case 'OR NOT LIKE':
+            case 'ILIKE': // PostgreSQL operator for case insensitive LIKE
+            case 'OR ILIKE':
+            case 'NOT ILIKE':
+            case 'OR NOT ILIKE':
+                if (array_key_exists(1, $condition) && $this->isEmpty($condition[1])) {
+                    return [];
+                }
+                break;
             case 'BETWEEN':
             case 'NOT BETWEEN':
                 if (array_key_exists(1, $condition) && array_key_exists(2, $condition)) {
@@ -262,9 +276,7 @@ trait QueryTrait
                 }
                 break;
             default:
-                if (array_key_exists(1, $condition) && $this->isEmpty($condition[1])) {
-                    return [];
-                }
+                throw new NotSupportedException("Operator not supported: $operator");
         }
 
         array_unshift($condition, $operator);
@@ -330,12 +342,6 @@ trait QueryTrait
         return $this;
     }
 
-    /**
-     * Normalizes format of ORDER BY data
-     *
-     * @param array|string $columns
-     * @return array
-     */
     protected function normalizeOrderBy($columns)
     {
         if (is_array($columns)) {

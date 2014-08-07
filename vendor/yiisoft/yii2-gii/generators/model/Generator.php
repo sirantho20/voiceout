@@ -32,7 +32,6 @@ class Generator extends \yii\gii\Generator
     public $generateLabelsFromComments = false;
     public $useTablePrefix = false;
 
-
     /**
      * @inheritdoc
      */
@@ -197,7 +196,7 @@ class Generator extends \yii\gii\Generator
                 $labels[$column->name] = 'ID';
             } else {
                 $label = Inflector::camel2words($column->name);
-                if (!empty($label) && substr_compare($label, ' id', -3, 3, true) === 0) {
+                if (strcasecmp(substr($label, -3), ' id') === 0) {
                     $label = substr($label, 0, -3) . ' ID';
                 }
                 $labels[$column->name] = $label;
@@ -429,7 +428,7 @@ class Generator extends \yii\gii\Generator
      */
     protected function generateRelationName($relations, $className, $table, $key, $multiple)
     {
-        if (!empty($key) && substr_compare($key, 'id', -2, 2, true) === 0 && strcasecmp($key, 'id')) {
+        if (strcasecmp(substr($key, -2), 'id') === 0 && strcasecmp($key, 'id')) {
             $key = rtrim(substr($key, 0, -2), '_');
         }
         if ($multiple) {
@@ -479,7 +478,7 @@ class Generator extends \yii\gii\Generator
         if ($this->isReservedKeyword($this->modelClass)) {
             $this->addError('modelClass', 'Class name cannot be a reserved PHP keyword.');
         }
-        if ((empty($this->tableName) || substr_compare($this->tableName, '*', -1)) && $this->modelClass == '') {
+        if (substr($this->tableName, -1) !== '*' && $this->modelClass == '') {
             $this->addError('modelClass', 'Model Class cannot be blank if table name does not end with asterisk.');
         }
     }
@@ -489,7 +488,7 @@ class Generator extends \yii\gii\Generator
      */
     public function validateTableName()
     {
-        if (strpos($this->tableName, '*') !== false && substr_compare($this->tableName, '*', -1)) {
+        if (strpos($this->tableName, '*') !== false && substr($this->tableName, -1) !== '*') {
             $this->addError('tableName', 'Asterisk is only allowed as the last character.');
 
             return;
@@ -508,16 +507,16 @@ class Generator extends \yii\gii\Generator
         }
     }
 
-    protected $tableNames;
-    protected $classNames;
+    private $_tableNames;
+    private $_classNames;
 
     /**
      * @return array the table names that match the pattern specified by [[tableName]].
      */
     protected function getTableNames()
     {
-        if ($this->tableNames !== null) {
-            return $this->tableNames;
+        if ($this->_tableNames !== null) {
+            return $this->_tableNames;
         }
         $db = $this->getDbConnection();
         if ($db === null) {
@@ -540,10 +539,10 @@ class Generator extends \yii\gii\Generator
             }
         } elseif (($table = $db->getTableSchema($this->tableName, true)) !== null) {
             $tableNames[] = $this->tableName;
-            $this->classNames[$this->tableName] = $this->modelClass;
+            $this->_classNames[$this->tableName] = $this->modelClass;
         }
 
-        return $this->tableNames = $tableNames;
+        return $this->_tableNames = $tableNames;
     }
 
     /**
@@ -574,8 +573,8 @@ class Generator extends \yii\gii\Generator
      */
     protected function generateClassName($tableName)
     {
-        if (isset($this->classNames[$tableName])) {
-            return $this->classNames[$tableName];
+        if (isset($this->_classNames[$tableName])) {
+            return $this->_classNames[$tableName];
         }
 
         if (($pos = strrpos($tableName, '.')) !== false) {
@@ -601,7 +600,7 @@ class Generator extends \yii\gii\Generator
             }
         }
 
-        return $this->classNames[$tableName] = Inflector::id2camel($className, '_');
+        return $this->_classNames[$tableName] = Inflector::id2camel($className, '_');
     }
 
     /**

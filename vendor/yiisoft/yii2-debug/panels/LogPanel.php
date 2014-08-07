@@ -25,7 +25,6 @@ class LogPanel extends Panel
      */
     private $_models;
 
-
     /**
      * @inheritdoc
      */

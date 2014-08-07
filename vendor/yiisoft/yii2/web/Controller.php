@@ -29,7 +29,6 @@ class Controller extends \yii\base\Controller
      */
     public $actionParams = [];
 
-
     /**
      * Renders a view in response to an AJAX request.
      *
