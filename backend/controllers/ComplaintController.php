@@ -41,6 +41,110 @@ class ComplaintController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+    
+    public function actionRead($id)
+    {
+        $complaint = Complaint::findOne(['complaint_id'=>$id]);
+        
+        $comp = \backend\models\Company::findOne(['company_id' =>$complaint->company_id]);
+        return $this->renderPartial('read',[
+                'complaint' => $complaint,
+                'username' => $this->loadUser($complaint->user_id),
+                'company' => $comp
+                ]);
+    }
+
+
+    public function actionList()
+    {
+        
+        $output = '<table id="inbox-table" class="table table-striped table-hover"><tbody>';
+        
+        $data = Complaint::findAll(['company_id'=>  Yii::$app->user->identity->company_id]);
+        $dat = [
+            [
+                'user_id' =>3,
+                'complaint'=>'what is the meaning of all this bad service you are providing??',
+                'date_added'=>'2014-08-05 17:24:56',
+                'complaint_id' => 30
+            ],
+            [
+                'user_id' =>2,
+                'complaint'=>'what is the meaning of all this bad service you are providing??',
+                'date_added'=>'2014-08-01 17:24:56',
+                'complaint_id' => 45
+            ]
+        ];
+        foreach($data as $row)
+        {
+            //print_r($row['user_id']);die();
+            $output .= '<tr id="msg1" class="unread">
+			<td class="inbox-table-icon">
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" class="checkbox style-2">
+						<span></span> 
+                                        </label>
+				</div>
+			</td>'.
+                        // message from
+                        '<td class="inbox-data-from hidden-xs hidden-sm" id="'.$row['complaint_id'].'">
+                                    <div>
+                                            '.$this->loadUser($row['user_id']).'
+                                    </div>
+                        </td>'.
+                        // message excerpt 
+                        '<td class="inbox-data-message" id="'.$row['complaint_id'].'">
+				<div>
+					'.implode(' ', array_slice(explode(' ', $row['complaint']), 0, 8)).'
+				</div>
+			</td>'.
+                        // message attachments
+                        '<td class="inbox-data-attachment hidden-xs">
+				<div>
+					<a href="javascript:void(0);" rel="tooltip" data-placement="left" data-original-title="FILES: rocketlaunch.jpg, timelogs.xsl" class="txt-color-darken"><i class="fa fa-paperclip fa-lg"></i></a>
+				</div>
+			</td>'.
+                        // message datetime
+                        '<td class="inbox-data-date hidden-xs">
+				<div>
+					'.(new \yii\base\Formatter())->asDate($row['date_added'],'g:i a').'
+				</div>
+			</td>'.
+                        // row end
+                        '</tr>';
+        }
+        
+        $output .= '</tbody></table>';
+        return $this->renderPartial('list',['output'=>$output]);
+        
+    }
+    
+    public function loadUser($id)
+    {
+        if(($user = \backend\models\User::findOne($id)) !== NULL)
+        {
+            return $user->username;
+        }
+        else {
+            return false;
+        }
+        
+    }
+    
+        public static function getUsername($id)
+    {
+        if(($user = \backend\models\User::findOne($id)) !== NULL)
+        {
+            return $user->username;
+        }
+        else {
+            return false;
+        }
+        
+    }
+        /**
+
 
     /**
      * Displays a single Complaint model.

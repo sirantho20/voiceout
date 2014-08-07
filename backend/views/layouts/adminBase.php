@@ -20,7 +20,7 @@ use yii\helpers\Html;
             echo Html::csrfMetaTags();
             ?>
 </head>
-<body>
+<body class="smart-style-3">
     <?php $this->beginBody() ?>
     <div class="wrap">
         

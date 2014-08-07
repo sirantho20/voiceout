@@ -12,7 +12,7 @@ use kartik\widgets\FileInput;
 ?>
 
 <div class="company-details-form">
-
+<?php //print_r($errors) ?>
     <?php $form = ActiveForm::begin(['options'=>['enctype'=>'multipart/form-data', 'method'=>'POST']]); ?>
     
     <?= $form->field($model, 'email_address')->textInput(['maxlength' => 255]) ?>
@@ -34,6 +34,4 @@ use kartik\widgets\FileInput;
     <?php ActiveForm::end(); ?>
 
 </div>
-<?php
-print_r($model->getErrors());
 

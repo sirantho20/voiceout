@@ -19,7 +19,7 @@ class smartIndexBundle extends smartadminBundle {
     
     public $sourcePath = '@yii/assets';
     public $baseUrl = '@web/smartadmin';
-    public $js = ['js/plugin/flot/jquery.flot.cust.js',
+    public $js = [ 'js/plugin/flot/jquery.flot.cust.js',
                   'js/plugin/flot/jquery.flot.resize.js',
                   'js/plugin/flot/jquery.flot.tooltip.js',
                   'js/plugin/vectormap/jquery-jvectormap-1.2.2.min.js',
@@ -27,7 +27,9 @@ class smartIndexBundle extends smartadminBundle {
                   'js/plugin/fullcalendar/jquery.fullcalendar.min.js',
                   'js/plugin/jquery-validate/jquery.validate.min.js',
                   'js/app.js',
-                  'js/libs/jquery-ui-1.10.3.min.js',
+                  'js/plugin/delete-table-row/delete-table-row.js',
+                  'js/plugin/summernote/summernote.js',
+                  'js/plugin/select2/select2.min.js'
         ];
      public $depends = [ 'backend\assets\smartadminBundle'];
 }
