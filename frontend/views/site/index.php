@@ -24,7 +24,7 @@ Report below</p>
 
     <div class="body-content">
         <div class="container">
-        <div class="row">
+            <div class="row" style="padding-bottom: 20px;">
             <div class="col-sm-4">
                 <h2>Industry</h2>
 
@@ -57,32 +57,20 @@ Report below</p>
             </div>
         </div>
         </div><!-- @end of container -->
+<div class="frc-section">
+<div class="fmenu">
+    <div class="container">
+        <div class="cmenu">
+            <ul>
+                <li class="active"><a href="#">Recent Complaints</a></li>
+                <li><a href="#" >Popular Complaints</a></li>
+                <li><a href="#">Recently Answered</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
 <div class="container">
-            <div class="row">
-                <p>&nbsp;</p>
-                 <p>
-                    <hr class="separator" />
-                </p>
-            <div class="btn-group btn-group-justified" data-toggle="buttons">
-              <div class="btn-group">
-                <button type="button" class="btn btn-default active">Recent Complaints</button>
-              </div>
-              <div class="btn-group">
-                <button type="button" class="btn btn-default">Popular Complaints</button>
-              </div>
-              <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                  Recently Answered
-                  <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">Dropdown link</a></li>
-                  <li><a href="#">Dropdown link</a></li>
-                </ul>
-              </div>
-            </div>
-            <p>&nbsp;</p>
-            </div>
+    
 
             <div class="row">
             <?php 
@@ -91,15 +79,26 @@ Report below</p>
                     foreach($complaints as $complaint)
                     {
             ?>
-                    <div class="col-sm-4 front-complaint" style="height: 320px;">
-                        <div style="height: 140px; overflow: hidden;">
-                            <?php echo ($complaint->has_picture == 'Y')?'<img src="/frontend/assets/images/complaints/'.Pictures::getPictureLink($complaint->complaint_id).'" alt="" width="100%" />':"<span style='width:100%; height: 140px; background: #fafafa; border: 1px solid #f5f5f5;display:block;'><i style='display:block; font-size: 60px; color: #c7c7c7; text-align:center; margin-top: 35px;' class='glyphicon glyphicon-camera'></i></span>"; ?>
+                    <div class="col-sm-4 frc">
+                     <div class="frc-item">
+                        <div class="frc-img">
+                            <?php echo ($complaint->has_picture == 'Y')?'<img src="/frontend/assets/images/complaints/'.Pictures::getPictureLink($complaint->complaint_id).'" alt="" width="100%" />':"<span style='width:100%; display:block;'><i style='display:block; font-size: 30px; color: #c7c7c7; text-align:center; margin-top: 15px;' class='glyphicon glyphicon-camera'></i></span>"; ?>
                         </div>
-                        <div class="fhead"><h4 class=""><?= "<a href='".Url::toRoute("/complaint/".$complaint->slug)."'>".Company::getCompanyName($complaint->company_id)."</a>" ?></h4>
-                            <div class="meta-info"><span class="">By: Anonymous</span><span class="bullet"> • </span><span class="">2 minutes ago</span></div>
+                         <div class="ftext">
+                         <div class="description">
+                            <h4 class=""><?= "<a href='".Url::toRoute("/complaint/".$complaint->slug)."'>".Company::getCompanyName($complaint->company_id)."</a>" ?></h4>  
+                             <?php echo \frontend\components\Voh::truncateByWord(Html::encode($complaint->complaint), 140, '...') ;  ?>
+                            <br />
+                            <span class="">By: Anonymous</span><span class="bullet"> • </span><span class="">2 minutes ago</span>
                          </div>
-                        <p class="description"><?php echo \frontend\components\Voh::truncateByWord(Html::encode($complaint->complaint), 160, '...') ;  ?><p>
-                        <div class="attributes"><a href="<?= Url::toRoute("/complaint/".$complaint->slug) ?>" class="btn btn-default btn-xs pull-left">View</a> <span class="pull-right"><i class="glyphicon glyphicon-heart-empty"></i> <?= Voh::FollowCounter($complaint->complaint_id) ?>&nbsp; <span><span class="pull-right"><i class="glyphicon glyphicon-comment"></i> <?= Voh::ReplyCounter($complaint->complaint_id) ?>&nbsp; <span><span class="pull-right"><i class="glyphicon glyphicon-fire"></i> <?= Voh::EscalateCounter($complaint->complaint_id) ?></span></div>
+                             <a href="<?= Url::toRoute("/complaint/".$complaint->slug) ?>" class="btn btn-default btn-xs pull-left" style="background:#f7f9fa;">View</a>
+                         </div>
+                     <div class="attributes">   
+                         <span class=""><i class="glyphicon glyphicon-heart-empty"></i> <?= Voh::FollowCounter($complaint->complaint_id) ?></span><br />
+                         <span class=""><i class="glyphicon glyphicon-comment"></i> <?= Voh::ReplyCounter($complaint->complaint_id) ?></span><br />
+                         <span class=""><i class="glyphicon glyphicon-fire"></i> <?= Voh::EscalateCounter($complaint->complaint_id) ?></span>
+                     </div>
+                    </div>
                     </div>
             <?php
                     }
@@ -108,6 +107,7 @@ Report below</p>
 
             </div>
  </div><!-- @end of container -->
+</div><!-- @end of frc section -->
  <div id="social" class="page-block">
     	<div class="container">
         <div class="row social-header">

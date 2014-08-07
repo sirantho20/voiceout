@@ -17,7 +17,7 @@ use yii\helpers\Url;
         <div class="col-sm-3">
             <div class="" style="padding-top:5px;">
                 <a class="btn btn-default btn-block">Raise ticket</a>
-                <a class="btn btn-primary btn-block">Follow</a>
+                <a href="<?=Url::toRoute('/company/follow?id='.$model->company_id) ?>" class="btn btn-primary btn-block">Follow</a>
             </div>
         </div><!-- @end of col 3 -->
     </div>
@@ -41,7 +41,7 @@ use yii\helpers\Url;
     ?></li>
                 <li><a href="#" >Activity</a></li>
                 <li><?php
-     echo Html::a('Followers','company/followers', [
+     echo Html::a('Followers <span class="badge">'.Voh::FollowCompanyCounter($model->company_id).'</span>','company/followers', [
     'onclick'=>"
      $.ajax({
     type     :'GET',
